@@ -1,8 +1,11 @@
 extends Node
 class_name Element
+
 var elements
+
 static var elementNames = ["A", "B", "C"]
 static var numberElements = 3
+
 func _init(_elements=[0, 0, 0]):
 	elements = _elements
 
