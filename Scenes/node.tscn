@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cn3yblpjy2qrs"]
+[gd_scene load_steps=6 format=3 uid="uid://cn3yblpjy2qrs"]
 
-[ext_resource type="Script" path="res://Scripts/Ingredients.gd" id="3_a7icg"]
-[ext_resource type="Script" path="res://Scripts/Reset.gd" id="3_b7xak"]
-[ext_resource type="Script" path="res://Scripts/RatioBars.gd" id="4_fkmwv"]
+[ext_resource type="Script" path="res://Scripts/Reset.gd" id="1_gap75"]
+[ext_resource type="Script" path="res://Scripts/Ingredients.gd" id="2_jut8u"]
+[ext_resource type="Script" path="res://Scripts/RatioBars.gd" id="3_cs4fu"]
+[ext_resource type="Script" path="res://Scripts/Pot.gd" id="4_7x37d"]
 
 [sub_resource type="GDScript" id="GDScript_m3uqs"]
 script/source = "extends Node
@@ -33,16 +34,24 @@ offset_left = 24.0
 offset_top = 35.0
 offset_right = 534.0
 offset_bottom = 210.0
-script = ExtResource("3_b7xak")
+script = ExtResource("1_gap75")
 
 [node name="Ingredients" type="Container" parent="."]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("3_a7icg")
+script = ExtResource("2_jut8u")
 
 [node name="Bars" type="Container" parent="."]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("4_fkmwv")
+script = ExtResource("3_cs4fu")
+
+[node name="Pot" type="Container" parent="."]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 423.0
+offset_right = 53.0
+offset_bottom = 463.0
+script = ExtResource("4_7x37d")

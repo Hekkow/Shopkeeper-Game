@@ -11,16 +11,12 @@ config_version=5
 [application]
 
 config/name="My Game"
-run/main_scene="res://node.tscn"
+run/main_scene="res://Scenes/node.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
 SignalManager="*res://Scripts/SignalManager.gd"
-Global="*res://Scripts/Global.gd"
-InitItems="*res://Scripts/InitItems.gd"
-
-[rendering]
-
-renderer/rendering_method="mobile"
+Helper="*res://Scripts/Helper.gd"
+Data="*res://Scripts/Data.gd"

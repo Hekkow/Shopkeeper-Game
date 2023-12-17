@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://u2u425uo2a1y"]
+
+[ext_resource type="Script" path="res://Scripts/Inventory.gd" id="1_rvy6p"]
+[ext_resource type="Script" path="res://Scripts/Display.gd" id="2_fkoey"]
+[ext_resource type="Script" path="res://Scripts/PriceInput.gd" id="3_y6lpi"]
+[ext_resource type="Script" path="res://Scripts/Money.gd" id="4_l6nm7"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Inventory" type="Container" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_rvy6p")
+
+[node name="Display" type="Container" parent="."]
+layout_mode = 0
+offset_top = 150.0
+offset_right = 40.0
+offset_bottom = 190.0
+script = ExtResource("2_fkoey")
+
+[node name="PriceInput" type="Container" parent="."]
+layout_mode = 0
+offset_left = 900.0
+offset_top = 20.0
+offset_right = 940.0
+offset_bottom = 60.0
+script = ExtResource("3_y6lpi")
+
+[node name="Money" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1100.0
+offset_top = 20.0
+offset_right = 1140.0
+offset_bottom = 43.0
+script = ExtResource("4_l6nm7")
