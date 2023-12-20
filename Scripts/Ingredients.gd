@@ -9,8 +9,8 @@ func initialize_buttons():
 	for i in range(len(ingredients)):
 		var button = Button.new()
 		add_child(button)
-		button.set_position(Vector2(100*i + 10*i + 10, 100))
-		button.set_size(Vector2(100, 120))
+		button.set_position(Vector2(Data.all["UI"]["itemButtonWidth"]*i + Data.all["UI"]["itemMargin"]*i + Data.all["UI"]["itemMargin"], Data.all["UI"]["itemMargin"]))
+		button.set_size(Vector2(Data.all["UI"]["itemButtonWidth"], Data.all["UI"]["itemButtonHeight"]))
 		button.text = ingredients[i].ingredientName
 		for element in range(len(ingredients[i].elements)):
 			if ingredients[i].elements[element] != 0:

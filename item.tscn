@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cii2we4mcaev0"]
+
+[ext_resource type="Texture2D" uid="uid://dmb4bqdvvh057" path="res://Resources/Characters/item.png" id="1_lsbea"]
+[ext_resource type="Script" path="res://Scripts/Item.gd" id="2_nq41e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p11h6"]
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("2_nq41e")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_lsbea")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_p11h6")

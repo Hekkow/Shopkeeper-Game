@@ -11,8 +11,9 @@ config_version=5
 [application]
 
 config/name="My Game"
-run/main_scene="res://Scenes/node.tscn"
+run/main_scene="res://store.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
+run/max_fps=60
 config/icon="res://icon.svg"
 
 [autoload]
@@ -20,3 +21,11 @@ config/icon="res://icon.svg"
 SignalManager="*res://Scripts/SignalManager.gd"
 Helper="*res://Scripts/Helper.gd"
 Data="*res://Scripts/Data.gd"
+
+[debug]
+
+file_logging/enable_file_logging=true
+
+[rendering]
+
+renderer/rendering_method="mobile"

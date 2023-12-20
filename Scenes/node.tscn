@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cn3yblpjy2qrs"]
 
-[ext_resource type="Script" path="res://Scripts/Reset.gd" id="1_gap75"]
+[ext_resource type="Script" path="res://Scripts/ResetButton.gd" id="1_gap75"]
 [ext_resource type="Script" path="res://Scripts/Ingredients.gd" id="2_jut8u"]
 [ext_resource type="Script" path="res://Scripts/RatioBars.gd" id="3_cs4fu"]
 [ext_resource type="Script" path="res://Scripts/Pot.gd" id="4_7x37d"]

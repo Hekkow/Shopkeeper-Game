@@ -27,19 +27,26 @@ var all = {
 		Recipe.new("litty chair", Element.new([1, 3, 1])),
 		Recipe.new("sam i am", Element.new([1, 3, 3])),
 	],
+	# "Customers" = [
+	# 	Customer.new("Bob", 400),
+	# 	Customer.new("Jeff", 700),
+	# ],
 	"Pot Ingredients" = [],
 	"Store Items" = [],
 }
 func _ready():
 	initialize_items()
+	initialize_seed()
 
 func initialize_items():
-	all["Items"] = [
-		Item.new(10, all["Recipes"][0]),
-		Item.new(15, all["Recipes"][1]),
-		Item.new(20, all["Recipes"][2]),
-		Item.new(3, all["Recipes"][3]),
-		Item.new(27, all["Recipes"][4]),
-	]
-	
+	# all["Items"] = [
+	# 	Item.new(10, all["Recipes"][0]),
+	# 	Item.new(15, all["Recipes"][1]),
+	# 	Item.new(20, all["Recipes"][2]),
+	# 	Item.new(3, all["Recipes"][3]),
+	# 	Item.new(27, all["Recipes"][4]),
+	# ]
+	pass
+func initialize_seed():
+	all["Seed"] = RandomNumberGenerator.new()
 

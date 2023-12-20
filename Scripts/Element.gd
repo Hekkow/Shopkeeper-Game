@@ -17,10 +17,13 @@ func _init(_elements=[0, 0, 0]):
 func arr() -> Array:
 	return [a, b, c]
 
+func equals(element: Element) -> bool:
+	return a == element.a && b == element.b && c == element.c
+
 static func ingredients_to_element(ingredients) -> Element:
 	var element = Element.new()
 	for ingredient in ingredients:
-		for i in range(len(element.arr())):
+		for i in numberElements:
 			element.add(i, ingredient.elements[i])
 	return element
 
@@ -33,19 +36,20 @@ func add(index, value) -> void:
 		2:
 			c += value
 
-static func element_to_percentages(element) -> Array:
+func element_to_percentages() -> Array:
 	var percentages = []
-	var maximum = get_max(element)
-	for i in range(len(element.arr())):
-		percentages.append(float(element.arr()[i])/maximum*fillPercent)
+	var maximum = get_max()
+	var elements = arr()
+	for i in numberElements:
+		percentages.append(float(elements[i])/maximum*fillPercent)
 	return percentages
 
-static func get_max(element):
-	var _elements = element.arr()
+func get_max():
+	var elements = arr()
 	var maximum = 0
-	for i in range(len(_elements)):
-		if _elements[i] > maximum:
-			maximum = _elements[i]
+	for i in numberElements:
+		if elements[i] > maximum:
+			maximum = elements[i]
 	return maximum
 
 func _to_string():

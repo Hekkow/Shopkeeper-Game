@@ -16,7 +16,6 @@ func initialize_bars():
 		add_child(progress_bar)
 		progress_bar.set_size(Vector2(200, 20))
 		progress_bar.set_position(Vector2(10, 300 + i * 30))
-		# progress_bar.value = 0
 		progress_bar.show_percentage = false
 		_progress_bars.append(progress_bar)
 
@@ -29,12 +28,12 @@ func initialize_labels():
 
 func _on_ingredient_added(_ingredients):
 	var elements = Element.ingredients_to_element(Data.all["Pot Ingredients"])
-	var percentages = Element.element_to_percentages(elements)
+	var percentages = elements.element_to_percentages()
 	for i in range(Element.numberElements):
 		_progress_bars[i].value = percentages[i]
 		recenter_label(_labels[i], elements.arr()[i])
 
-func recenter_label(label, value):
+func recenter_label(label, value): # doesnt even work man
 	label.text = str(value)
 	label.set_position(Vector2(_progress_bars[0].get_size().x / 2 - label.get_minimum_size().x / 2, 0))
 

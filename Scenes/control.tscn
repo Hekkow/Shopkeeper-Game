@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://u2u425uo2a1y"]
+[gd_scene load_steps=6 format=3 uid="uid://u2u425uo2a1y"]
 
 [ext_resource type="Script" path="res://Scripts/Inventory.gd" id="1_rvy6p"]
-[ext_resource type="Script" path="res://Scripts/Display.gd" id="2_fkoey"]
+[ext_resource type="Script" path="res://Scripts/DisplayItems.gd" id="2_fkoey"]
 [ext_resource type="Script" path="res://Scripts/PriceInput.gd" id="3_y6lpi"]
-[ext_resource type="Script" path="res://Scripts/Money.gd" id="4_l6nm7"]
+[ext_resource type="Script" path="res://Scripts/MoneyLabel.gd" id="4_l6nm7"]
+[ext_resource type="Script" path="res://Scripts/CustomerButtons.gd" id="5_b2fyr"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -19,7 +20,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_rvy6p")
 
-[node name="Display" type="Container" parent="."]
+[node name="DisplayItems" type="Container" parent="."]
 layout_mode = 0
 offset_top = 150.0
 offset_right = 40.0
@@ -41,3 +42,11 @@ offset_top = 20.0
 offset_right = 1140.0
 offset_bottom = 43.0
 script = ExtResource("4_l6nm7")
+
+[node name="Customers" type="Container" parent="."]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 499.0
+offset_right = 49.0
+offset_bottom = 539.0
+script = ExtResource("5_b2fyr")

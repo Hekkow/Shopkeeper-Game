@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://qx2dsgaptaoh"]
+
+[ext_resource type="Texture2D" uid="uid://3xqdtkaj4lxv" path="res://Resources/Characters/customer.png" id="1_1vnue"]
+[ext_resource type="Script" path="res://Scripts/Customer.gd" id="2_uxyfl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bx2q8"]
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("2_uxyfl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_1vnue")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_bx2q8")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 10.0
+offset_top = -25.0
+offset_right = 50.0
+offset_bottom = -2.0
