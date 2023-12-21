@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="CharacterStats" load_steps=7 format=3 uid="uid://n2683u0wa45b"]
+
+[ext_resource type="Script" path="res://Scripts/Mood.gd" id="1_5d60c"]
+[ext_resource type="Resource" uid="uid://wihu5qoym4kg" path="res://Resources/Recipes/Death.tres" id="1_7dgaf"]
+[ext_resource type="Script" path="res://Scripts/Personality.gd" id="2_ejejj"]
+[ext_resource type="Script" path="res://Scripts/CharacterStats.gd" id="3_4btvw"]
+
+[sub_resource type="Resource" id="Resource_grxo0"]
+script = ExtResource("1_5d60c")
+mood = 0
+
+[sub_resource type="Resource" id="Resource_wltm5"]
+script = ExtResource("2_ejejj")
+a = 1
+b = 0
+c = 0
+
+[resource]
+script = ExtResource("3_4btvw")
+character_name = "Salmon"
+color = Color(1, 0.690196, 0.639216, 1)
+richness = 3
+friendship = 2
+personality = SubResource("Resource_wltm5")
+mood = SubResource("Resource_grxo0")
+affinity = Array[Resource("res://Scripts/Recipe.gd")]([ExtResource("1_7dgaf")])

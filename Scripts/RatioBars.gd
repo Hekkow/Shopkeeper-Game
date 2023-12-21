@@ -38,7 +38,7 @@ func recenter_label(label, value): # doesnt even work man
 	label.set_position(Vector2(_progress_bars[0].get_size().x / 2 - label.get_minimum_size().x / 2, 0))
 
 func on_ingredients_reset():
-	for i in range(len(_progress_bars)):
+	for i in len(_progress_bars):
 		_progress_bars[i].value = 0
 		_labels[i].text = "0"
 	

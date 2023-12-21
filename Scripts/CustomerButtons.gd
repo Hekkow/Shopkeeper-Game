@@ -3,7 +3,7 @@ extends Container
 func _ready():
 	SignalManager.connect("item_sold", on_item_sold)
 	var customers = Data.all["Customers"]
-	for i in range(len(customers)):
+	for i in len(customers):
 		var button = Button.new()
 		add_child(button)
 		button.set_position(Vector2(Data.all["UI"]["itemButtonWidth"]*i + Data.all["UI"]["itemMargin"]*i + Data.all["UI"]["itemMargin"], Data.all["UI"]["itemMargin"]))

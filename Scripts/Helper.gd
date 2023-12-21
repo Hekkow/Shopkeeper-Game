@@ -46,3 +46,26 @@ func get_resources(folder):
 	for path in paths:
 		resources.append(load(folder_path + "/" + path))
 	return resources
+
+func random_sample(_arr, number_elements):
+	var arr = _arr.duplicate()
+	var elements = []
+	for i in number_elements:
+		var index = Data.all["Seed"].randi_range(0, len(arr) - 1)
+		elements.append(arr[index])
+		arr.remove_at(index)
+	return elements
+
+func find_item(arr, item):
+	for i in len(arr):
+		if item.equals(arr[i]):
+			return i
+	return -1
+func remove_item(arr, item, equals: Callable):
+	for i in range(arr.size() - 1, -1, -1):
+		if item.equals(arr[i]):
+			arr.remove_at(i)
+func get_character(character_name):
+	for character in Data.all["Characters"]:
+		if character_name == character.character_name:
+			return character

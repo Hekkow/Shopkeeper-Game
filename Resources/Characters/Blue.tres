@@ -18,6 +18,7 @@ c = 4
 [resource]
 script = ExtResource("1_t3awb")
 character_name = "Blue"
+color = Color(0, 0.596078, 0.996078, 1)
 richness = 5
 friendship = 5
 personality = SubResource("Resource_4ao2s")

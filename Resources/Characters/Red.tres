@@ -18,8 +18,9 @@ c = 1
 [resource]
 script = ExtResource("4_evl8u")
 character_name = "Red"
+color = Color(0.988235, 0.184314, 0.160784, 1)
 richness = 5
 friendship = 5
 personality = SubResource("Resource_mcgfi")
 mood = SubResource("Resource_10r1w")
-affinity = [ExtResource("1_75qug"), null, null]
+affinity = Array[Resource("res://Scripts/Recipe.gd")]([ExtResource("1_75qug")])

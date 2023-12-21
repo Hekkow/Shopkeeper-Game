@@ -3,14 +3,14 @@
 [ext_resource type="Script" path="res://Scripts/Element.gd" id="1_622hj"]
 [ext_resource type="Script" path="res://Scripts/Recipe.gd" id="2_m7coh"]
 
-[sub_resource type="Resource" id="Resource_3t611"]
+[sub_resource type="Resource" id="Resource_ey2jh"]
 script = ExtResource("1_622hj")
-a = 3
-b = 3
-c = 0
+a = 1
+b = 1
+c = 1
 
 [resource]
 script = ExtResource("2_m7coh")
 recipe_name = "Hurtin"
-elements = SubResource("Resource_3t611")
+element = SubResource("Resource_ey2jh")
 base_price = 20

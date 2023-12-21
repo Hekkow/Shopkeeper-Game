@@ -25,6 +25,6 @@ func equals(item) -> bool:
 
 func _to_string():
 	if price == -1:
-		return "%s $%s" % [recipe.recipe_name, recipe.base_price]
+		return "%s $%s id: %s" % [recipe.recipe_name, recipe.base_price, id]
 	else:
-		return "%s $%s" % [recipe.recipe_name, price]
+		return "%s $%s id: %s" % [recipe.recipe_name, price, id]

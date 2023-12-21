@@ -6,5 +6,5 @@ class_name Mood
 
 enum MOOD {HAPPY, SAD, MAD, NA}
 
-func _init(_mood):
+func _init(_mood=MOOD.NA):
     mood = _mood

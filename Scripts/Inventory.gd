@@ -6,7 +6,7 @@ func _ready():
 
 func initialize_buttons():
 	var items = Data.all["Items"]
-	for i in range(len(items)):
+	for i in len(items):
 		var item = Button.new()
 		add_child(item)
 		item.set_position(Vector2(Data.all["UI"]["itemButtonWidth"]*i + Data.all["UI"]["itemMargin"]*i + Data.all["UI"]["itemMargin"], Data.all["UI"]["itemMargin"]))

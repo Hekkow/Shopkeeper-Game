@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CharacterStats" load_steps=7 format=3 uid="uid://cvibhqgpidsdv"]
 
+[ext_resource type="Resource" uid="uid://prnhrdxvtqsa" path="res://Resources/Recipes/Healing.tres" id="1_4hrfv"]
 [ext_resource type="Script" path="res://Scripts/CharacterStats.gd" id="1_atm1i"]
-[ext_resource type="Resource" uid="uid://27slh4lugldp" path="res://Resources/Recipes/Diddlin.tres" id="1_ieo78"]
 [ext_resource type="Script" path="res://Scripts/Mood.gd" id="2_63xgh"]
 [ext_resource type="Script" path="res://Scripts/Personality.gd" id="3_6xmba"]
 
@@ -18,8 +18,9 @@ c = 1
 [resource]
 script = ExtResource("1_atm1i")
 character_name = "Green"
+color = Color(0.266667, 0.811765, 0, 1)
 richness = 5
 friendship = 5
 personality = SubResource("Resource_nh3nf")
 mood = SubResource("Resource_fbi1v")
-affinity = Array[Resource("res://Scripts/Recipe.gd")]([ExtResource("1_ieo78")])
+affinity = Array[Resource("res://Scripts/Recipe.gd")]([ExtResource("1_4hrfv")])
