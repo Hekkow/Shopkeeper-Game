@@ -16,6 +16,6 @@ func _on_price_set(item):
 
 func _on_item_pressed(item):
 	item.sold_price = item.price
-	Data.all["Active Customer"].interested(item)
+	Data.all["Active Character"].interested(item)
 	# SignalManager.emit_signal("customer_interested", item)
 	Helper.find_by_metadata(self, "Item", item).queue_free()

@@ -1,13 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://bh7883wbgmv6"]
 
-[ext_resource type="Texture2D" uid="uid://bgyi5eu12xsod" path="res://Resources/Characters/table.png" id="1_g508f"]
+[ext_resource type="Texture2D" uid="uid://bgyi5eu12xsod" path="res://Resources/Sprites/table.png" id="1_oq3vi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5cqgc"]
 
 [node name="Area2D" type="Area2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_g508f")
+texture = ExtResource("1_oq3vi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_5cqgc")

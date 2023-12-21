@@ -18,4 +18,4 @@ func on_item_sold(customer, _item):
 			child.text = customer.to_string()
 
 func _on_button_pressed(customer):
-	Data.all["Active Customer"] = customer
+	Data.all["Active Character"] = customer

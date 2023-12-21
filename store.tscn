@@ -1,67 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://cn5b5ichbe4w0"]
+[gd_scene load_steps=6 format=3 uid="uid://cn5b5ichbe4w0"]
 
 [ext_resource type="Script" path="res://Scripts/Store.gd" id="1_1e43p"]
-[ext_resource type="PackedScene" uid="uid://cii2we4mcaev0" path="res://item.tscn" id="1_d76q8"]
-[ext_resource type="Script" path="res://Scripts/Element.gd" id="4_21vjv"]
 [ext_resource type="PackedScene" uid="uid://bh7883wbgmv6" path="res://table.tscn" id="5_34ma5"]
-[ext_resource type="Script" path="res://Scripts/Recipe.gd" id="5_tcuya"]
 [ext_resource type="Script" path="res://Scripts/Table.gd" id="6_by8wd"]
 [ext_resource type="Script" path="res://Scripts/MoneyLabel.gd" id="7_u3dk6"]
-
-[sub_resource type="Resource" id="Resource_pfd13"]
-script = ExtResource("4_21vjv")
-a = 1
-b = 2
-c = 3
-
-[sub_resource type="Resource" id="Resource_hc2d1"]
-script = ExtResource("5_tcuya")
-recipeName = "1"
-elements = SubResource("Resource_pfd13")
-
-[sub_resource type="Resource" id="Resource_745vi"]
-script = ExtResource("4_21vjv")
-a = 1
-b = 2
-c = 3
-
-[sub_resource type="Resource" id="Resource_cgkq7"]
-script = ExtResource("5_tcuya")
-recipeName = "2"
-elements = SubResource("Resource_745vi")
-
-[sub_resource type="Resource" id="Resource_abqfr"]
-script = ExtResource("4_21vjv")
-a = 3
-b = 2
-c = 1
-
-[sub_resource type="Resource" id="Resource_cjuga"]
-script = ExtResource("5_tcuya")
-recipeName = "3"
-elements = SubResource("Resource_abqfr")
-
-[sub_resource type="Resource" id="Resource_gmwh5"]
-script = ExtResource("4_21vjv")
-a = 1
-b = 2
-c = 3
-
-[sub_resource type="Resource" id="Resource_rbylh"]
-script = ExtResource("5_tcuya")
-recipeName = "4"
-elements = SubResource("Resource_gmwh5")
-
-[sub_resource type="Resource" id="Resource_tcknx"]
-script = ExtResource("4_21vjv")
-a = 1
-b = 2
-c = 3
-
-[sub_resource type="Resource" id="Resource_poy2b"]
-script = ExtResource("5_tcuya")
-recipeName = "5"
-elements = SubResource("Resource_tcknx")
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="8_34k83"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_1e43p")
@@ -70,44 +13,12 @@ script = ExtResource("1_1e43p")
 position = Vector2(467, 412)
 script = ExtResource("6_by8wd")
 
-[node name="Item 1" parent="." instance=ExtResource("1_d76q8")]
-position = Vector2(483, 27)
-price = 5
-base_price = 5
-recipe = SubResource("Resource_hc2d1")
-sold_price = 5
-
-[node name="Item 2" parent="." instance=ExtResource("1_d76q8")]
-position = Vector2(451, 166)
-price = 5
-base_price = 5
-recipe = SubResource("Resource_cgkq7")
-sold_price = 5
-
-[node name="Item 3" parent="." instance=ExtResource("1_d76q8")]
-position = Vector2(349, 302)
-price = 10
-base_price = 15
-recipe = SubResource("Resource_cjuga")
-sold_price = 20
-
-[node name="Item 4" parent="." instance=ExtResource("1_d76q8")]
-position = Vector2(182, 366)
-price = 15
-base_price = 15
-recipe = SubResource("Resource_rbylh")
-sold_price = 15
-
-[node name="Item 5" parent="." instance=ExtResource("1_d76q8")]
-position = Vector2(32, 380)
-price = 20
-base_price = 20
-recipe = SubResource("Resource_poy2b")
-sold_price = 20
-
 [node name="Money" type="Label" parent="."]
 offset_left = 1100.0
 offset_top = 20.0
 offset_right = 1140.0
 offset_bottom = 43.0
 script = ExtResource("7_u3dk6")
+
+[node name="Player" type="Node" parent="."]
+script = ExtResource("8_34k83")

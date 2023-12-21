@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="CharacterStats" load_steps=7 format=3 uid="uid://gx7md7inoy7j"]
+
+[ext_resource type="Script" path="res://Scripts/CharacterStats.gd" id="1_t3awb"]
+[ext_resource type="Resource" uid="uid://prnhrdxvtqsa" path="res://Resources/Recipes/Healing.tres" id="1_v5ma3"]
+[ext_resource type="Script" path="res://Scripts/Mood.gd" id="2_n7s1e"]
+[ext_resource type="Script" path="res://Scripts/Personality.gd" id="3_lpamc"]
+
+[sub_resource type="Resource" id="Resource_pkljh"]
+script = ExtResource("2_n7s1e")
+mood = 1
+
+[sub_resource type="Resource" id="Resource_4ao2s"]
+script = ExtResource("3_lpamc")
+a = 2
+b = 2
+c = 4
+
+[resource]
+script = ExtResource("1_t3awb")
+character_name = "Blue"
+richness = 5
+friendship = 5
+personality = SubResource("Resource_4ao2s")
+mood = SubResource("Resource_pkljh")
+affinity = Array[Resource("res://Scripts/Recipe.gd")]([ExtResource("1_v5ma3")])
