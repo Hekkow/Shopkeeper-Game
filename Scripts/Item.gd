@@ -5,7 +5,8 @@ class_name Item
 @export var sold_price = -1
 @export var id: int
 
-func _init(_recipe=null):
+func _init(_recipe=null, _price=-1):
+	price = _price
 	recipe = _recipe
 	id = Data.all["Item ID"]
 	Data.all["Item ID"] += 1

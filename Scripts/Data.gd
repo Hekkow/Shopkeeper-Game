@@ -21,6 +21,7 @@ var all = {
 		Ingredient.new("d", [5, 20, 40]),
 	],
 	"Recipes" = [],
+	"Recipe Inventory" = [],
 	# "Recipes" = [
 	# 	Recipe.new("Healing", Element.new([1, 1, 1])),
 	# 	Recipe.new("evil", Element.new([2, 2, 1])),
@@ -38,23 +39,12 @@ var all = {
 func _ready():
 	all["Recipes"] = Helper.get_resources("Recipes")
 	all["Characters"] = Helper.get_resources("Characters")
-	initialize_items()
+	initialize_recipes()
 	initialize_seed()
-	
-	
 
-
-	# Helper.get_file_names(path)
-
-func initialize_items():
-	# all["Items"] = [
-	# 	Item.new(10, all["Recipes"][0]),
-	# 	Item.new(15, all["Recipes"][1]),
-	# 	Item.new(20, all["Recipes"][2]),
-	# 	Item.new(3, all["Recipes"][3]),
-	# 	Item.new(27, all["Recipes"][4]),
-	# ]
-	pass
+func initialize_recipes():
+	for recipe in all["Recipes"]:
+		all["Recipe Inventory"].append(InventorySlot.new(recipe, 2))
 func initialize_seed():
 	all["Seed"] = RandomNumberGenerator.new()
 

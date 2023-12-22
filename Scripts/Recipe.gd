@@ -20,7 +20,7 @@ func equals(recipe):
 	return recipe_name == recipe.recipe_name
 
 func _to_string():
-	return recipe_name + " " + element.to_string()
+	return recipe_name
 
 static func check_recipes(_elements):
 	var minimum = maximum
