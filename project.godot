@@ -11,16 +11,16 @@ config_version=5
 [application]
 
 config/name="My Game"
-run/main_scene="res://store.tscn"
+run/main_scene="res://Scenes/Levels/Store.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 run/max_fps=60
 config/icon="res://icon.svg"
 
 [autoload]
 
-SignalManager="*res://Scripts/SignalManager.gd"
-Helper="*res://Scripts/Helper.gd"
-Data="*res://Scripts/Data.gd"
+SignalManager="*res://Scripts/Other/SignalManager.gd"
+Helper="*res://Scripts/Other/Helper.gd"
+Data="*res://Scripts/Other/Data.gd"
 
 [debug]
 

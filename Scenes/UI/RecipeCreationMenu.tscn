@@ -1,0 +1,100 @@
+[gd_scene load_steps=9 format=3 uid="uid://cn3yblpjy2qrs"]
+
+[ext_resource type="Script" path="res://Scripts/UI/RecipeCreationMenu.gd" id="1_ny18j"]
+[ext_resource type="Script" path="res://Scripts/UI/RatioBars.gd" id="2_2r0st"]
+[ext_resource type="PackedScene" uid="uid://dwyxynnjpnnuy" path="res://Scenes/UI/RatioBar.tscn" id="3_i76uq"]
+[ext_resource type="Script" path="res://Scripts/UI/ResetIngredientsButton.gd" id="4_310k4"]
+[ext_resource type="Script" path="res://Scripts/UI/Pot.gd" id="5_eaqsj"]
+[ext_resource type="Script" path="res://Scripts/UI/IngredientToRecipeMenu.gd" id="6_jj80t"]
+[ext_resource type="Script" path="res://Scripts/UI/PotDoneButton.gd" id="7_bf0bv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xf3m3"]
+bg_color = Color(0.435294, 0.615686, 0.819608, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ny18j")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xf3m3")
+
+[node name="RatioBars" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 927.0
+offset_top = 402.0
+offset_right = 1117.0
+offset_bottom = 552.0
+theme_override_constants/separation = 15
+script = ExtResource("2_2r0st")
+
+[node name="MarginContainer" parent="RatioBars" instance=ExtResource("3_i76uq")]
+layout_mode = 2
+
+[node name="MarginContainer2" parent="RatioBars" instance=ExtResource("3_i76uq")]
+layout_mode = 2
+
+[node name="MarginContainer3" parent="RatioBars" instance=ExtResource("3_i76uq")]
+layout_mode = 2
+
+[node name="ResetButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 997.0
+offset_top = 573.0
+offset_right = 1048.0
+offset_bottom = 604.0
+text = "Reset
+"
+script = ExtResource("4_310k4")
+
+[node name="Pot" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("5_eaqsj")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 436.0
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_constants/h_separation = 25
+theme_override_constants/v_separation = 25
+columns = 2
+script = ExtResource("6_jj80t")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 997.0
+offset_top = 40.0
+offset_right = 1051.0
+offset_bottom = 71.0
+text = "Done"
+script = ExtResource("7_bf0bv")

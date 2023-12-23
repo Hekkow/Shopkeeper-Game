@@ -1,0 +1,58 @@
+[gd_scene load_steps=11 format=3 uid="uid://cn5b5ichbe4w0"]
+
+[ext_resource type="Script" path="res://Scripts/Objects/Store.gd" id="1_clmvl"]
+[ext_resource type="PackedScene" uid="uid://bh7883wbgmv6" path="res://Scenes/Objects/Table.tscn" id="2_jv0ew"]
+[ext_resource type="Script" path="res://Scripts/Objects/Table.gd" id="3_yof26"]
+[ext_resource type="Script" path="res://Scripts/Objects/Player.gd" id="4_phpct"]
+[ext_resource type="Script" path="res://Scripts/UI/UI.gd" id="5_db2gu"]
+[ext_resource type="Script" path="res://Scripts/UI/MoneyLabel.gd" id="6_aithq"]
+[ext_resource type="Script" path="res://Scripts/UI/IngredientToRecipeMenuButton.gd" id="6_gskgb"]
+[ext_resource type="Script" path="res://Scripts/UI/OpenScenesButtons.gd" id="6_vnhey"]
+[ext_resource type="Script" path="res://Scripts/UI/RecipeToItemMenuButton.gd" id="7_imi8o"]
+[ext_resource type="Script" path="res://Scripts/UI/OpenStoreButton.gd" id="8_wivnp"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_clmvl")
+
+[node name="Table" parent="." instance=ExtResource("2_jv0ew")]
+position = Vector2(467, 412)
+script = ExtResource("3_yof26")
+
+[node name="Player" type="Node" parent="."]
+script = ExtResource("4_phpct")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("5_db2gu")
+
+[node name="Money" type="Label" parent="CanvasLayer"]
+offset_left = 1100.0
+offset_top = 20.0
+offset_right = 1140.0
+offset_bottom = 43.0
+script = ExtResource("6_aithq")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+offset_left = 22.0
+offset_top = 588.0
+offset_right = 330.0
+offset_bottom = 628.0
+theme_override_constants/separation = 30
+script = ExtResource("6_vnhey")
+
+[node name="Button" type="Button" parent="CanvasLayer/HBoxContainer"]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+text = "MAKE RECIPE"
+script = ExtResource("6_gskgb")
+
+[node name="Button2" type="Button" parent="CanvasLayer/HBoxContainer"]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+text = "ADD ITEM"
+script = ExtResource("7_imi8o")
+
+[node name="Button3" type="Button" parent="CanvasLayer/HBoxContainer"]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+text = "OPEN STORE"
+script = ExtResource("8_wivnp")

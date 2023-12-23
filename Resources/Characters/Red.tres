@@ -1,26 +1,25 @@
-[gd_resource type="Resource" script_class="CharacterStats" load_steps=7 format=3 uid="uid://bcoi373tdfikx"]
+[gd_resource type="Resource" script_class="CharacterStats" load_steps=6 format=3 uid="uid://dhue3axsfk8h4"]
 
-[ext_resource type="Resource" uid="uid://wihu5qoym4kg" path="res://Resources/Recipes/Death.tres" id="1_75qug"]
-[ext_resource type="Script" path="res://Scripts/Mood.gd" id="2_chy16"]
-[ext_resource type="Script" path="res://Scripts/Personality.gd" id="3_gany5"]
-[ext_resource type="Script" path="res://Scripts/CharacterStats.gd" id="4_evl8u"]
+[ext_resource type="Script" path="res://Scripts/Resources/CharacterStats.gd" id="1_lrp58"]
+[ext_resource type="Script" path="res://Scripts/Resources/Mood.gd" id="1_tt6sa"]
+[ext_resource type="Script" path="res://Scripts/Resources/Personality.gd" id="2_ptsno"]
 
-[sub_resource type="Resource" id="Resource_10r1w"]
-script = ExtResource("2_chy16")
-mood = 0
+[sub_resource type="Resource" id="Resource_3wi8q"]
+script = ExtResource("1_tt6sa")
+mood = 1
 
-[sub_resource type="Resource" id="Resource_mcgfi"]
-script = ExtResource("3_gany5")
-a = 3
+[sub_resource type="Resource" id="Resource_yav04"]
+script = ExtResource("2_ptsno")
+a = 1
 b = 2
-c = 1
+c = 3
 
 [resource]
-script = ExtResource("4_evl8u")
+script = ExtResource("1_lrp58")
 character_name = "Red"
-color = Color(0.988235, 0.184314, 0.160784, 1)
-richness = 5
-friendship = 5
-personality = SubResource("Resource_mcgfi")
-mood = SubResource("Resource_10r1w")
-affinity = Array[Resource("res://Scripts/Recipe.gd")]([ExtResource("1_75qug")])
+color = Color(0.780392, 0.0392157, 0.290196, 1)
+richness = 2
+friendship = 3
+personality = SubResource("Resource_yav04")
+mood = SubResource("Resource_3wi8q")
+affinity = Array[Resource("res://Scripts/Resources/Recipe.gd")]([])
