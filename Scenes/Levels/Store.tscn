@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cn5b5ichbe4w0"]
+[gd_scene load_steps=10 format=3 uid="uid://cn5b5ichbe4w0"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Store.gd" id="1_clmvl"]
 [ext_resource type="PackedScene" uid="uid://bh7883wbgmv6" path="res://Scenes/Objects/Table.tscn" id="2_jv0ew"]
@@ -9,7 +9,6 @@
 [ext_resource type="Script" path="res://Scripts/UI/IngredientToRecipeMenuButton.gd" id="6_gskgb"]
 [ext_resource type="Script" path="res://Scripts/UI/OpenScenesButtons.gd" id="6_vnhey"]
 [ext_resource type="Script" path="res://Scripts/UI/RecipeToItemMenuButton.gd" id="7_imi8o"]
-[ext_resource type="Script" path="res://Scripts/UI/OpenStoreButton.gd" id="8_wivnp"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_clmvl")
@@ -50,9 +49,3 @@ custom_minimum_size = Vector2(130, 0)
 layout_mode = 2
 text = "ADD ITEM"
 script = ExtResource("7_imi8o")
-
-[node name="Button3" type="Button" parent="CanvasLayer/HBoxContainer"]
-custom_minimum_size = Vector2(130, 0)
-layout_mode = 2
-text = "OPEN STORE"
-script = ExtResource("8_wivnp")
