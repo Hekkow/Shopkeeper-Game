@@ -9,10 +9,10 @@ static var elementNames = ["A", "B", "C"]
 static var numberElements = 3
 static var fillPercent = 75
 
-func _init(_elements=[0, 0, 0]):
-	a = _elements[0]
-	b = _elements[1]
-	c = _elements[2]
+func _init(_a=0, _b=0, _c=0):
+	a = _a
+	b = _b
+	c = _c
 
 func arr() -> Array:
 	return [a, b, c]
@@ -20,11 +20,11 @@ func arr() -> Array:
 func equals(element: Element) -> bool:
 	return a == element.a && b == element.b && c == element.c
 
-static func ingredients_to_element(ingredients) -> Element:
+static func ingredients_to_element(inventory_slots) -> Element:
 	var element = Element.new()
-	for ingredient in ingredients:
+	for slot in inventory_slots:
 		for i in numberElements:
-			element.add(i, ingredient.elements[i])
+			element.add(i, slot.object.element.arr()[i] * slot.amount)
 	return element
 
 func add(index, value) -> void:

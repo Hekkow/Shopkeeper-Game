@@ -10,6 +10,11 @@ func remove_freed(arr):
 		if !is_instance_valid(i):
 			arr.erase(i)
 
+func remove_children(node):
+	for n in node.get_children():
+		node.remove_child(n)
+		n.queue_free()
+
 func len_without_deleted(arr):
 	var n = 0
 	for i in arr:

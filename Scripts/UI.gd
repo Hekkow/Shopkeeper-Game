@@ -3,9 +3,26 @@ extends Node
 var grid
 
 func _ready():
-	grid = $MarginContainer/ScrollContainer/GridContainer
-	load_items()
-	print(grid)
+	$Button.pressed.connect(load_recipe_screen)
+	$Button2.pressed.connect(load_item_screen)
+	pass
+	# grid = $MarginContainer/ScrollContainer/GridContainer
+	# $CenterContainer2/Button.pressed.connect(start_store)
+	# load_items()
+
+func load_recipe_screen():
+	var scene := load("res://Scenes/Recipes.tscn")
+	var recipes_screen = scene.instantiate()
+	add_child(recipes_screen)
+
+func load_item_screen():
+	print("ITEM")
+
+
+func start_store():
+	get_tree().change_scene_to_file("res://store.tscn")
+	# var store = scene.instantiate()
+
 
 func load_items():
 	var scene := load("res://Scenes/ItemDisplayButton.tscn")
@@ -28,10 +45,11 @@ func on_recipe_pressed(button, inventory_slot):
 	toggle_buttons(false)
 
 func on_price_enter(price, recipe, price_input):
-	Data.all["Store Items"].append(Item.new(recipe, int(price)))
+	Data.all["Store Items Before"].append([recipe, int(price)])
 	price_input.queue_free()
 	toggle_buttons(true)
 
 func toggle_buttons(on):
 	for button in grid.get_children():
 		button.disabled = !on
+

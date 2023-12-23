@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Ingredient" load_steps=4 format=3 uid="uid://d4nf7vjaeosju"]
+
+[ext_resource type="Script" path="res://Scripts/Ingredient.gd" id="1_3puve"]
+[ext_resource type="Script" path="res://Scripts/Element.gd" id="1_wexw0"]
+
+[sub_resource type="Resource" id="Resource_ratst"]
+script = ExtResource("1_wexw0")
+a = 10
+b = 10
+c = 30
+
+[resource]
+script = ExtResource("1_3puve")
+ingredient_name = "Milk"
+element = SubResource("Resource_ratst")

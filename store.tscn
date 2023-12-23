@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cn5b5ichbe4w0"]
+[gd_scene load_steps=7 format=3 uid="uid://cn5b5ichbe4w0"]
 
 [ext_resource type="Script" path="res://Scripts/Store.gd" id="1_1e43p"]
 [ext_resource type="PackedScene" uid="uid://bh7883wbgmv6" path="res://table.tscn" id="5_34ma5"]
 [ext_resource type="Script" path="res://Scripts/Table.gd" id="6_by8wd"]
+[ext_resource type="Script" path="res://Scripts/UI.gd" id="6_q0a43"]
 [ext_resource type="Script" path="res://Scripts/MoneyLabel.gd" id="7_u3dk6"]
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="8_34k83"]
 
@@ -13,12 +14,28 @@ script = ExtResource("1_1e43p")
 position = Vector2(467, 412)
 script = ExtResource("6_by8wd")
 
-[node name="Money" type="Label" parent="."]
+[node name="Player" type="Node" parent="."]
+script = ExtResource("8_34k83")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("6_q0a43")
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_top = 603.0
+offset_right = 137.0
+offset_bottom = 644.0
+text = "MAKE RECIPE"
+
+[node name="Button2" type="Button" parent="CanvasLayer"]
+offset_left = 154.0
+offset_top = 603.0
+offset_right = 291.0
+offset_bottom = 644.0
+text = "ADD ITEM"
+
+[node name="Money" type="Label" parent="CanvasLayer"]
 offset_left = 1100.0
 offset_top = 20.0
 offset_right = 1140.0
 offset_bottom = 43.0
 script = ExtResource("7_u3dk6")
-
-[node name="Player" type="Node" parent="."]
-script = ExtResource("8_34k83")

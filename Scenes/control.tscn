@@ -1,10 +1,34 @@
 [gd_scene load_steps=6 format=3 uid="uid://u2u425uo2a1y"]
 
-[ext_resource type="Script" path="res://Scripts/Inventory.gd" id="1_rvy6p"]
 [ext_resource type="Script" path="res://Scripts/DisplayItems.gd" id="2_fkoey"]
 [ext_resource type="Script" path="res://Scripts/PriceInput.gd" id="3_y6lpi"]
 [ext_resource type="Script" path="res://Scripts/MoneyLabel.gd" id="4_l6nm7"]
 [ext_resource type="Script" path="res://Scripts/CustomerButtons.gd" id="5_b2fyr"]
+
+[sub_resource type="GDScript" id="GDScript_hd16b"]
+script/source = "extends Container
+
+func _ready():
+	initialize_buttons()
+	SignalManager.connect(\"price_set\", _on_price_set)
+
+func initialize_buttons():
+	var items = Data.all[\"Items\"]
+	for i in len(items):
+		var item = Button.new()
+		add_child(item)
+		item.set_position(Vector2(Data.all[\"UI\"][\"itemButtonWidth\"]*i + Data.all[\"UI\"][\"itemMargin\"]*i + Data.all[\"UI\"][\"itemMargin\"], Data.all[\"UI\"][\"itemMargin\"]))
+		item.set_size(Vector2(Data.all[\"UI\"][\"itemButtonWidth\"], Data.all[\"UI\"][\"itemButtonHeight\"]))
+		item.text = items[i].to_string()
+		item.set_meta(\"Item\", items[i])
+		item.pressed.connect(Callable(_on_item_pressed).bind(items[i]))
+
+func _on_item_pressed(item):
+	SignalManager.emit_signal(\"item_added\", item)
+
+func _on_price_set(item):
+	Helper.find_by_metadata(self, \"Item\", item).queue_free()
+"
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -18,7 +42,7 @@ grow_vertical = 2
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("1_rvy6p")
+script = SubResource("GDScript_hd16b")
 
 [node name="DisplayItems" type="Container" parent="."]
 layout_mode = 0

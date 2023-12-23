@@ -11,8 +11,15 @@ func _init(_recipe=null, _price=-1):
 	id = Data.all["Item ID"]
 	Data.all["Item ID"] += 1
 
-func _ready():
+func set_variables(_recipe, _price, _id=-1):
+	price = _price
+	recipe = _recipe
+	if _id != -1:
+		id = _id
 	Data.all["Store Items"].append(self)
+
+func _ready():
+	pass
 
 func dupe() -> Item:
 	var item = Item.new(recipe)

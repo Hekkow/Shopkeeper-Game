@@ -9,8 +9,7 @@ func initialize_reset():
 	resetButton.set_position(Vector2(10, 10))
 	resetButton.set_size(Vector2(100, 40))
 	resetButton.text = "Reset"
-	resetButton.pressed.connect(reset)
+	
 
-func reset():
-	SignalManager.emit_signal("ingredients_reset")
+
 	
