@@ -10,5 +10,5 @@ func on_price_modal_spawned(_recipe: Recipe) -> void:
 	recipe = _recipe
 
 func _pressed() -> void:
-	Data.all["Store Items Before"].append([recipe, recipe.base_price])
-	SignalManager.emit_signal("price_set")
+	# Data.all["Store Items Before"].append([recipe, recipe.base_price])
+	SignalManager.emit_signal("price_set", Item.new(recipe, recipe.base_price))

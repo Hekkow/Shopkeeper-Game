@@ -14,3 +14,4 @@ signal recipe_made
 signal price_modal_spawned(item)
 signal ingredient_to_recipe_panel_clicked
 signal recipe_to_item_clicked
+signal item_placed

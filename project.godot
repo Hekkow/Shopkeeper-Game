@@ -26,6 +26,14 @@ Data="*res://Scripts/Other/Data.gd"
 
 file_logging/enable_file_logging=true
 
+[display]
+
+window/vsync/vsync_mode=0
+
+[editor]
+
+export/convert_text_resources_to_binary=false
+
 [rendering]
 
 renderer/rendering_method="mobile"

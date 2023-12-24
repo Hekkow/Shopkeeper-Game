@@ -4,6 +4,7 @@ func _ready() -> void:
 	load_items()
 	SignalManager.connect("recipe_pressed", on_recipe_pressed)
 	SignalManager.connect("price_set", on_price_set)
+	SignalManager.connect("item_placed", on_item_placed)
 
 func load_items() -> void:
 	var scene := load("res://Scenes/UI/ItemDisplayButton.tscn")
@@ -18,10 +19,14 @@ func toggle_buttons(on: bool) -> void:
 	for button in get_children():
 		button.disabled = !on
 
-func on_recipe_pressed() -> void:
+func on_recipe_pressed(_recipe) -> void:
 	toggle_buttons(false)
 
-func on_price_set() -> void:
+func on_price_set(_item) -> void:
 	toggle_buttons(true)
+
+func on_item_placed(_item) -> void:
+	print(Data.all["Recipe Inventory"])
 	if len(Data.all["Recipe Inventory"]) == 0:
+		print("HERE1")
 		SignalManager.emit_signal("store_opened")

@@ -15,3 +15,6 @@ func subtract() -> int:
 
 func _to_string() -> String:
 	return "%s (%s)" % [object, amount]
+
+func to_str() -> String:
+	return "%s\n(%s)" % [object.to_str(), amount]

@@ -4,7 +4,7 @@ class_name IngredientButton
 var slot: InventorySlot
 
 func _ready():
-	text = str(slot)
+	text = slot.to_str()
 	pressed.connect(on_ingredient_pressed)
 
 func on_ingredient_pressed() -> void:
@@ -14,5 +14,5 @@ func on_ingredient_pressed() -> void:
 		Data.remove_from_inventory("Ingredient Inventory", slot.object)
 		queue_free()
 	else:
-		text = str(slot)
+		text = slot.to_str()
 		

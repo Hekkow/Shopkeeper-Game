@@ -10,6 +10,8 @@ func _ready() -> void:
 
 func initialize_bars_and_labels() -> void:
 	for item in get_children():
+		if item is Button:
+			continue
 		bars.append(item.get_node("ProgressBar"))
 		labels.append(item.get_node("Label"))
 

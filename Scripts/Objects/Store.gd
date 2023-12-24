@@ -1,7 +1,14 @@
 extends Node2D
 
+var item_scene
+var character_scene
+var item_class
 func _ready() -> void:
 	SignalManager.connect("store_opened", on_store_opened)
+	SignalManager.connect("price_set", spawn_item)
+	item_scene = load("res://Scenes/Objects/Item.tscn")
+	character_scene = load("res://Scenes/Objects/Character.tscn")
+	item_class = preload("res://Scripts/Objects/Item.gd")
 
 func start() -> void:
 	spawn_items()
@@ -11,12 +18,10 @@ func on_store_opened() -> void:
 	start()
 
 func spawn_items() -> void:
-	var scene := load("res://Scenes/Objects/Item.tscn")
-	var item_class := preload("res://Scripts/Objects/Item.gd")
 	var radius = 500.0
 	var max_angle = 90.0 * PI / 180
 	for i in len(Data.all["Store Items Before"]):
-		var item = scene.instantiate()
+		var item = item_scene.instantiate()
 		item.set_script(item_class)
 		item.set_variables(Data.all["Store Items Before"][i][0], Data.all["Store Items Before"][i][1], item.id)
 		var x = radius * cos(max_angle/(len(Data.all["Store Items Before"])+1)*(i+1))
@@ -24,11 +29,17 @@ func spawn_items() -> void:
 		item.set_position(Vector2(x, y))
 		add_child(item)
 
+func spawn_item(_item: Item) -> void:
+	print("HERE")
+	var item = item_scene.instantiate()
+	item.set_script(item_class)
+	item.set_variables(_item.recipe, _item.price, _item.id)
+	add_child(item)
+
 func spawn_customers(number_customers: int) -> void:
-	var scene := load("res://Scenes/Objects/Character.tscn")
 	var customers := choose_customers(number_customers)
 	for customer in customers:
-		var character = scene.instantiate()
+		var character = character_scene.instantiate()
 		character.name = customer.character_name
 		character.get_node("Sprite2D").modulate = customer.color
 		character._init(customer)
