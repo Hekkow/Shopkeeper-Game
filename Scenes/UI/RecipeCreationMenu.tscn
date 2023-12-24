@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cn3yblpjy2qrs"]
+[gd_scene load_steps=10 format=3 uid="uid://cn3yblpjy2qrs"]
 
 [ext_resource type="Script" path="res://Scripts/UI/RecipeCreationMenu.gd" id="1_ny18j"]
 [ext_resource type="Script" path="res://Scripts/UI/RatioBars.gd" id="2_2r0st"]
+[ext_resource type="Script" path="res://Scripts/UI/IngredientToRecipePanel.gd" id="2_wd8sf"]
 [ext_resource type="PackedScene" uid="uid://dwyxynnjpnnuy" path="res://Scenes/UI/RatioBar.tscn" id="3_i76uq"]
 [ext_resource type="Script" path="res://Scripts/UI/ResetIngredientsButton.gd" id="4_310k4"]
 [ext_resource type="Script" path="res://Scripts/UI/Pot.gd" id="5_eaqsj"]
@@ -28,6 +29,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_xf3m3")
+script = ExtResource("2_wd8sf")
 
 [node name="RatioBars" type="VBoxContainer" parent="."]
 layout_mode = 0

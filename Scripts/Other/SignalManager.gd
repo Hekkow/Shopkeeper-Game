@@ -12,3 +12,5 @@ signal ingredient_to_recipe_menu_opened
 signal recipe_to_item_menu_opened
 signal recipe_made
 signal price_modal_spawned(item)
+signal ingredient_to_recipe_panel_clicked
+signal recipe_to_item_clicked
