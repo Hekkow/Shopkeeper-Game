@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cn5b5ichbe4w0"]
+[gd_scene load_steps=10 format=3 uid="uid://cn5b5ichbe4w0"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Store.gd" id="1_clmvl"]
 [ext_resource type="PackedScene" uid="uid://bh7883wbgmv6" path="res://Scenes/Objects/Table.tscn" id="2_jv0ew"]
 [ext_resource type="Script" path="res://Scripts/Objects/Table.gd" id="3_yof26"]
+[ext_resource type="Script" path="res://Scripts/Objects/PlayerStats.gd" id="4_phpct"]
 [ext_resource type="Script" path="res://Scripts/UI/UI.gd" id="5_db2gu"]
 [ext_resource type="Script" path="res://Scripts/UI/MoneyLabel.gd" id="6_aithq"]
 [ext_resource type="Script" path="res://Scripts/UI/IngredientToRecipeMenuButton.gd" id="6_gskgb"]
@@ -15,6 +16,9 @@ script = ExtResource("1_clmvl")
 [node name="Table" parent="." instance=ExtResource("2_jv0ew")]
 position = Vector2(467, 412)
 script = ExtResource("3_yof26")
+
+[node name="Player" type="Node" parent="."]
+script = ExtResource("4_phpct")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("5_db2gu")

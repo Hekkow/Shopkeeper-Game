@@ -21,6 +21,11 @@ config/icon="res://icon.svg"
 SignalManager="*res://Scripts/Other/SignalManager.gd"
 Helper="*res://Scripts/Other/Helper.gd"
 Data="*res://Scripts/Other/Data.gd"
+Characters="*res://Scripts/Other/Characters.gd"
+Ingredients="*res://Scripts/Other/Ingredients.gd"
+Items="*res://Scripts/Other/Items.gd"
+Recipes="*res://Scripts/Other/Recipes.gd"
+PlayerStats="*res://Scripts/Objects/PlayerStats.gd"
 
 [debug]
 

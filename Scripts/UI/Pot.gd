@@ -3,11 +3,14 @@ extends Container
 func _ready() -> void:
 	SignalManager.connect("ingredient_added", on_ingredient_added)
 	SignalManager.connect("ingredients_reset", on_ingredients_reset)
+	check_for_recipes()
 
 func on_ingredient_added(_ingredients) -> void:
 	if get_child_count() > 0:
 		get_child(0).queue_free()
-	var recipe = Recipe.check_recipes(Element.ingredients_to_element(Data.all["Pot Ingredients"]))
+	check_for_recipes()
+func check_for_recipes():
+	var recipe = Recipes.check_recipes(Element.ingredients_to_element(Ingredients.pot.inv))
 	if !recipe:
 		return
 	var scene := load("res://Scenes/UI/ItemDisplayButton.tscn")

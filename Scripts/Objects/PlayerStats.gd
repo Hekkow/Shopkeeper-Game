@@ -1,6 +1,5 @@
 extends Node
-
-@export var money: int
+var money = 0
 
 func _ready() -> void:
 	SignalManager.connect("item_sold", on_item_sold)

@@ -11,6 +11,12 @@ func remove_children(node: Node) -> void:
 		node.remove_child(n)
 		n.queue_free()
 
+func get_all_children(grandfather, arr=[]) -> Array:
+	arr.push_back(grandfather)
+	for child in grandfather.get_children():
+		arr = get_all_children(child, arr)
+	return arr
+
 func get_file_names(path: String) -> Array:
 	var dir = DirAccess.open(path)
 	var paths = []
@@ -45,7 +51,7 @@ func random_sample(_arr: Array, number_elements: int) -> Array:
 	var arr = _arr.duplicate()
 	var elements = []
 	for i in number_elements:
-		var index = Data.all["Seed"].randi_range(0, len(arr) - 1)
+		var index = Data.rng.randi_range(0, len(arr) - 1)
 		elements.append(arr[index])
 		arr.remove_at(index)
 	return elements
@@ -60,7 +66,7 @@ func remove_item(arr: Array, item: Object, equals: Callable) -> void:
 		if item.equals(arr[i]):
 			arr.remove_at(i)
 func get_character(character_name: String) -> Character:
-	for character in Data.all["Characters"]:
+	for character in Characters.list:
 		if character_name == character.character_name:
 			return character
 	return null

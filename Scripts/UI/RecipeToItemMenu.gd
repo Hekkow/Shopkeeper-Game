@@ -8,7 +8,7 @@ func _ready() -> void:
 
 func load_items() -> void:
 	var scene := load("res://Scenes/UI/ItemDisplayButton.tscn")
-	for inventory_slot in Data.all["Recipe Inventory"]:
+	for inventory_slot in Recipes.inventory.inv:
 		var button = scene.instantiate()
 		button.set_script(RecipeButton)
 		button.slot = inventory_slot
@@ -26,7 +26,5 @@ func on_price_set(_item) -> void:
 	toggle_buttons(true)
 
 func on_item_placed(_item) -> void:
-	print(Data.all["Recipe Inventory"])
-	if len(Data.all["Recipe Inventory"]) == 0:
-		print("HERE1")
+	if len(Recipes.inventory.inv) == 0:
 		SignalManager.emit_signal("store_opened")

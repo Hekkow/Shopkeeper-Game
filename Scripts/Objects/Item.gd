@@ -6,42 +6,40 @@ class_name Item
 @export var id: int
 var dragging = true
 var can_drag = true
-signal on_mouse_event;
-
+signal on_mouse_event
 
 func _ready():
-	connect("on_mouse_event", set_drag)
-	SignalManager.connect("store_opened", on_store_opened)
+	connect("on_mouse_event", set_dragging)
+	SignalManager.connect("store_opened", disable_drag)
 	
 func _process(_delta):
 	if dragging:
 		var mousepos = get_viewport().get_mouse_position()
 		self.position = Vector2(mousepos.x, mousepos.y)
 
-func set_drag():
-	dragging=!dragging
+func set_dragging():
+	dragging = !dragging
 	if !dragging:
 		SignalManager.emit_signal("item_placed", self)
 
-func on_store_opened():
+func disable_drag():
 	can_drag = false
 
-func _input_event(_viewport, event, _shape_idx):
+func _input_event(_viewport, event, _shape_idx): # if item is pressed specifically
 	if event is InputEventMouseButton && event.pressed && can_drag:
 		emit_signal("on_mouse_event")
 
-func _init(_recipe: Recipe = null, _price: int = -1) -> void:
+func _init(_recipe: Recipe = null, _price: int = -1) -> void: # init when creating object, not for script
 	price = _price
 	recipe = _recipe
-	id = Data.all["Item ID"]
-	Data.all["Item ID"] += 1
+	id = Items.id
+	Items.id += 1
 
-func set_variables(_recipe: Recipe, _price: int, _id: int = -1) -> void:
-	price = _price
-	recipe = _recipe
-	if _id != -1:
-		id = _id
-	Data.all["Store Items"].append(self)
+func set_variables(_item: Item) -> void: # when attaching script it copies another object 
+	price = _item.price
+	recipe = _item.recipe
+	id = _item.id
+	Items.store.append(self)
 
 func dupe() -> Item:
 	var item := Item.new(recipe)

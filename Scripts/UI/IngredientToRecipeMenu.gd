@@ -7,20 +7,20 @@ func _ready() -> void:
 
 func on_ingredients_reset() -> void:
 	Helper.remove_children(self)
-	for i in range(len(Data.all["Pot Ingredients"]) - 1, -1, -1):
-		var ingredient_slot = Data.all["Pot Ingredients"][i]
-		Data.add_to_inventory("Ingredient Inventory", ingredient_slot.object, ingredient_slot.amount)
-		Data.remove_from_inventory("Pot Ingredients", ingredient_slot.object)
+	for i in range(len(Ingredients.pot.inv) - 1, -1, -1):
+		var ingredient_slot = Ingredients.pot.inv[i]
+		Ingredients.inventory.add(ingredient_slot.object, ingredient_slot.amount)
+		Ingredients.pot.remove(ingredient_slot.object)
 	initialize_ingredients()
 	
 func initialize_ingredients() -> void:
 	var scene := load("res://Scenes/UI/ItemDisplayButton.tscn")
-	for ingredient_slot in Data.all["Ingredient Inventory"]:
+	for ingredient_slot in Ingredients.inventory.inv:
 		var button = scene.instantiate()
 		button.set_script(IngredientButton)
 		button.slot = ingredient_slot
 		add_child(button)
 
 func on_recipe_made() -> void:
-	if len(Data.all["Ingredient Inventory"]) == 0:
+	if len(Ingredients.inventory.inv) == 0:
 		SignalManager.emit_signal("pot_done")

@@ -2,7 +2,9 @@ extends Node2D
 
 class_name Character
 
-@export var customer: CharacterStats
+@export var customer: CharacterStats 
+# easier to make new characters by having the stats themselves in another file
+# also just for now we cant have this file be a resource cuz position wont work
 var speed: int = 3
 var destination: Vector2
 var interested_item: Item
@@ -16,7 +18,7 @@ func _init(_customer: CharacterStats = null) -> void:
 	customer = _customer
 
 func _ready() -> void:
-	table = Data.all["Table"]
+	table = Data.table
 	table_position = table.get_position()
 	priority_queue = get_priorities()
 	SignalManager.connect("customer_interested", on_other_customer_interested)
@@ -27,19 +29,19 @@ func visit_random_item() -> void:
 		leave_store()
 		return
 	var item = get_next_priority()
-	interested_item = item.dupe()
+	interested_item = item.dupe() # need a new item with the same stats so that we can have interested item exist even if something happens to original
 	destination = item.get_position()
 	item.area_entered.connect(Callable(on_item_visit).bind(item))
 
 func get_next_priority() -> Item:
-	return priority_queue[Data.all["Seed"].randi_range(0, len(priority_queue) - 1)]
+	return priority_queue[Data.rng.randi_range(0, len(priority_queue) - 1)]
 	# return priority_queue[0]
 
 func get_priorities() -> Array:
 	var priorities = []
-	for item in Data.all["Store Items"]:
+	for item in Items.store:
 		var prio = 0
-		if Helper.find_item(customer.affinity, item.recipe) != -1:
+		if Helper.find_item(customer.affinity, item.recipe) != -1: # if has affinity with item
 			prio += 100
 		prio -= customer.personality.diff(item.recipe.element)
 		priorities.append(Priority.new(item, prio))
@@ -50,11 +52,11 @@ func get_priorities() -> Array:
 	return items
 
 func interested(_item: Item) -> bool:
-	# if customer.richness == Data.all["Max Richness"]:
+	# if customer.richness == Characters.max_richness:
 	# 	return true
 	# if customer.affinity.has(item.recipe):
 	# 	return true
-	return Data.all["Seed"].randf() > 0.5
+	return Data.rng.randf() > 0.5
 
 func on_item_visit(body: Character, item: Item) -> void:
 	if body != self:
@@ -72,7 +74,7 @@ func on_item_visit(body: Character, item: Item) -> void:
 		visit_random_item()
 
 func on_other_customer_interested(_customer: Character, item: Item) -> void:
-	Helper.remove_item(Data.all["Store Items"], item, item.equals)
+	Helper.remove_item(Items.store, item, item.equals)
 	Helper.remove_item(priority_queue, item, item.equals)
 	if _customer == self:
 		return

@@ -8,10 +8,10 @@ func _ready():
 	pressed.connect(on_ingredient_pressed)
 
 func on_ingredient_pressed() -> void:
-	Data.add_to_inventory("Pot Ingredients", slot.object)
+	Ingredients.pot.add(slot.object)
 	SignalManager.emit_signal("ingredient_added", slot)
 	if (slot.subtract() == 0):
-		Data.remove_from_inventory("Ingredient Inventory", slot.object)
+		Ingredients.inventory.remove(slot.object)
 		queue_free()
 	else:
 		text = slot.to_str()
