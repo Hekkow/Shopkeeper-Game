@@ -22,5 +22,11 @@ func remove(item: Object) -> void:
 	if index != -1:
 		inv.remove_at(index)
 
+func find(item: Object) -> Object:
+	for i in inv:
+		if i.object == item:
+			return i
+	return null
+
 func _to_string():
 	return str(inv)

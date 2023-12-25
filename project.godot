@@ -25,7 +25,7 @@ Characters="*res://Scripts/Other/Characters.gd"
 Ingredients="*res://Scripts/Other/Ingredients.gd"
 Items="*res://Scripts/Other/Items.gd"
 Recipes="*res://Scripts/Other/Recipes.gd"
-PlayerStats="*res://Scripts/Objects/PlayerStats.gd"
+PlayerStats="*res://Scripts/Other/PlayerStats.gd"
 
 [debug]
 

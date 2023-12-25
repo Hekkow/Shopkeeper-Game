@@ -1,3 +1,9 @@
+"""
+
+Button that opens recipe to item menu
+
+"""
+
 extends Button
 
 func _pressed() -> void:

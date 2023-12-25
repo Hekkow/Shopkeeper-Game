@@ -1,25 +1,24 @@
+"""
+
+Recipe to item menu
+This script just sets the visibility of the menu depending on the stage of the game
+
+"""
+
 extends Control
 
 func _ready() -> void:
 	SignalManager.connect("store_opened", close_menu)
-	SignalManager.connect("recipe_to_item_clicked", close_menu)
-	SignalManager.connect("price_set", on_price_set)
-	SignalManager.connect("item_placed", on_item_placed)
-	
-func on_price_set(_item):
+	SignalManager.connect("escape_recipe_to_item", close_menu)
+	SignalManager.connect("price_set", is_no_visible)
+	SignalManager.connect("item_placed", is_yes_visible)
+	SignalManager.connect("item_placement_cancelled", is_yes_visible)
+
+#- visible and is_visible both taken
+
+func is_no_visible(_item):
 	modulate.a = 0
-	set_children_mouse_filter(Control.MOUSE_FILTER_IGNORE)
-func on_item_placed(_item):
+func is_yes_visible(_item):
 	modulate.a = 1
-	set_children_mouse_filter(Control.MOUSE_FILTER_STOP)
-
-func set_children_mouse_filter(value):
-	mouse_filter = value
-	for node in Helper.get_all_children(self):
-		if "mouse_filter" in node:
-			node.mouse_filter = value
-		
-
 func close_menu() -> void:
 	queue_free()
-

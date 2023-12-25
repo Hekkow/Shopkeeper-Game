@@ -1,5 +1,7 @@
 extends Node
-signal ingredient_added(ingredient)
+signal ingredient_added_to_pot(ingredient_slot)
+signal ingredient_removed_from_inventory(ingredient_slot)
+signal recipe_removed_from_inventory(recipe_slot)
 signal ingredients_reset
 signal item_sold(item)
 signal price_set(item)
@@ -10,8 +12,12 @@ signal recipe_pressed(item)
 signal store_opened
 signal ingredient_to_recipe_menu_opened
 signal recipe_to_item_menu_opened
-signal recipe_made
+signal recipe_made(recipe)
 signal price_modal_spawned(item)
-signal ingredient_to_recipe_panel_clicked
-signal recipe_to_item_clicked
+signal price_modal_despawned
+signal escape_ingredient_to_recipe
+signal escape_recipe_to_item
+signal escape_recipe_to_item_price_modal
 signal item_placed
+signal item_placement_cancelled(item)
+signal invalid_price(message)

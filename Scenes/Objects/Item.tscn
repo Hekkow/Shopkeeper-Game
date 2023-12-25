@@ -11,3 +11,9 @@ texture = ExtResource("1_lsbea")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_p11h6")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 7.0
+offset_top = -26.0
+offset_right = 47.0
+offset_bottom = -3.0

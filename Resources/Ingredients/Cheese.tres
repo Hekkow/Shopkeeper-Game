@@ -5,9 +5,9 @@
 
 [sub_resource type="Resource" id="Resource_kdgin"]
 script = ExtResource("1_uemdy")
-a = 10
-b = 30
-c = 10
+a = 0
+b = 10
+c = 0
 
 [resource]
 script = ExtResource("1_6y4k3")

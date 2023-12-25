@@ -17,25 +17,34 @@ func _process(_delta):
 		var mousepos = get_viewport().get_mouse_position()
 		self.position = Vector2(mousepos.x, mousepos.y)
 
+func _input(event):
+	if event.is_action_pressed("ui_cancel"):
+		if dragging:
+			SignalManager.emit_signal("item_placement_cancelled", self)
+			Helper.remove_item(Items.store, self)
+			queue_free()
+
 func set_dragging():
 	dragging = !dragging
 	if !dragging:
 		SignalManager.emit_signal("item_placed", self)
+		get_node("Label").text = "$" + str(price)
+		
 
 func disable_drag():
 	can_drag = false
 
-func _input_event(_viewport, event, _shape_idx): # if item is pressed specifically
+func _input_event(_viewport, event, _shape_idx): #- if item is pressed specifically
 	if event is InputEventMouseButton && event.pressed && can_drag:
 		emit_signal("on_mouse_event")
 
-func _init(_recipe: Recipe = null, _price: int = -1) -> void: # init when creating object, not for script
+func _init(_recipe: Recipe = null, _price: int = -1) -> void: #- init when creating object, not for script
 	price = _price
 	recipe = _recipe
 	id = Items.id
 	Items.id += 1
 
-func set_variables(_item: Item) -> void: # when attaching script it copies another object 
+func set_variables(_item: Item) -> void: #- when attaching script it copies another object 
 	price = _item.price
 	recipe = _item.recipe
 	id = _item.id

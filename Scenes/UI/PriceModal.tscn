@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bcsuogaf6yssm"]
+[gd_scene load_steps=7 format=3 uid="uid://bcsuogaf6yssm"]
 
 [ext_resource type="Script" path="res://Scripts/UI/PriceModal.gd" id="1_kgj5f"]
 [ext_resource type="PackedScene" uid="uid://br4u7q5fsnrij" path="res://Scenes/UI/PriceInput.tscn" id="2_gbjlv"]
 [ext_resource type="Script" path="res://Scripts/UI/PriceInput.gd" id="2_gummp"]
+[ext_resource type="Script" path="res://Scripts/UI/PriceErrorLabel.gd" id="2_vb1k2"]
 [ext_resource type="Script" path="res://Scripts/UI/PriceModalDefaultButton.gd" id="4_sk3tw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_l172p"]
+font_color = Color(0.85098, 0.109804, 0.364706, 1)
 
 [node name="CenterContainer" type="CenterContainer"]
 anchors_preset = 15
@@ -17,6 +21,12 @@ script = ExtResource("1_kgj5f")
 [node name="PanelContainer" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(250, 300)
 layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_l172p")
+horizontal_alignment = 1
+script = ExtResource("2_vb1k2")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
 layout_mode = 2

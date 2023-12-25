@@ -1,3 +1,9 @@
+"""
+
+Shows player's money
+
+"""
+
 extends Label
 
 func _ready() -> void:

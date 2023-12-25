@@ -30,7 +30,8 @@ func spawn_customers(number_customers: int) -> void:
 		add_child(character)
 		await get_tree().create_timer(1).timeout
 
-func choose_customers(number_customers) -> Array:
+func choose_customers(_number_customers) -> Array:
 	# return [Helper.get_character("Green"), Helper.get_character("Blue"), Helper.get_character("Orange"), Helper.get_character("Salmon"), Helper.get_character("Red")]
-	return Helper.random_sample(Characters.list, number_customers)
+	# return Helper.random_sample(Characters.list, _number_customers)
+	return Characters.list
 

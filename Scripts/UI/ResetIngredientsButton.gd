@@ -1,8 +1,10 @@
+"""
+
+Resets ingredients and pot when clicked
+
+"""
+
 extends Button
 
-func _ready() -> void:
-	pressed.connect(reset)
-
-
-func reset() -> void:
+func _pressed() -> void:
 	SignalManager.emit_signal("ingredients_reset")

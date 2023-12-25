@@ -17,6 +17,12 @@ func get_all_children(grandfather, arr=[]) -> Array:
 		arr = get_all_children(child, arr)
 	return arr
 
+func set_children_mouse_filter(parent, value):
+	parent.mouse_filter = value
+	for node in get_all_children(parent):
+		if "mouse_filter" in node:
+			node.mouse_filter = value
+
 func get_file_names(path: String) -> Array:
 	var dir = DirAccess.open(path)
 	var paths = []
@@ -61,7 +67,7 @@ func find_item(arr: Array, item: Object) -> int:
 		if item.equals(arr[i]):
 			return i
 	return -1
-func remove_item(arr: Array, item: Object, equals: Callable) -> void:
+func remove_item(arr: Array, item: Object) -> void:
 	for i in range(arr.size() - 1, -1, -1):
 		if item.equals(arr[i]):
 			arr.remove_at(i)
