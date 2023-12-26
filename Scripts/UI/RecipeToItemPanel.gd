@@ -37,7 +37,7 @@ func escape():
 	else:
 		SignalManager.emit_signal("escape_recipe_to_item")
 
-func can_click(_item=null):
+func can_click(_case=null, _item=null):
 	mouse_filter = Control.MOUSE_FILTER_STOP
 
 func can_not_click(_item=null):

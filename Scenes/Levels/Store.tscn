@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cn5b5ichbe4w0"]
+[gd_scene load_steps=10 format=3 uid="uid://cn5b5ichbe4w0"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Store.gd" id="1_clmvl"]
 [ext_resource type="PackedScene" uid="uid://bh7883wbgmv6" path="res://Scenes/Objects/Table.tscn" id="2_jv0ew"]
@@ -8,12 +8,13 @@
 [ext_resource type="Script" path="res://Scripts/UI/IngredientToRecipeMenuButton.gd" id="6_gskgb"]
 [ext_resource type="Script" path="res://Scripts/UI/OpenScenesButtons.gd" id="6_vnhey"]
 [ext_resource type="Script" path="res://Scripts/UI/RecipeToItemMenuButton.gd" id="7_imi8o"]
+[ext_resource type="PackedScene" uid="uid://duvjnrwsxdbw6" path="res://Scenes/Objects/DisplaySquare.tscn" id="9_gosyp"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Store" type="Node2D"]
 script = ExtResource("1_clmvl")
 
 [node name="Table" parent="." instance=ExtResource("2_jv0ew")]
-position = Vector2(467, 412)
+position = Vector2(316, 431)
 script = ExtResource("3_yof26")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -54,3 +55,21 @@ custom_minimum_size = Vector2(130, 0)
 layout_mode = 2
 text = "ADD ITEM"
 script = ExtResource("7_imi8o")
+
+[node name="Area2D4" parent="." instance=ExtResource("9_gosyp")]
+position = Vector2(261, 290)
+
+[node name="Area2D5" parent="." instance=ExtResource("9_gosyp")]
+position = Vector2(308, 289)
+
+[node name="Area2D6" parent="." instance=ExtResource("9_gosyp")]
+position = Vector2(358, 288)
+
+[node name="Area2D7" parent="." instance=ExtResource("9_gosyp")]
+position = Vector2(178, 396)
+
+[node name="Area2D8" parent="." instance=ExtResource("9_gosyp")]
+position = Vector2(177, 445)
+
+[node name="Area2D9" parent="." instance=ExtResource("9_gosyp")]
+position = Vector2(178, 493)

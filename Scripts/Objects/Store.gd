@@ -1,8 +1,11 @@
 extends Node2D
 
+class_name Store
+
 var item_scene
 var character_scene
 var item_class
+var display_cases = []
 
 func _ready() -> void:
 	SignalManager.connect("store_opened", on_store_opened)
@@ -10,6 +13,8 @@ func _ready() -> void:
 	item_scene = load("res://Scenes/Objects/Item.tscn")
 	character_scene = load("res://Scenes/Objects/Character.tscn")
 	item_class = load("res://Scripts/Objects/Item.gd")
+	Data.store = self
+	SignalManager.emit_signal("store_initialized")
 
 func on_store_opened() -> void:
 	spawn_customers(2)

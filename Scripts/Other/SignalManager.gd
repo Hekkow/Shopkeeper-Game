@@ -18,6 +18,8 @@ signal price_modal_despawned
 signal escape_ingredient_to_recipe
 signal escape_recipe_to_item
 signal escape_recipe_to_item_price_modal
-signal item_placed
+signal item_placed(case, item)
 signal item_placement_cancelled(item)
+signal item_picked_up(case, item)
 signal invalid_price(message)
+signal store_initialized

@@ -8,6 +8,7 @@ func _ready():
 	list = Helper.get_resources("Recipes")
 	SignalManager.connect("recipe_made", on_recipe_made)
 	SignalManager.connect("item_placed", on_item_placed)
+	SignalManager.connect("item_picked_up", on_item_picked_up)
 
 func check_recipes(_elements: Element) -> Recipe:
 	var minimum = maximum
@@ -33,10 +34,16 @@ func find_recipe(recipe_name) -> Recipe:
 func on_recipe_made(recipe) -> void:
 	inventory.add(recipe)
 
-func on_item_placed(item):
+func on_item_placed(_case, item):
 	var slot = inventory.find(item.recipe)
 	if slot.subtract() == 0:
 		inventory.remove(slot.object)
 	SignalManager.emit_signal("recipe_removed_from_inventory", slot)
 	if len(inventory.inv) == 0:
 		SignalManager.emit_signal("store_opened")
+
+func on_item_picked_up(_case, item):
+	inventory.add(item.recipe)
+	# SignalManager.emit_signal("recipe_removed_from_inventory", slot)
+	# if len(inventory.inv) == 0:
+	# 	SignalManager.emit_signal("store_opened")

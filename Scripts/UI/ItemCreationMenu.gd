@@ -18,7 +18,7 @@ func _ready() -> void:
 
 func is_no_visible(_item):
 	modulate.a = 0
-func is_yes_visible(_item):
+func is_yes_visible(_case=null, _item=null):
 	modulate.a = 1
 func close_menu() -> void:
 	queue_free()

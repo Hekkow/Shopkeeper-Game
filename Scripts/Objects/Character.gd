@@ -58,7 +58,7 @@ func interested(_item: Item) -> bool:
 	# 	return true
 	return Data.rng.randf() < 0.25
 
-func on_item_visit(body: Character, item: Item) -> void:
+func on_item_visit(body, item: Item) -> void:
 	if body != self:
 		return
 	item.area_entered.disconnect(Callable(on_item_visit).bind(item))
@@ -107,7 +107,8 @@ func _physics_process(_delta: float):
 	position += (destination - get_position()).normalized() * speed
 
 func _to_string() -> String:
-	return "%s\n$%s" % [customer.character_name]
+	return customer.character_name
+	# return "%s\n$%s" % [customer.character_name]
 
 func leave_store() -> void:
 	destination = exit
