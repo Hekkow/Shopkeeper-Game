@@ -10,16 +10,14 @@ var destination: Vector2
 var interested_item: Item
 var paused = false
 var priority_queue: Array = []
-var exit: Vector2 = Vector2(0, 0)
-var table
+var exit: Vector2 = Data.store.door.position
 var table_position: Vector2
 
 func _init(_customer: CharacterStats = null) -> void:
 	customer = _customer
 
 func _ready() -> void:
-	table = Data.table
-	table_position = table.get_position()
+	table_position = Data.store.table.get_position()
 	priority_queue = get_priorities()
 	SignalManager.connect("customer_interested", on_other_customer_interested)
 	visit_random_item()
@@ -61,16 +59,20 @@ func interested(_item: Item) -> bool:
 func on_item_visit(body, item: Item) -> void:
 	if body != self:
 		return
+	if !item.equals(interested_item):
+		return
 	item.area_entered.disconnect(Callable(on_item_visit).bind(item))
 	pause(0.5)
 	if interested(item):
-		SignalManager.emit_signal("customer_interested", self, interested_item)
+		SignalManager.emit_signal("customer_interested", self, item)
 		await get_tree().create_timer(0.5).timeout
 		item.queue_free()
 		destination = table_position
-		table.area_entered.connect(on_table_visit)
+		Data.store.table.area_entered.connect(on_table_visit)
 	else:
 		Helper.remove_item(priority_queue, item)
+		print(str(self) + " not")
+
 		visit_random_item()
 
 func on_other_customer_interested(_customer: Character, item: Item) -> void:
@@ -80,6 +82,7 @@ func on_other_customer_interested(_customer: Character, item: Item) -> void:
 		return
 	if !item.equals(interested_item):
 		return
+	print("%s %s %s %s" % [self, _customer, interested_item, item])
 	visit_random_item()
 
 func pause(seconds: float) -> void:
@@ -112,3 +115,11 @@ func _to_string() -> String:
 
 func leave_store() -> void:
 	destination = exit
+	SignalManager.disconnect("customer_interested", on_other_customer_interested)
+	Data.store.door.area_entered.connect(on_reached_door)
+
+func on_reached_door(body):
+	if body != self:
+		return
+	queue_free()
+		

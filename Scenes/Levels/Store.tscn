@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cn5b5ichbe4w0"]
+[gd_scene load_steps=13 format=3 uid="uid://cn5b5ichbe4w0"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Store.gd" id="1_clmvl"]
 [ext_resource type="PackedScene" uid="uid://bh7883wbgmv6" path="res://Scenes/Objects/Table.tscn" id="2_jv0ew"]
@@ -9,6 +9,9 @@
 [ext_resource type="Script" path="res://Scripts/UI/OpenScenesButtons.gd" id="6_vnhey"]
 [ext_resource type="Script" path="res://Scripts/UI/RecipeToItemMenuButton.gd" id="7_imi8o"]
 [ext_resource type="PackedScene" uid="uid://duvjnrwsxdbw6" path="res://Scenes/Objects/DisplaySquare.tscn" id="9_gosyp"]
+[ext_resource type="Script" path="res://Scripts/UI/RecipeToItemNextButton.gd" id="9_t63q2"]
+[ext_resource type="PackedScene" uid="uid://dkliddhd385x5" path="res://Scenes/Objects/Door.tscn" id="10_cndr7"]
+[ext_resource type="Script" path="res://Scripts/Objects/Door.gd" id="11_wfeb1"]
 
 [node name="Store" type="Node2D"]
 script = ExtResource("1_clmvl")
@@ -47,14 +50,20 @@ script = ExtResource("6_vnhey")
 [node name="Button" type="Button" parent="CanvasLayer/HBoxContainer"]
 custom_minimum_size = Vector2(130, 0)
 layout_mode = 2
-text = "MAKE RECIPE"
+text = "CRAFT POTION"
 script = ExtResource("6_gskgb")
 
 [node name="Button2" type="Button" parent="CanvasLayer/HBoxContainer"]
 custom_minimum_size = Vector2(130, 0)
 layout_mode = 2
-text = "ADD ITEM"
+text = "SET UP SHOP"
 script = ExtResource("7_imi8o")
+
+[node name="Button3" type="Button" parent="CanvasLayer/HBoxContainer"]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+text = "OPEN SHOP"
+script = ExtResource("9_t63q2")
 
 [node name="Area2D4" parent="." instance=ExtResource("9_gosyp")]
 position = Vector2(261, 290)
@@ -73,3 +82,7 @@ position = Vector2(177, 445)
 
 [node name="Area2D9" parent="." instance=ExtResource("9_gosyp")]
 position = Vector2(178, 493)
+
+[node name="Area2D" parent="." instance=ExtResource("10_cndr7")]
+position = Vector2(96, 231)
+script = ExtResource("11_wfeb1")

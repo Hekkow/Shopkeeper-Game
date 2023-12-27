@@ -1,25 +1,42 @@
 extends Node
-signal ingredient_added_to_pot(ingredient_slot)
-signal ingredient_removed_from_inventory(ingredient_slot)
-signal recipe_removed_from_inventory(recipe_slot)
-signal ingredients_reset
-signal item_sold(item)
-signal price_set(item)
-signal customer_interested(item)
-signal player_money_updated(money)
-signal pot_done
-signal recipe_pressed(item)
-signal store_opened
+
+#- ingredient to recipe
 signal ingredient_to_recipe_menu_opened
-signal recipe_to_item_menu_opened
-signal recipe_made(recipe)
-signal price_modal_spawned(item)
-signal price_modal_despawned
 signal escape_ingredient_to_recipe
+signal ingredient_added_to_pot(ingredient_slot)
+signal ingredients_reset
+signal ingredient_removed_from_inventory(ingredient_slot)
+signal recipe_made(recipe)
+signal pot_done
+
+#- recipe to item
+signal recipe_to_item_menu_opened
 signal escape_recipe_to_item
 signal escape_recipe_to_item_price_modal
+signal recipe_pressed(item)
+signal recipe_removed_from_inventory(recipe_slot)
+
+#- price modal
+signal price_modal_spawned(item)
+signal price_modal_despawned
+signal invalid_price(message)
+signal price_set(item)
+
+#- item placement
 signal item_placed(case, item)
 signal item_placement_cancelled(item)
 signal item_picked_up(case, item)
-signal invalid_price(message)
+
+#- store opening
 signal store_initialized
+signal store_opened
+signal customer_spawned(customer)
+
+#- customer shopping
+signal customer_interested(item)
+signal item_sold(item)
+signal player_money_updated(money)
+
+
+
+

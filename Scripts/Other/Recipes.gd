@@ -40,10 +40,7 @@ func on_item_placed(_case, item):
 		inventory.remove(slot.object)
 	SignalManager.emit_signal("recipe_removed_from_inventory", slot)
 	if len(inventory.inv) == 0:
-		SignalManager.emit_signal("store_opened")
+		SignalManager.emit_signal("escape_recipe_to_item")
 
 func on_item_picked_up(_case, item):
 	inventory.add(item.recipe)
-	# SignalManager.emit_signal("recipe_removed_from_inventory", slot)
-	# if len(inventory.inv) == 0:
-	# 	SignalManager.emit_signal("store_opened")
