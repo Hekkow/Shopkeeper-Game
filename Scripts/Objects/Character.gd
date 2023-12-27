@@ -12,23 +12,29 @@ var paused = false
 var priority_queue: Array = []
 var exit: Vector2 = Data.store.door.position
 var table_position: Vector2
+var left_door = false
 
 func _init(_customer: CharacterStats = null) -> void:
 	customer = _customer
 
 func _ready() -> void:
-	table_position = Data.store.table.get_position()
+	position = Data.store.door.position
+	table_position = Data.store.table.position
 	priority_queue = get_priorities()
 	SignalManager.connect("customer_interested", on_other_customer_interested)
+	Data.store.door.area_exited.connect(on_door_left)
 	visit_random_item()
-	
+
+func on_door_left(_body):
+	left_door = true
+
 func visit_random_item() -> void:
 	if !priority_queue:
 		leave_store()
 		return
 	var item = get_next_priority()
 	interested_item = item.dupe() #- need a new item with the same stats so that we can have interested item exist even if something happens to original
-	destination = item.get_position()
+	destination = item.position
 	item.area_entered.connect(Callable(on_item_visit).bind(item))
 
 func get_next_priority() -> Item:
@@ -54,7 +60,7 @@ func interested(_item: Item) -> bool:
 	# 	return true
 	# if customer.affinity.has(item.recipe):
 	# 	return true
-	return Data.rng.randf() < 0.25
+	return Data.rng.randf() < 1
 
 func on_item_visit(body, item: Item) -> void:
 	if body != self:
@@ -71,18 +77,14 @@ func on_item_visit(body, item: Item) -> void:
 		Data.store.table.area_entered.connect(on_table_visit)
 	else:
 		Helper.remove_item(priority_queue, item)
-		print(str(self) + " not")
-
 		visit_random_item()
 
 func on_other_customer_interested(_customer: Character, item: Item) -> void:
-	Helper.remove_item(Items.store, item)
 	Helper.remove_item(priority_queue, item)
 	if _customer == self:
 		return
 	if !item.equals(interested_item):
 		return
-	print("%s %s %s %s" % [self, _customer, interested_item, item])
 	visit_random_item()
 
 func pause(seconds: float) -> void:
@@ -107,7 +109,7 @@ func buy(item: Item) -> void:
 func _physics_process(_delta: float):
 	if paused:
 		return
-	position += (destination - get_position()).normalized() * speed
+	position += (destination - position).normalized() * speed
 
 func _to_string() -> String:
 	return customer.character_name
@@ -116,10 +118,14 @@ func _to_string() -> String:
 func leave_store() -> void:
 	destination = exit
 	SignalManager.disconnect("customer_interested", on_other_customer_interested)
+	if !left_door:
+		on_reached_door(self)
+		return
 	Data.store.door.area_entered.connect(on_reached_door)
 
 func on_reached_door(body):
 	if body != self:
 		return
+	SignalManager.emit_signal("customer_left", self)
 	queue_free()
 		

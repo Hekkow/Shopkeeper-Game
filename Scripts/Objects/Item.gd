@@ -37,9 +37,19 @@ func _process(_delta):
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		if dragging:
-			SignalManager.emit_signal("item_placement_cancelled", self)
-			Helper.remove_item(Items.store, self)
-			queue_free()
+			cancel_drag()
+func _input_event(_viewport, event, _shape_idx): #- if item is pressed specifically
+	if event is InputEventMouseButton && event.pressed:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			if can_drag:
+				emit_signal("on_mouse_event")
+		elif event.button_index == MOUSE_BUTTON_RIGHT:
+			cancel_drag()
+			
+func cancel_drag():
+	SignalManager.emit_signal("item_placement_cancelled", self)
+	Helper.remove_item(Items.store, self)
+	queue_free()
 
 func place_item():
 	var case = find_closest_case()
@@ -58,10 +68,8 @@ func place_item():
 func disable_drag():
 	can_drag = false
 
-func _input_event(_viewport, event, _shape_idx): #- if item is pressed specifically
-	if event is InputEventMouseButton && event.pressed:
-		if can_drag:
-			emit_signal("on_mouse_event")
+
+
 
 func _init(_recipe: Recipe = null, _price: int = -1) -> void: #- init when creating object, not for script
 	price = _price

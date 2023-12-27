@@ -35,7 +35,10 @@ signal customer_spawned(customer)
 #- customer shopping
 signal customer_interested(item)
 signal item_sold(item)
+signal customer_left(customer)
 signal player_money_updated(money)
+signal store_closing
+signal store_closed
 
 
 

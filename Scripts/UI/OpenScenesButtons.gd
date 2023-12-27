@@ -13,6 +13,8 @@ func _ready() -> void:
 	SignalManager.connect("pot_done", hide_buttons)
 	SignalManager.connect("escape_recipe_to_item", show_buttons)
 	SignalManager.connect("escape_ingredient_to_recipe", show_buttons)
+	SignalManager.connect("store_opened", hide_buttons)
+	SignalManager.connect("store_closed", show_buttons)
 
 func hide_buttons() -> void:
 	for button in get_children():

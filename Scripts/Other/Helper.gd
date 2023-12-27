@@ -71,8 +71,3 @@ func remove_item(arr: Array, item: Object) -> void:
 	for i in range(arr.size() - 1, -1, -1):
 		if item.equals(arr[i]):
 			arr.remove_at(i)
-func get_character(character_name: String) -> Character:
-	for character in Characters.list:
-		if character_name == character.character_name:
-			return character
-	return null
