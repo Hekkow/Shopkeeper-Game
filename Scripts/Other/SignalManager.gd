@@ -40,6 +40,9 @@ signal player_money_updated(money)
 signal store_closing
 signal store_closed
 
+signal astar_ready(astar_grid, tilemap)
+signal path_changed(path)
+
 
 
 

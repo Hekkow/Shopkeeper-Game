@@ -13,16 +13,20 @@ var priority_queue: Array = []
 var exit: Vector2 = Data.store.door.position
 var table_position: Vector2
 var left_door = false
+var store
 
 func _init(_customer: CharacterStats = null) -> void:
 	customer = _customer
 
 func _ready() -> void:
+	set_physics_process(false)
 	position = Data.store.door.position
 	table_position = Data.store.table.position
 	priority_queue = get_priorities()
 	SignalManager.connect("customer_interested", on_other_customer_interested)
-	Data.store.door.area_exited.connect(on_door_left)
+	store = Data.store
+	store.door.area_exited.connect(on_door_left)
+	collision_shape = get_node("CollisionShape2D")
 	visit_random_item()
 
 func on_door_left(_body):
@@ -35,6 +39,8 @@ func visit_random_item() -> void:
 	var item = get_next_priority()
 	interested_item = item.dupe() #- need a new item with the same stats so that we can have interested item exist even if something happens to original
 	destination = item.position
+
+	go_to_item(item.position)
 	item.area_entered.connect(Callable(on_item_visit).bind(item))
 
 func get_next_priority() -> Item:
@@ -106,10 +112,34 @@ func buy(item: Item) -> void:
 	SignalManager.emit_signal("item_sold", item)
 	leave_store()
 
+var path
+var collision_shape
+var min_distance = 5
+	
+
+func go_to_item(target):
+	print(collision_shape.global_transform.origin)
+	print(target)
+	path = store.astar.get_id_path(store.tilemap.local_to_map(collision_shape.global_transform.origin), store.tilemap.local_to_map(target))
+	print(path)
+	set_physics_process(true)
+
 func _physics_process(_delta: float):
-	if paused:
-		return
-	position += (destination - position).normalized() * speed
+	print(path)
+	var next_point = store.tilemap.map_to_local(path[0])
+	var pos = collision_shape.global_transform.origin
+	var distance = pos.distance_to(next_point)
+	if distance < min_distance:
+		path.remove_at(0)
+		if (len(path) == 0):
+			set_physics_process(false)
+			return
+		next_point = store.tilemap.map_to_local(path[0])
+	var dir = (next_point - pos).normalized()
+	position += dir * speed
+	# if paused:
+	# 	return
+	# position += (destination - position).normalized() * speed
 
 func _to_string() -> String:
 	return customer.character_name

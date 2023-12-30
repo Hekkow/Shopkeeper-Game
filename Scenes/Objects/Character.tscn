@@ -4,14 +4,17 @@
 [ext_resource type="Texture2D" uid="uid://3xqdtkaj4lxv" path="res://Resources/Sprites/customer.png" id="2_b43o3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bx2q8"]
+size = Vector2(17, 2)
 
 [node name="Area2D" type="Area2D"]
+y_sort_enabled = true
 script = ExtResource("1_67gyt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_b43o3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, 15)
 shape = SubResource("RectangleShape2D_bx2q8")
 
 [node name="Label" type="Label" parent="."]

@@ -10,6 +10,8 @@ var door
 var table
 var customers = []
 var store_open = false
+var tilemap
+var astar
 
 func _ready() -> void:
 	Data.store = self
@@ -18,9 +20,17 @@ func _ready() -> void:
 	item_scene = load("res://Scenes/Objects/Item.tscn")
 	character_scene = load("res://Scenes/Objects/Character.tscn")
 	item_class = load("res://Scripts/Objects/Item.gd")
+	print("here1")
 	SignalManager.emit_signal("store_initialized")
+	
 	SignalManager.connect("customer_left", on_customer_left)
 	SignalManager.connect("store_closing", on_store_closing)
+	SignalManager.connect("astar_ready", on_astar_ready)
+
+func on_astar_ready(astar_grid, _tilemap):
+	print("here3")
+	astar = astar_grid
+	tilemap = _tilemap
 
 func on_store_opened() -> void:
 	store_open = true
