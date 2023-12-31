@@ -1,16 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://cii2we4mcaev0"]
+[gd_scene load_steps=2 format=3 uid="uid://cii2we4mcaev0"]
 
 [ext_resource type="Texture2D" uid="uid://dmb4bqdvvh057" path="res://Resources/Sprites/item.png" id="1_lsbea"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_p11h6"]
-
-[node name="Area2D" type="Area2D"]
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D"]
+z_index = 5
+y_sort_enabled = true
 texture = ExtResource("1_lsbea")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_p11h6")
 
 [node name="Label" type="Label" parent="."]
 offset_left = 7.0

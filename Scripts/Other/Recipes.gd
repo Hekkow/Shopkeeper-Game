@@ -9,6 +9,7 @@ func _ready():
 	SignalManager.connect("recipe_made", on_recipe_made)
 	SignalManager.connect("item_placed", on_item_placed)
 	SignalManager.connect("item_picked_up", on_item_picked_up)
+	inventory.add(find_recipe("Diddlin"), 6)
 
 func check_recipes(_elements: Element) -> Recipe:
 	var minimum = maximum
@@ -27,7 +28,7 @@ func check_recipes(_elements: Element) -> Recipe:
 
 func find_recipe(recipe_name) -> Recipe:
 	for recipe in list:
-		if recipe.recipe_name == name:
+		if recipe.recipe_name == recipe_name:
 			return recipe
 	return null
 

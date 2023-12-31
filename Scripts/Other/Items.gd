@@ -13,6 +13,6 @@ func on_customer_interested(_customer, item):
 
 func remove_from_store(item):
     for i in len(store):
-        if store[i] == item:
+        if store[i].equals(item):
             store.remove_at(i)
             return

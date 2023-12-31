@@ -23,6 +23,7 @@ signal invalid_price(message)
 signal price_set(item)
 
 #- item placement
+signal item_spawned(item)
 signal item_placed(case, item)
 signal item_placement_cancelled(item)
 signal item_picked_up(case, item)
@@ -42,6 +43,8 @@ signal store_closed
 
 signal astar_ready(astar_grid, tilemap)
 signal path_changed(path)
+
+signal recipes_ready
 
 
 

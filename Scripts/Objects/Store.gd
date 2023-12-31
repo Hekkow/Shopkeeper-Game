@@ -5,7 +5,7 @@ class_name Store
 var item_scene
 var character_scene
 var item_class
-var display_cases = []
+var display_cases
 var door
 var table
 var customers = []
@@ -15,22 +15,14 @@ var astar
 
 func _ready() -> void:
 	Data.store = self
-	SignalManager.connect("store_opened", on_store_opened)
-	SignalManager.connect("price_set", spawn_item)
 	item_scene = load("res://Scenes/Objects/Item.tscn")
 	character_scene = load("res://Scenes/Objects/Character.tscn")
 	item_class = load("res://Scripts/Objects/Item.gd")
-	print("here1")
-	SignalManager.emit_signal("store_initialized")
-	
+	SignalManager.connect("store_opened", on_store_opened)
+	SignalManager.connect("price_set", spawn_item)	
 	SignalManager.connect("customer_left", on_customer_left)
 	SignalManager.connect("store_closing", on_store_closing)
-	SignalManager.connect("astar_ready", on_astar_ready)
-
-func on_astar_ready(astar_grid, _tilemap):
-	print("here3")
-	astar = astar_grid
-	tilemap = _tilemap
+	SignalManager.emit_signal("store_initialized")
 
 func on_store_opened() -> void:
 	store_open = true
@@ -44,6 +36,7 @@ func spawn_item(_item: Item) -> void:
 	item.set_script(item_class)
 	item.set_variables(_item)
 	add_child(item)
+	SignalManager.emit_signal("item_spawned", item)
 
 func on_store_closing():
 	store_open = false
@@ -66,6 +59,7 @@ func choose_customers(_number_customers) -> Array:
 	# return [Helper.get_character("Green"), Helper.get_character("Blue"), Helper.get_character("Orange"), Helper.get_character("Salmon"), Helper.get_character("Red")]
 	# return Helper.random_sample(Characters.list, _number_customers)
 	return Characters.list
+	# return [Characters.list[0]]
 
 func on_customer_left(_customer):
 	for i in len(customers):
