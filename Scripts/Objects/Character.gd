@@ -11,8 +11,8 @@ var interested_item_node: Node
 var paused := false
 var priority_queue := []
 @onready var store = Data.store
-@onready var exit = store.tilemap.map_to_local(Vector2(11, 8))
-@onready var table_position = store.tilemap.map_to_local(Vector2(11, 3))
+@onready var exit = Vector2(11, 9)
+@onready var table_position = Vector2(11, 3)
 
 enum State { LOOKING, BUYING, LEAVING }
 var state: State
@@ -24,7 +24,7 @@ func _init(_customer: CharacterStats = null) -> void:
 
 func _ready() -> void:
 	set_physics_process(false)
-	position = exit
+	position = store.tilemap.map_to_local(exit)
 	priority_queue = get_priorities()
 	SignalManager.connect("customer_interested", on_other_customer_interested)
 	visit_random_item()
@@ -53,7 +53,7 @@ func visit_random_item() -> void:
 		return
 	interested_item_node = get_next_priority()
 	interested_item = interested_item_node.dupe() #- new item without the node
-	set_destination_path(interested_item_node.position, State.LOOKING)
+	set_destination_path(store.get_corresponding_case(interested_item), State.LOOKING)
 
 func interested(_item: Item) -> bool:
 	return Data.rng.randf() <= 0.3
@@ -99,16 +99,31 @@ func pause(seconds: float) -> void:
 
 func set_destination_path(destination: Vector2, _state: State):
 	state = _state
-	var from = store.tilemap.local_to_map(collision_shape.global_transform.origin)
-	var to = get_empty_block(destination)
-	path = store.astar.get_id_path(from, to)
+	print(destination)
+	# var to = get_empty_block(destination)
+	path = get_shortest_path(store.tilemap.local_to_map(collision_shape.global_transform.origin), destination)
 	set_physics_process(true)
+	
+
+func get_shortest_path(start: Vector2, destination: Vector2) -> Array:
+	var last_point = destination
+	if !store.astar.is_point_solid(last_point):
+		return store.astar.get_id_path(start, last_point)
+	var shortest_path = store.astar.get_id_path(start, store.tilemap.get_neighbor_cell(last_point, 0))
+	for i in range(4, 12+1, 4):
+		var neighbor_cell = store.tilemap.get_neighbor_cell(last_point, i)
+		if store.astar.is_point_solid(neighbor_cell):
+			continue
+		var neighbor_path = store.astar.get_id_path(start, neighbor_cell)
+		print(neighbor_path)
+		if len(shortest_path) == 0 || len(neighbor_path) < len(shortest_path):
+			shortest_path = neighbor_path
+	return shortest_path 
 
 func get_empty_block(destination: Vector2):
 	var cell = store.tilemap.local_to_map(destination)
 	if !store.astar.is_point_solid(cell):
 		return cell
-	# cell.y += 1
 	for i in range(0, 12+1, 4):
 		var coords = store.tilemap.get_neighbor_cell(cell, i)
 		if !store.astar.is_point_solid(coords):

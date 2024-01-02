@@ -27,7 +27,6 @@ func find_closest_case(empty=false):
 	var smallest_distance = 100000
 	var closest_case
 	var mouse_pos = get_viewport().get_mouse_position()
-	var max_d = 70
 	for case in Data.store.display_cases:
 		if empty && Data.store.display_cases[case] == null:
 			continue
@@ -35,7 +34,7 @@ func find_closest_case(empty=false):
 		if d < smallest_distance:
 			smallest_distance = d
 			closest_case = case
-	if distance(mouse_pos, closest_case) > max_d:
+	if distance(mouse_pos, closest_case) > max_case_distance:
 		return null
 	return closest_case
 

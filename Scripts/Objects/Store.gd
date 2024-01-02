@@ -68,3 +68,8 @@ func on_customer_left(_customer):
 			break
 	if len(customers) == 0:
 		SignalManager.emit_signal("store_closed")
+
+func get_corresponding_case(item: Item):
+	for i in display_cases:
+		if display_cases[i] != null && display_cases[i].equals(item):
+			return i
