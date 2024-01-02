@@ -3,16 +3,17 @@ extends Node2D
 class_name Character
 
 @export var customer: CharacterStats
-@export var debug_draw = false
+@export var debug_draw = true
 @onready var collision_shape = $CollisionShape2D
 var speed := 3
 var interested_item: Item
 var interested_item_node: Node
 var paused := false
 var priority_queue := []
-var exit: Vector2
-var table_position: Vector2
-var store: Node
+@onready var store = Data.store
+@onready var exit = store.tilemap.map_to_local(Vector2(11, 8))
+@onready var table_position = store.tilemap.map_to_local(Vector2(11, 3))
+
 enum State { LOOKING, BUYING, LEAVING }
 var state: State
 var path: Array
@@ -23,10 +24,7 @@ func _init(_customer: CharacterStats = null) -> void:
 
 func _ready() -> void:
 	set_physics_process(false)
-	store = Data.store
-	exit = store.door.position
 	position = exit
-	table_position = store.table.position
 	priority_queue = get_priorities()
 	SignalManager.connect("customer_interested", on_other_customer_interested)
 	visit_random_item()
@@ -103,22 +101,18 @@ func set_destination_path(destination: Vector2, _state: State):
 	state = _state
 	var from = store.tilemap.local_to_map(collision_shape.global_transform.origin)
 	var to = get_empty_block(destination)
-	print(store)
 	path = store.astar.get_id_path(from, to)
 	set_physics_process(true)
 
 func get_empty_block(destination: Vector2):
-	var last_point = store.tilemap.local_to_map(destination)
-	if !store.astar.is_point_solid(last_point):
-		return last_point
 	var cell = store.tilemap.local_to_map(destination)
-	cell.y += 1
+	if !store.astar.is_point_solid(cell):
+		return cell
+	# cell.y += 1
 	for i in range(0, 12+1, 4):
 		var coords = store.tilemap.get_neighbor_cell(cell, i)
-		print(coords)
 		if !store.astar.is_point_solid(coords):
-			last_point = coords
-			return last_point
+			return coords
 
 func _draw():
 	if !debug_draw || len(path) == 0:

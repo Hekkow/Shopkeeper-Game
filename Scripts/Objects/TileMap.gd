@@ -2,17 +2,26 @@ extends TileMap
 
 var astar
 var path
-var table_base_layer = 1
-var display_case_layer = 2
+const ground_layer = 0
+const table_base_layer = 2
+const display_case_layer = 2
+const show_cell_numbers = false
 var display_cases = {}
 
 func _ready():
 	SignalManager.connect("store_initialized", on_store_initialized)
 	astar = AStarGrid2D.new()
-	astar.region = Rect2i(0, 0, 18, 14)
+	astar.region = Rect2i(4, 0, 9, 10)
 	astar.cell_size = tile_set.tile_size
 	astar.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
 	astar.update()
+	if show_cell_numbers:
+		for cell in get_used_cells(ground_layer):
+			var label = Label.new()
+			label.text = str(cell)
+			label.z_index = 100
+			add_child(label)
+			label.position = map_to_local(cell) - label.size/2
 	for cell in get_used_cells(table_base_layer):
 		astar.set_point_solid(cell)
 	for cell in get_used_cells(display_case_layer):

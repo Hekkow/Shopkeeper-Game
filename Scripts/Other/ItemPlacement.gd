@@ -2,9 +2,10 @@ extends Node2D
 
 var dragging = false
 var can_place = false
-var max_case_distance_empty = 70
-var max_case_distance = 30
+var max_case_distance = 70
 var item = null
+var item_offset = Vector2(0, -35)
+var closest_case_mouse_offset = Vector2(0, -20)
 
 signal on_mouse_event
 
@@ -26,9 +27,7 @@ func find_closest_case(empty=false):
 	var smallest_distance = 100000
 	var closest_case
 	var mouse_pos = get_viewport().get_mouse_position()
-	var max_d = max_case_distance_empty
-	if empty:
-		max_d = max_case_distance
+	var max_d = 70
 	for case in Data.store.display_cases:
 		if empty && Data.store.display_cases[case] == null:
 			continue
@@ -55,7 +54,7 @@ func _unhandled_input(event):
 			cancel_drag()
 
 func distance(mouse, case):
-	var pos = Data.store.tilemap.map_to_local(case)
+	var pos = Data.store.tilemap.map_to_local(case) + closest_case_mouse_offset
 	return sqrt((mouse.x - pos.x)**2 + (mouse.y - pos.y)**2)
 
 func cancel_drag():
@@ -79,7 +78,7 @@ func item_clicked():
 		if Data.store.display_cases[case] != null:
 			return
 		dragging = false
-		item.position = Data.store.tilemap.map_to_local(case)
+		item.position = Data.store.tilemap.map_to_local(case) + item_offset
 		Data.store.display_cases[case] = item
 		SignalManager.emit_signal("item_placed", case, item)
 		item = null
