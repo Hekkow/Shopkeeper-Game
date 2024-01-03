@@ -33,7 +33,7 @@ func get_priorities() -> Array:
 	var priorities = []
 	for item in Items.store:
 		var prio = 0
-		if Helper.find_item(customer.affinity, item.recipe) != -1:
+		if Helper.find_index(customer.affinity, item.recipe) != -1:
 			prio += 100
 		prio -= customer.personality.diff(item.recipe.element)
 		priorities.append(Priority.new(item, prio))
@@ -66,7 +66,7 @@ func on_item_reached():
 		interested_item_node.queue_free()
 		set_destination_path(table_position, State.BUYING)
 	else:
-		Helper.remove_item(priority_queue, interested_item)
+		Helper.remove(priority_queue, interested_item)
 		visit_random_item()
 
 func haggle() -> void:
@@ -87,7 +87,7 @@ func on_reached_door():
 	queue_free()
 
 func on_other_customer_interested(_customer: Character, item: Item) -> void:
-	Helper.remove_item(priority_queue, item)
+	Helper.remove(priority_queue, item)
 	if _customer == self || !item.equals(interested_item):
 		return
 	visit_random_item()
@@ -99,12 +99,9 @@ func pause(seconds: float) -> void:
 
 func set_destination_path(destination: Vector2, _state: State):
 	state = _state
-	print(destination)
-	# var to = get_empty_block(destination)
 	path = get_shortest_path(store.tilemap.local_to_map(collision_shape.global_transform.origin), destination)
 	set_physics_process(true)
 	
-
 func get_shortest_path(start: Vector2, destination: Vector2) -> Array:
 	var last_point = destination
 	if !store.astar.is_point_solid(last_point):
@@ -115,7 +112,6 @@ func get_shortest_path(start: Vector2, destination: Vector2) -> Array:
 		if store.astar.is_point_solid(neighbor_cell):
 			continue
 		var neighbor_path = store.astar.get_id_path(start, neighbor_cell)
-		print(neighbor_path)
 		if len(shortest_path) == 0 || len(neighbor_path) < len(shortest_path):
 			shortest_path = neighbor_path
 	return shortest_path 
@@ -139,7 +135,7 @@ func _draw():
 		draw_line(last, last + to - from, customer.color)
 		last += to - from
 
-func _physics_process(_delta: float):
+func _physics_process(_delta):
 	if paused || len(path) == 0:
 		return
 	if debug_draw:
@@ -147,7 +143,7 @@ func _physics_process(_delta: float):
 	var next_point = store.tilemap.map_to_local(path[0])
 	var pos = collision_shape.global_transform.origin
 	var distance = pos.distance_to(next_point)
-	if distance < min_distance:
+	if distance < min_distance: #- if reached point
 		path.remove_at(0)
 		if len(path) == 0:
 			set_physics_process(false)
@@ -168,5 +164,6 @@ func destination_reached():
 func _to_string() -> String:
 	return customer.character_name
 
-
+func equals(character: Character) -> bool:
+	return customer.character_name == character.customer.character_name
 		

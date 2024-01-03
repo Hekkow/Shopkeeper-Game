@@ -59,7 +59,7 @@ func distance(mouse, case):
 func cancel_drag():
 	dragging = false
 	SignalManager.emit_signal("item_placement_cancelled", item)
-	Helper.remove_item(Items.store, item)
+	Helper.remove(Items.store, item)
 	item.queue_free()
 
 func item_clicked():

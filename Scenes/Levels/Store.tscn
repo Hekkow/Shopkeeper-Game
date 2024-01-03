@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cn5b5ichbe4w0"]
+[gd_scene load_steps=18 format=3 uid="uid://cn5b5ichbe4w0"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Store.gd" id="1_clmvl"]
 [ext_resource type="Script" path="res://Scripts/UI/UI.gd" id="5_db2gu"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/UI/OpenScenesButtons.gd" id="6_vnhey"]
 [ext_resource type="Script" path="res://Scripts/UI/RecipeToItemMenuButton.gd" id="7_imi8o"]
 [ext_resource type="Script" path="res://Scripts/UI/RecipeToItemNextButton.gd" id="9_t63q2"]
+[ext_resource type="PackedScene" uid="uid://byj6odsj5vpwc" path="res://Scenes/Minigames/Haggling.tscn" id="12_1on1x"]
 [ext_resource type="Texture2D" uid="uid://3xqdtkaj4lxv" path="res://Resources/Sprites/customer.png" id="12_3lr0a"]
 [ext_resource type="Texture2D" uid="uid://d05ebrsmmtspd" path="res://Resources/Sprites/tilesheet.png" id="13_tl6wm"]
 [ext_resource type="Script" path="res://Scripts/Objects/TileMap.gd" id="14_utr67"]
@@ -148,3 +149,5 @@ script = ExtResource("15_rmyvw")
 position = Vector2(741, 104)
 scale = Vector2(2, 2)
 texture = ExtResource("12_3lr0a")
+
+[node name="SubViewportContainer" parent="." instance=ExtResource("12_1on1x")]
