@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dmb4bqdvvh057" path="res://Resources/Sprites/item.png" id="1_lsbea"]
 
 [node name="Sprite2D" type="Sprite2D"]
+modulate = Color(0.890196, 0.109804, 0.45098, 1)
 z_index = 5
 y_sort_enabled = true
 texture = ExtResource("1_lsbea")

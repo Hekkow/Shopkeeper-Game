@@ -48,7 +48,7 @@ func spawn_customers(_number_customers: int) -> void:
 			return
 		var character = character_scene.instantiate()
 		character.name = customer.character_name
-		character.get_node("Sprite2D").modulate = customer.color
+		character.get_node("AnimatedSprite2D").modulate = customer.color
 		character._init(customer)
 		customers.append(character)
 		add_child(character)

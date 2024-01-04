@@ -1,19 +1,20 @@
-extends SubViewport
+extends Control
 
 const speed = 3
-const score_multiplier_hit = 1.1
-const score_multiplier_missed = 1.1
+const score_multiplier_hit = 1.3
+const score_multiplier_missed = 1.2
 
 const minimum_distance = 5
 const number_boxes = 6
 const box_size = 20
 const pointer_size = 3
 
-var pointer
+@onready var pointer = $Pointer
 var pointer_direction = Vector2(1, 0)
 var boxes = []
 var background
 var colors = [Color.RED, Color.GREEN, Color.BLUE, Color.ORANGE]
+var customer
 
 const pointer_color = Color.RED
 const box_color = Color.GREEN
@@ -34,8 +35,9 @@ func _ready():
 	add_child(background)
 	for i in number_boxes:
 		boxes.append(create_area(Vector2(get_valid_position(), 0), Vector2(box_size, box_height), box_color))
-	pointer = create_area(Vector2(0, 0), Vector2(pointer_size, box_height), pointer_color, 1)
 	
+func set_customer(_customer):
+	customer = _customer
 
 func get_valid_position():
 	var found = false
@@ -99,4 +101,5 @@ func _process(_delta):
 	if pointer.position.x >= size.x:
 		pointer_direction *= -1
 	if pointer.position.x <= 0:
+		SignalManager.emit_signal("haggling_ended", customer, score_multiplier)
 		queue_free()

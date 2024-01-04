@@ -46,6 +46,9 @@ signal path_changed(path)
 
 signal recipes_ready
 
+signal haggling_started(customer)
+signal haggling_ended(customer, score_multiplier)
+
 
 
 

@@ -11,8 +11,9 @@ var interested_item_node: Node
 var paused := false
 var priority_queue := []
 @onready var store = Data.store
-@onready var exit = Vector2(11, 9)
-@onready var table_position = Vector2(11, 3)
+@onready var exit = Vector2(11, 10)
+@onready var table_position = Vector2(11, 2)
+@onready var animated_sprite = $AnimatedSprite2D
 
 enum State { LOOKING, BUYING, LEAVING }
 var state: State
@@ -24,9 +25,11 @@ func _init(_customer: CharacterStats = null) -> void:
 
 func _ready() -> void:
 	set_physics_process(false)
-	position = store.tilemap.map_to_local(exit)
+	position = store.tilemap.map_to_local(exit) - collision_shape.global_transform.origin
 	priority_queue = get_priorities()
 	SignalManager.connect("customer_interested", on_other_customer_interested)
+	SignalManager.connect("haggling_started", on_haggling_started)
+	SignalManager.connect("haggling_ended", on_haggling_ended)
 	visit_random_item()
 
 func get_priorities() -> Array:
@@ -56,7 +59,7 @@ func visit_random_item() -> void:
 	set_destination_path(store.get_corresponding_case(interested_item), State.LOOKING)
 
 func interested(_item: Item) -> bool:
-	return Data.rng.randf() <= 0.3
+	return Data.rng.randf() <= 1
 
 func on_item_reached():
 	pause(0.5)
@@ -70,9 +73,17 @@ func on_item_reached():
 		visit_random_item()
 
 func haggle() -> void:
-	pause(1)
-	interested_item.sold_price = int(interested_item.price * 1.2)
-	buy()
+	SignalManager.emit_signal("haggling_started", self)
+	
+
+func on_haggling_started(_customer):
+	stop()
+func on_haggling_ended(_customer, score_multiplier):
+	if _customer == self:
+		interested_item.sold_price = int(interested_item.price * score_multiplier)
+		buy()
+	start()
+	
 
 func buy() -> void:
 	SignalManager.emit_signal("item_sold", interested_item)
@@ -92,9 +103,18 @@ func on_other_customer_interested(_customer: Character, item: Item) -> void:
 		return
 	visit_random_item()
 
+
+
 func pause(seconds: float) -> void:
-	paused = true
+	stop()
 	await get_tree().create_timer(seconds).timeout
+	start()
+
+func stop():
+	animated_sprite.stop()
+	paused = true
+
+func start():
 	paused = false
 
 func set_destination_path(destination: Vector2, _state: State):
@@ -102,16 +122,15 @@ func set_destination_path(destination: Vector2, _state: State):
 	path = get_shortest_path(store.tilemap.local_to_map(collision_shape.global_transform.origin), destination)
 	set_physics_process(true)
 	
-func get_shortest_path(start: Vector2, destination: Vector2) -> Array:
-	var last_point = destination
-	if !store.astar.is_point_solid(last_point):
-		return store.astar.get_id_path(start, last_point)
-	var shortest_path = store.astar.get_id_path(start, store.tilemap.get_neighbor_cell(last_point, 0))
+func get_shortest_path(_start: Vector2, destination: Vector2) -> Array:
+	if !store.astar.is_point_solid(destination):
+		return store.astar.get_id_path(_start, destination)
+	var shortest_path = store.astar.get_id_path(_start, store.tilemap.get_neighbor_cell(destination, 0))
 	for i in range(4, 12+1, 4):
-		var neighbor_cell = store.tilemap.get_neighbor_cell(last_point, i)
+		var neighbor_cell = store.tilemap.get_neighbor_cell(destination, i)
 		if store.astar.is_point_solid(neighbor_cell):
 			continue
-		var neighbor_path = store.astar.get_id_path(start, neighbor_cell)
+		var neighbor_path = store.astar.get_id_path(_start, neighbor_cell)
 		if len(shortest_path) == 0 || len(neighbor_path) < len(shortest_path):
 			shortest_path = neighbor_path
 	return shortest_path 
@@ -142,6 +161,7 @@ func _physics_process(_delta):
 		queue_redraw()
 	var next_point = store.tilemap.map_to_local(path[0])
 	var pos = collision_shape.global_transform.origin
+	look_direction(next_point)
 	var distance = pos.distance_to(next_point)
 	if distance < min_distance: #- if reached point
 		path.remove_at(0)
@@ -153,13 +173,31 @@ func _physics_process(_delta):
 	var dir = (next_point - pos).normalized()
 	position += dir * speed
 
+func look_direction(to):
+	var direction = collision_shape.global_transform.origin - to
+	if abs(direction.x) > abs(direction.y):
+		animated_sprite.play("side")
+		if direction.x > 0:
+			animated_sprite.flip_h = false
+		else:
+			animated_sprite.flip_h = true
+	else:
+		if direction.y > 0:
+			animated_sprite.play("up")
+		else:
+			animated_sprite.play("down")
+
 func destination_reached():
 	if state == State.LOOKING:
+		look_direction(interested_item_node.position)
 		on_item_reached()
 	elif state == State.BUYING:
+		print("ERHEOARHG")
+		look_direction(store.tilemap.map_to_local(table_position))
 		haggle()
 	elif state == State.LEAVING:
 		on_reached_door()
+	animated_sprite.stop()
 
 func _to_string() -> String:
 	return customer.character_name

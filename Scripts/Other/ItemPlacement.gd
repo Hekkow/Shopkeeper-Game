@@ -4,7 +4,7 @@ var dragging = false
 var can_place = false
 var max_case_distance = 70
 var item = null
-var item_offset = Vector2(0, -35)
+var item_offset = Vector2(0, -47)
 var closest_case_mouse_offset = Vector2(0, -20)
 
 signal on_mouse_event
