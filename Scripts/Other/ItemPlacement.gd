@@ -1,12 +1,12 @@
 extends Node2D
 
 var dragging = false
-var can_place = false
 var max_case_distance = 70
 var item = null
 var item_offset = Vector2(0, -47)
 var closest_case_mouse_offset = Vector2(0, -20)
-
+const display_case_layer = 1
+var previous_case = null
 signal on_mouse_event
 
 func _ready():
@@ -41,6 +41,24 @@ func find_closest_case(empty=false):
 func _process(_delta):
 	if dragging:
 		item.position = get_viewport().get_mouse_position()
+		var case = find_closest_case()
+		if case == null:
+			if previous_case == null:
+				return
+			set_case_alternative(previous_case)
+			previous_case = null
+			return
+		if case != previous_case:
+			if previous_case != null:
+				set_case_alternative(previous_case)
+			set_case_alternative(case, 4)
+			previous_case = case
+
+func set_case_alternative(case, alternative=0):
+	var tilemap = Data.store.tilemap
+	var source_id = tilemap.get_cell_source_id(display_case_layer, case)
+	var atlas_coords = tilemap.get_cell_atlas_coords(display_case_layer, case)
+	tilemap.set_cell(display_case_layer, case, source_id, atlas_coords, alternative)
 
 func _unhandled_input(event):
 	if event is InputEventMouseButton && event.pressed:
@@ -76,6 +94,7 @@ func item_clicked():
 	else:
 		if Data.store.display_cases[case] != null:
 			return
+		set_case_alternative(previous_case)
 		dragging = false
 		item.position = Data.store.tilemap.map_to_local(case) + item_offset
 		Data.store.display_cases[case] = item

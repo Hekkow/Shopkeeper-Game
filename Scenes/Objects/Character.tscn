@@ -68,6 +68,7 @@ size = Vector2(16, 4)
 
 [node name="Area2D" type="Area2D"]
 y_sort_enabled = true
+texture_filter = 1
 script = ExtResource("1_67gyt")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

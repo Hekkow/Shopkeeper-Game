@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c2plix35wdxpy" path="res://Scenes/Minigames/HagglingPointer.tscn" id="2_c0e1p"]
 
 [node name="Haggling" type="Control"]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 0
 offset_right = 400.0

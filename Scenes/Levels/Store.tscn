@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cn5b5ichbe4w0"]
+[gd_scene load_steps=21 format=3 uid="uid://cn5b5ichbe4w0"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Store.gd" id="1_clmvl"]
 [ext_resource type="Script" path="res://Scripts/UI/UI.gd" id="5_db2gu"]
@@ -7,14 +7,30 @@
 [ext_resource type="Script" path="res://Scripts/UI/OpenScenesButtons.gd" id="6_vnhey"]
 [ext_resource type="Script" path="res://Scripts/UI/RecipeToItemMenuButton.gd" id="7_imi8o"]
 [ext_resource type="Script" path="res://Scripts/Minigames/Minigames.gd" id="8_3yuyn"]
+[ext_resource type="Shader" path="res://Resources/Shaders/PaletteSwap.gdshader" id="9_fj3pl"]
 [ext_resource type="Script" path="res://Scripts/UI/RecipeToItemNextButton.gd" id="9_t63q2"]
 [ext_resource type="Texture2D" uid="uid://c3f3ywwhslpoi" path="res://Resources/Sprites/character.png" id="13_shr5e"]
 [ext_resource type="Texture2D" uid="uid://d05ebrsmmtspd" path="res://Resources/Sprites/tilesheet.png" id="13_tl6wm"]
 [ext_resource type="Script" path="res://Scripts/Objects/TileMap.gd" id="14_utr67"]
 [ext_resource type="Script" path="res://Scripts/Other/ItemPlacement.gd" id="15_rmyvw"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dy7s4"]
+
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_pd1wr"]
 source_geometry_group_name = &"navigation_polygon_source_group"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oio3g"]
+shader = ExtResource("9_fj3pl")
+shader_parameter/original_0 = Color(0.933333, 0.866667, 0.85098, 1)
+shader_parameter/replace_0 = Color(0.866667, 0.654902, 0.701961, 1)
+shader_parameter/original_1 = null
+shader_parameter/replace_1 = null
+shader_parameter/original_2 = null
+shader_parameter/replace_2 = null
+shader_parameter/original_3 = null
+shader_parameter/replace_3 = null
+shader_parameter/original_4 = null
+shader_parameter/replace_4 = null
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_80pao"]
 vertices = PackedVector2Array(32, 32, -32, 32, -32, -32, 32, -32)
@@ -38,18 +54,19 @@ texture_region_size = Vector2i(64, 64)
 2:3/0/physics_layer_0/angular_velocity = 0.0
 2:3/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_2p1da")
 2:0/size_in_atlas = Vector2i(1, 2)
+2:0/next_alternative_id = 6
 2:0/0 = 0
 2:0/0/texture_origin = Vector2i(0, 32)
+2:0/0/material = SubResource("ShaderMaterial_dy7s4")
 2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:0/0/physics_layer_0/angular_velocity = 0.0
 2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 2:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_pd1wr")
-1:0/size_in_atlas = Vector2i(1, 2)
-1:0/0 = 0
-1:0/0/texture_origin = Vector2i(0, 32)
-1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:0/0/physics_layer_0/angular_velocity = 0.0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+2:0/4 = 4
+2:0/4/texture_origin = Vector2i(0, 32)
+2:0/4/material = SubResource("ShaderMaterial_oio3g")
+2:0/4/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/4/physics_layer_0/angular_velocity = 0.0
 1:3/0 = 0
 1:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:3/0/physics_layer_0/angular_velocity = 0.0
@@ -78,6 +95,17 @@ texture_region_size = Vector2i(64, 64)
 0:1/0/texture_origin = Vector2i(0, 42)
 0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:1/0/physics_layer_0/angular_velocity = 0.0
+3:0/size_in_atlas = Vector2i(1, 2)
+3:0/next_alternative_id = 2
+3:0/0 = 0
+3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/size_in_atlas = Vector2i(1, 2)
+1:0/0 = 0
+1:0/0/texture_origin = Vector2i(0, 32)
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 
 [sub_resource type="TileSet" id="TileSet_jetqx"]
 tile_size = Vector2i(64, 64)
@@ -87,6 +115,7 @@ sources/2 = SubResource("TileSetAtlasSource_cvi5e")
 
 [node name="Store" type="Node2D"]
 y_sort_enabled = true
+texture_filter = 1
 script = ExtResource("1_clmvl")
 
 [node name="UI" type="CanvasLayer" parent="."]
@@ -140,6 +169,7 @@ script = ExtResource("8_3yuyn")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
+texture_filter = 1
 tile_set = SubResource("TileSet_jetqx")
 format = 2
 layer_0/name = "Ground"
@@ -147,7 +177,7 @@ layer_0/tile_data = PackedInt32Array(4, 131074, 3, 65540, 131074, 3, 131076, 131
 layer_1/name = "DisplayCase"
 layer_1/y_sort_enabled = true
 layer_1/navigation_enabled = false
-layer_1/tile_data = PackedInt32Array(393223, 131074, 0, 393225, 131074, 0)
+layer_1/tile_data = PackedInt32Array(393223, 131074, 0, 393225, 131074, 0, 393224, 131074, 0, 393222, 131074, 0, 262150, 131074, 0, 262151, 131074, 0, 262152, 131074, 0, 262153, 131074, 0)
 layer_2/name = "Table"
 layer_2/y_sort_enabled = true
 layer_2/tile_data = PackedInt32Array(131082, 65538, 0, 131083, 65538, 0, 131084, 65538, 0)
@@ -158,8 +188,6 @@ layer_4/name = "Decor"
 layer_4/y_sort_enabled = true
 layer_4/tile_data = PackedInt32Array(131084, 2, 1)
 script = ExtResource("14_utr67")
-layer_4/name = "Decor"
-layer_4/y_sort_enabled = true
 
 [node name="ItemPlacement" type="Node2D" parent="."]
 script = ExtResource("15_rmyvw")

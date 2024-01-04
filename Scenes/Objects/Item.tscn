@@ -6,6 +6,7 @@
 modulate = Color(0.890196, 0.109804, 0.45098, 1)
 z_index = 5
 y_sort_enabled = true
+texture_filter = 1
 texture = ExtResource("1_lsbea")
 
 [node name="Label" type="Label" parent="."]
