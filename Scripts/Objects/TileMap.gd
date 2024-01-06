@@ -37,7 +37,8 @@ func _ready():
 			astar.set_point_solid(cell)
 
 	for cell in get_used_cells(display_case_layer):
-		display_cases[cell] = null
+		display_cases[cell] = DisplayCase.new()
+		
 func on_store_initialized():
 	Data.store.astar = astar
 	Data.store.tilemap = self

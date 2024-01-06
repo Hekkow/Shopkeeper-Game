@@ -2,16 +2,15 @@ extends Node2D
 
 class_name Store
 
-var item_scene
-var character_scene
-var item_class
-var display_cases
-var door
-var table
+var item_scene: Resource
+var character_scene: Resource
+var item_class: Resource
+var display_cases: Dictionary
 var customers = []
 var store_open = false
-var tilemap
+var tilemap: TileMap
 var astar
+var table_queue: Queue
 
 func _ready() -> void:
 	Data.store = self
@@ -46,6 +45,8 @@ func spawn_customers(_number_customers: int) -> void:
 	for customer in _customers:
 		if !store_open:
 			return
+		if GameState.state == GameState.State.Haggling:
+			await SignalManager.haggling_done
 		var character = character_scene.instantiate()
 		character.name = customer.character_name
 		character.get_node("AnimatedSprite2D").modulate = customer.color
@@ -71,5 +72,5 @@ func on_customer_left(_customer):
 
 func get_corresponding_case(item: Item):
 	for i in display_cases:
-		if display_cases[i] != null && display_cases[i].equals(item):
+		if display_cases[i].item != null && display_cases[i].item.equals(item):
 			return i

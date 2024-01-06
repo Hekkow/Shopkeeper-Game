@@ -48,7 +48,8 @@ signal recipes_ready
 
 signal haggling_started(customer)
 signal haggling_ended(customer, score_multiplier)
+signal haggling_done
 
-
-
+signal text_pressed(text_tree)
+signal conversation_done(text_tree)
 

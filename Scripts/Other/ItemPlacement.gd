@@ -28,7 +28,7 @@ func find_closest_case(empty=false):
 	var closest_case
 	var mouse_pos = get_viewport().get_mouse_position()
 	for case in Data.store.display_cases:
-		if empty && Data.store.display_cases[case] == null:
+		if empty && Data.store.display_cases[case].item == null:
 			continue
 		var d = distance(mouse_pos, case)
 		if d < smallest_distance:
@@ -84,20 +84,21 @@ func item_clicked():
 	var case = find_closest_case(!dragging)
 	if case == null:
 		return
+	
 	if !dragging:
-		if Data.store.display_cases[case] == null:
+		if Data.store.display_cases[case].item == null:
 			return
 		dragging = true
-		item = Data.store.display_cases[case]
+		item = Data.store.display_cases[case].item
 		SignalManager.emit_signal("item_picked_up", case, item)
 		Data.store.display_cases[case] = null
 	else:
-		if Data.store.display_cases[case] != null:
+		if Data.store.display_cases[case].item != null:
 			return
 		set_case_alternative(previous_case)
 		dragging = false
 		item.position = Data.store.tilemap.map_to_local(case) + item_offset
-		Data.store.display_cases[case] = item
+		Data.store.display_cases[case].item = item
 		SignalManager.emit_signal("item_placed", case, item)
 		item = null
 	

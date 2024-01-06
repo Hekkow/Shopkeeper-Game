@@ -1,5 +1,7 @@
 extends Node
 
+enum Direction { UP, LEFT, DOWN, RIGHT, NONE}
+
 func remove_children(node: Node) -> void:
 	for n in node.get_children():
 		node.remove_child(n)
@@ -47,3 +49,16 @@ func remove(arr: Array, item: Object) -> void:
 		if item.equals(arr[i]):
 			arr.remove_at(i)
 
+func cardinal_direction(direction: Vector2): #- in reverse because 0, 0 is top left corner
+	if direction == Vector2.ZERO:
+		return Direction.NONE
+	if abs(direction.x) > abs(direction.y):
+		if direction.x < 0:
+			return Direction.RIGHT
+		else:
+			return Direction.LEFT
+	else:
+		if direction.y < 0:
+			return Direction.UP
+		else:
+			return Direction.DOWN

@@ -1,67 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://qx2dsgaptaoh"]
+[gd_scene load_steps=4 format=3 uid="uid://qx2dsgaptaoh"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Character.gd" id="1_67gyt"]
-[ext_resource type="Texture2D" uid="uid://dxarwvq7keg2i" path="res://Resources/Sprites/test.png" id="2_o5nbk"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ni378"]
-atlas = ExtResource("2_o5nbk")
-region = Rect2(0, 0, 64, 84)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lp2iq"]
-atlas = ExtResource("2_o5nbk")
-region = Rect2(64, 0, 64, 84)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6n4ll"]
-atlas = ExtResource("2_o5nbk")
-region = Rect2(0, 168, 64, 84)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xb88g"]
-atlas = ExtResource("2_o5nbk")
-region = Rect2(64, 168, 64, 84)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4fgxj"]
-atlas = ExtResource("2_o5nbk")
-region = Rect2(0, 84, 64, 84)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fsst0"]
-atlas = ExtResource("2_o5nbk")
-region = Rect2(64, 84, 64, 84)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_cp4ck"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ni378")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lp2iq")
-}],
-"loop": true,
-"name": &"down",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6n4ll")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xb88g")
-}],
-"loop": true,
-"name": &"side",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4fgxj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fsst0")
-}],
-"loop": true,
-"name": &"up",
-"speed": 5.0
-}]
+[ext_resource type="SpriteFrames" uid="uid://ctdahutu28b2e" path="res://Resources/Animations/CharacterAnimation.tres" id="2_ylj1s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bx2q8"]
 size = Vector2(16, 4)
@@ -72,7 +12,7 @@ texture_filter = 1
 script = ExtResource("1_67gyt")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_cp4ck")
+sprite_frames = ExtResource("2_ylj1s")
 animation = &"side"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -9,6 +9,7 @@ var speed := 3
 var interested_item: Item
 var interested_item_node: Node
 var paused := false
+var haggling_paused := false
 var priority_queue := []
 @onready var store = Data.store
 @onready var exit = Vector2(11, 10)
@@ -24,13 +25,19 @@ func _init(_customer: CharacterStats = null) -> void:
 	customer = _customer
 
 func _ready() -> void:
-	set_physics_process(false)
-	position = store.tilemap.map_to_local(exit) - collision_shape.global_transform.origin
-	priority_queue = get_priorities()
-	SignalManager.connect("customer_interested", on_other_customer_interested)
-	SignalManager.connect("haggling_started", on_haggling_started)
-	SignalManager.connect("haggling_ended", on_haggling_ended)
-	visit_random_item()
+	if GameState.state == GameState.State.Shopping:
+		set_physics_process(false)
+		position = store.tilemap.map_to_local(exit) - collision_shape.global_transform.origin
+		SignalManager.connect("customer_interested", on_other_customer_interested)
+		SignalManager.connect("haggling_started", on_haggling_started)
+		SignalManager.connect("haggling_ended", on_haggling_ended)
+		priority_queue = get_priorities()
+		visit_random_item()
+	elif GameState.state == GameState.State.World:
+		pass
+
+func interact():
+	print("HEREHRAOGJE")
 
 func get_priorities() -> Array:
 	var priorities = []
@@ -47,8 +54,8 @@ func get_priorities() -> Array:
 	return items
 
 func get_next_priority() -> Item:
-	return priority_queue[Data.rng.randi_range(0, len(priority_queue) - 1)]
-	# return priority_queue[0]
+	# return priority_queue[Data.rng.randi_range(0, len(priority_queue) - 1)]
+	return priority_queue[0]
 
 func visit_random_item() -> void:
 	if !priority_queue:
@@ -63,6 +70,8 @@ func interested(_item: Item) -> bool:
 
 func on_item_reached():
 	pause(0.5)
+	if GameState.state == GameState.State.Haggling:
+		await SignalManager.haggling_done
 	if interested(interested_item):
 		SignalManager.emit_signal("customer_interested", self, interested_item)
 		await get_tree().create_timer(0.5).timeout
@@ -77,12 +86,13 @@ func haggle() -> void:
 	
 
 func on_haggling_started(_customer):
-	stop()
+	haggling_stop()
+
 func on_haggling_ended(_customer, score_multiplier):
 	if _customer == self:
 		interested_item.sold_price = int(interested_item.price * score_multiplier)
 		buy()
-	start()
+	haggling_start()
 	
 
 func buy() -> void:
@@ -114,8 +124,15 @@ func stop():
 	animated_sprite.stop()
 	paused = true
 
+func haggling_stop():
+	animated_sprite.stop()
+	haggling_paused = true
+
 func start():
 	paused = false
+
+func haggling_start():
+	haggling_paused = false
 
 func set_destination_path(destination: Vector2, _state: State):
 	state = _state
@@ -155,7 +172,7 @@ func _draw():
 		last += to - from
 
 func _physics_process(_delta):
-	if paused || len(path) == 0:
+	if paused || haggling_paused || len(path) == 0:
 		return
 	if debug_draw:
 		queue_redraw()
@@ -175,24 +192,23 @@ func _physics_process(_delta):
 
 func look_direction(to):
 	var direction = collision_shape.global_transform.origin - to
-	if abs(direction.x) > abs(direction.y):
-		animated_sprite.play("side")
-		if direction.x > 0:
-			animated_sprite.flip_h = false
-		else:
-			animated_sprite.flip_h = true
-	else:
-		if direction.y > 0:
+	match Helper.cardinal_direction(direction):
+		Helper.Direction.UP:
 			animated_sprite.play("up")
-		else:
+		Helper.Direction.DOWN:
 			animated_sprite.play("down")
+		Helper.Direction.LEFT:
+			animated_sprite.play("side")
+			animated_sprite.flip_h = true
+		Helper.Direction.RIGHT:
+			animated_sprite.play("side")
+			animated_sprite.flip_h = false
 
 func destination_reached():
 	if state == State.LOOKING:
 		look_direction(interested_item_node.position)
 		on_item_reached()
 	elif state == State.BUYING:
-		print("ERHEOARHG")
 		look_direction(store.tilemap.map_to_local(table_position))
 		haggle()
 	elif state == State.LEAVING:
