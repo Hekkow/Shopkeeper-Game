@@ -12,21 +12,21 @@ config_version=5
 
 config/name="My Game"
 run/main_scene="res://Scenes/Levels/Store.tscn"
-config/features=PackedStringArray("4.2", "Mobile")
+config/features=PackedStringArray("4.2", "C#", "Mobile")
 run/max_fps=60
 config/icon="res://icon.svg"
 
 [autoload]
 
-SignalManager="*res://Scripts/Autoloads/SignalManager.gd"
-Helper="*res://Scripts/Autoloads/Helper.gd"
-Data="*res://Scripts/Autoloads/Data.gd"
-Characters="*res://Scripts/Autoloads/Characters.gd"
-Ingredients="*res://Scripts/Autoloads/Ingredients.gd"
-Items="*res://Scripts/Autoloads/Items.gd"
-Recipes="*res://Scripts/Autoloads/Recipes.gd"
-PlayerStats="*res://Scripts/Other/PlayerStats.gd"
-GameState="*res://Scripts/Autoloads/GameState.gd"
+SignalManager="*res://Scripts/Autoloads/SignalManager.cs"
+Helper="*res://Scripts/Autoloads/Helper.cs"
+Characters="*res://Scripts/Autoloads/Characters.cs"
+Ingredients="*res://Scripts/Autoloads/Ingredients.cs"
+Items="*res://Scripts/Autoloads/Items.cs"
+Recipes="*res://Scripts/Autoloads/Recipes.cs"
+PlayerStats="*res://Scripts/Autoloads/PlayerStats.cs"
+GameState="*res://Scripts/Autoloads/GameState.cs"
+Data="*res://Scripts/Autoloads/Data.cs"
 
 [debug]
 
@@ -35,6 +35,10 @@ file_logging/enable_file_logging=true
 [display]
 
 window/vsync/vsync_mode=0
+
+[dotnet]
+
+project/assembly_name="My Game"
 
 [editor]
 

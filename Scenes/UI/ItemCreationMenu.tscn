@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://dvj6a6l8l2fg1"]
 
-[ext_resource type="Script" path="res://Scripts/UI/ItemCreationMenu.gd" id="1_6tjoc"]
-[ext_resource type="Script" path="res://Scripts/UI/RecipeToItemMenu.gd" id="2_20lop"]
-[ext_resource type="Script" path="res://Scripts/UI/RecipeToItemPanel.gd" id="2_jhq5p"]
-[ext_resource type="Script" path="res://Scripts/UI/RecipeToItemNextButton.gd" id="4_8y1u5"]
+[ext_resource type="Script" path="res://Scripts/UI/ItemCreationMenu.cs" id="1_6tjoc"]
+[ext_resource type="Script" path="res://Scripts/UI/RecipeToItemMenu.cs" id="2_20lop"]
+[ext_resource type="Script" path="res://Scripts/UI/RecipeToItemPanel.cs" id="2_jhq5p"]
+[ext_resource type="Script" path="res://Scripts/UI/RecipeToItemNextButton.cs" id="4_8y1u5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c7vgo"]
 bg_color = Color(0.435294, 0.615686, 0.819608, 1)

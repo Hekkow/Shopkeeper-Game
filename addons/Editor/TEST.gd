@@ -2,6 +2,7 @@
 extends Control
 
 var bubbles = []
+var connections = []
 
 signal reset_pressed
 
@@ -9,7 +10,7 @@ var dragging_bubble
 var grabbed_from
 var from
 var to
-var connections = []
+
 
 var zoom_level = 1
 var n = 0
@@ -51,18 +52,7 @@ func _input(event):
 		if event.double_click:
 			if get_local_mouse_position().x < 0 || get_local_mouse_position().y < 0 || get_local_mouse_position().x > size.x:
 				return 
-			var text_bubble = load("res://addons/Editor/TextGenBubble.tscn").instantiate()
-			text_bubble.position = get_local_mouse_position() - text_bubble.size/2
-			add_child(text_bubble)
-			text_bubble.connect("bubble_removed", on_bubble_removed)
-			text_bubble.connect("bubble_clicked", on_bubble_clicked)
-			text_bubble.connect("dragging_started", on_dragging_started)
-			text_bubble.connect("dragging_ended", on_dragging_ended)
-			text_bubble.connect("text_changed", on_text_changed)
-			text_bubble.get_node("MarginContainer/VBoxContainer/TextEdit").connect("enter_pressed", on_text_changed)
-			text_bubble.name = str(n)
-			n += 1
-			bubbles.append(text_bubble)
+			create_bubble()
 		elif event.button_index == MOUSE_BUTTON_WHEEL_UP:
 			set_zoom(true)
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
@@ -74,6 +64,27 @@ func _input(event):
 			else:
 				panning = false
 
+func create_bubble(pos=null, bubble_name="-1", speaker="", text=""):
+	var text_bubble = load("res://addons/Editor/TextGenBubble.tscn").instantiate()
+	if !pos:
+		text_bubble.position = get_local_mouse_position() - text_bubble.size/2
+	else:
+		text_bubble.position = pos
+	add_child(text_bubble)
+	text_bubble.connect("bubble_removed", on_bubble_removed)
+	text_bubble.connect("bubble_clicked", on_bubble_clicked)
+	text_bubble.connect("dragging_started", on_dragging_started)
+	text_bubble.connect("dragging_ended", on_dragging_ended)
+	text_bubble.connect("text_changed", on_text_changed)
+	if bubble_name == "-1":
+		text_bubble.name = str(n)
+		n += 1
+	else:
+		text_bubble.name = bubble_name
+	text_bubble.get_node("MarginContainer/VBoxContainer/LineEdit").text = speaker
+	text_bubble.get_node("MarginContainer/VBoxContainer/TextEdit").text = text
+	bubbles.append(text_bubble)
+
 func on_text_changed():
 	tree_edited()
 
@@ -84,7 +95,57 @@ func tree_edited():
 	var data = get_data(root)
 	tree = TextTreee.new(data[0], data[1])
 	find_branches(root, tree)
-	print(tree)
+	
+
+func save_file():
+	var gen_name = get_node("VBoxContainer/HBoxContainer2/LineEdit").text
+	var file_name = tree.get_root().speaker + "-" + gen_name
+	var tree_file = FileAccess.open("res://Resources/Conversations/" + file_name + ".txt", FileAccess.WRITE)
+	tree_file.store_string(str(tree))
+	tree_file.flush()
+	tree_file.close()
+	var bubbles_file = FileAccess.open("res://Resources/Conversations/" + file_name + "-gen.txt", FileAccess.WRITE)
+	var bubbles_arr = []
+	for i in len(bubbles):
+		bubbles_arr.append({})
+		bubbles_arr[i]["positionx"] = bubbles[i].position.x
+		bubbles_arr[i]["positiony"] = bubbles[i].position.y
+		bubbles_arr[i]["name"] = bubbles[i].name
+		bubbles_arr[i]["speaker"] = bubbles[i].get_node("MarginContainer/VBoxContainer/LineEdit").text
+		bubbles_arr[i]["text"] = bubbles[i].get_node("MarginContainer/VBoxContainer/TextEdit").text
+	bubbles_file.store_string(JSON.stringify(bubbles_arr))
+	bubbles_file.flush()
+	bubbles_file.close()
+	var connections_file = FileAccess.open("res://Resources/Conversations/" + file_name + "-con.txt", FileAccess.WRITE)
+	var connections_arr = []
+	for connection in connections:
+		connections_arr.append([connection[0].name, connection[1].name])
+	connections_file.store_string(JSON.stringify(connections_arr))
+	connections_file.flush()
+	connections_file.close()
+	# load_file()
+
+func load_file():
+	var gen_name = get_node("VBoxContainer/HBoxContainer3/LineEdit").text
+	var bubbles_file = FileAccess.open("res://Resources/Conversations/" + gen_name + "-gen.txt", FileAccess.READ)
+	var connections_file = FileAccess.open("res://Resources/Conversations/" + gen_name + "-con.txt", FileAccess.READ)
+	var bubbles_arr = JSON.parse_string(bubbles_file.get_as_text())
+	var connections_arr = JSON.parse_string(connections_file.get_as_text())
+	bubbles_file.close()
+	connections_file.close()
+	for bubble in bubbles_arr:
+		create_bubble(Vector2(bubble["positionx"], bubble["positiony"]), bubble["name"], bubble["speaker"], bubble["text"])
+	
+	for connection in connections_arr:
+		var from
+		var to
+		for bubble in bubbles:
+			if bubble.name == connection[0]:
+				from = bubble
+			if bubble.name == connection[1]:
+				to = bubble
+		connections.append([from, to])
+	queue_redraw()
 
 func find_branches(node, _tree):
 	var branches = []
@@ -204,19 +265,28 @@ func get_corners(box):
 	corners.append((box.position + Vector2(0, box.size.y/2 * zoom_level)))
 	return corners
 
+func get_corners_from(box):
+	var corners = []
+	corners.append((box.position + Vector2(box.size.x/2 * zoom_level, 0)))
+	corners.append((box.position + Vector2(box.size.x * zoom_level, box.size.y/2 * zoom_level)))
+	corners.append((box.position + Vector2(box.size.x/2 * zoom_level, box.size.y * zoom_level)))
+	corners.append((box.position + Vector2(0, box.size.y/2 * zoom_level)))
+	return corners
+
 
 
 func closest_corners(from, to):
 	var smallest_distance = 100000
 	var smallest_from
 	var smallest_to
-	for corner_from in get_corners(from):
+	for corner_from in get_corners_from(from):
 		for corner_to in get_corners(to):
 			if corner_from.distance_to(corner_to) < smallest_distance:
 				smallest_distance = corner_from.distance_to(corner_to)
 				smallest_from = corner_from
 				smallest_to = corner_to
 	return [smallest_from, smallest_to]
+	
 
 
 

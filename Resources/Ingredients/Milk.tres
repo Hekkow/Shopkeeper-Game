@@ -1,15 +1,15 @@
-[gd_resource type="Resource" script_class="Ingredient" load_steps=4 format=3 uid="uid://d4nf7vjaeosju"]
+[gd_resource type="Resource" script_class="Ingredient" load_steps=4 format=3 uid="uid://711ahyvgi5lo"]
 
-[ext_resource type="Script" path="res://Scripts/Resources/Ingredient.gd" id="1_3puve"]
-[ext_resource type="Script" path="res://Scripts/Resources/Element.gd" id="1_wexw0"]
+[ext_resource type="Script" path="res://Scripts/Resources/Ingredient.cs" id="1_787w4"]
+[ext_resource type="Script" path="res://Scripts/Resources/Element.cs" id="1_prnfe"]
 
-[sub_resource type="Resource" id="Resource_ratst"]
-script = ExtResource("1_wexw0")
+[sub_resource type="Resource" id="Resource_kxr8k"]
+script = ExtResource("1_prnfe")
 a = 0
-b = 0
-c = 10
+b = 10
+c = 0
 
 [resource]
-script = ExtResource("1_3puve")
-ingredient_name = "Milk"
-element = SubResource("Resource_ratst")
+script = ExtResource("1_787w4")
+name = "Milk"
+element = SubResource("Resource_kxr8k")
