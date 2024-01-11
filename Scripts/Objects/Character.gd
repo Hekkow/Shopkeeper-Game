@@ -13,7 +13,7 @@ var haggling_paused := false
 var priority_queue := []
 @onready var store = Data.store
 @onready var exit = Vector2(11, 10)
-@onready var table_position = Vector2(11, 2)
+
 @onready var animated_sprite = $AnimatedSprite2D
 
 enum State { LOOKING, BUYING, LEAVING }
@@ -31,13 +31,17 @@ func _ready() -> void:
 		SignalManager.connect("customer_interested", on_other_customer_interested)
 		SignalManager.connect("haggling_started", on_haggling_started)
 		SignalManager.connect("haggling_ended", on_haggling_ended)
+		SignalManager.connect("customer_reached_queue", on_customer_reached_queue)
 		priority_queue = get_priorities()
 		visit_random_item()
 	elif GameState.state == GameState.State.World:
 		pass
 
 func interact():
-	print("HEREHRAOGJE")
+	var conversation = load("res://Scenes/UI/TextBubbles/Conversation.tscn").instantiate()
+	conversation.initialize_position(position + Vector2(0, -80))
+	conversation.initialize_text_tree("Black-test")
+	get_parent().add_child(conversation)
 
 func get_priorities() -> Array:
 	var priorities = []
@@ -76,7 +80,7 @@ func on_item_reached():
 		SignalManager.emit_signal("customer_interested", self, interested_item)
 		await get_tree().create_timer(0.5).timeout
 		interested_item_node.queue_free()
-		set_destination_path(table_position, State.BUYING)
+		set_destination_path(Data.store.table.current_position, State.BUYING)
 	else:
 		Helper.remove(priority_queue, interested_item)
 		visit_random_item()
@@ -112,6 +116,15 @@ func on_other_customer_interested(_customer: Character, item: Item) -> void:
 	if _customer == self || !item.equals(interested_item):
 		return
 	visit_random_item()
+
+func on_customer_reached_queue(character: Character):
+	if character == self:
+		return
+	if (len(path) > 0):
+		print(path)
+		print(str(path[len(path)-1]) + " == " + str(Data.store.table.current_position - Vector2i(0, 1)))
+	if len(path) > 0 && path[len(path)-1] == Data.store.table.current_position - Vector2i(0, 1):
+		set_destination_path(Data.store.table.current_position, state)
 
 
 
@@ -191,7 +204,7 @@ func _physics_process(_delta):
 	position += dir * speed
 
 func look_direction(to):
-	var direction = collision_shape.global_transform.origin - to
+	var direction = to - collision_shape.global_transform.origin
 	match Helper.cardinal_direction(direction):
 		Helper.Direction.UP:
 			animated_sprite.play("up")
@@ -209,8 +222,9 @@ func destination_reached():
 		look_direction(interested_item_node.position)
 		on_item_reached()
 	elif state == State.BUYING:
-		look_direction(store.tilemap.map_to_local(table_position))
-		haggle()
+		look_direction(store.tilemap.map_to_local(Data.store.table.face_direction))
+		SignalManager.emit_signal("customer_reached_queue", self)
+		# haggle()
 	elif state == State.LEAVING:
 		on_reached_door()
 	animated_sprite.stop()

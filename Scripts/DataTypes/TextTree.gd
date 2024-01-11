@@ -13,6 +13,13 @@ func add_text(_speaker, _data):
 	branches.append(new_branch)
 	return new_branch
 
+func get_root(tree=null):
+	if tree == null:
+		tree = self
+	if tree.parent == null:
+		return tree
+	return get_root(tree.parent)
+
 func _to_string():
 	var string = ""
 	if parent != null:

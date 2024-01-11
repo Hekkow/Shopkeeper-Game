@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cn5b5ichbe4w0"]
+[gd_scene load_steps=14 format=3 uid="uid://cn5b5ichbe4w0"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Store.gd" id="1_clmvl"]
 [ext_resource type="Script" path="res://Scripts/UI/UI.gd" id="5_db2gu"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Scripts/Minigames/Minigames.gd" id="8_3yuyn"]
 [ext_resource type="TileSet" uid="uid://dutprqv5eo1mk" path="res://Resources/Tilesets/Shop.tres" id="9_6grxw"]
 [ext_resource type="Script" path="res://Scripts/UI/RecipeToItemNextButton.gd" id="9_t63q2"]
+[ext_resource type="Script" path="res://Scripts/Objects/StoreTable.gd" id="13_a0uce"]
 [ext_resource type="Texture2D" uid="uid://c3f3ywwhslpoi" path="res://Resources/Sprites/character.png" id="13_shr5e"]
 [ext_resource type="Script" path="res://Scripts/Objects/TileMap.gd" id="14_utr67"]
 [ext_resource type="Script" path="res://Scripts/Other/ItemPlacement.gd" id="15_rmyvw"]
@@ -95,3 +96,6 @@ script = ExtResource("15_rmyvw")
 [node name="Character" type="Sprite2D" parent="."]
 position = Vector2(744, 108)
 texture = ExtResource("13_shr5e")
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("13_a0uce")

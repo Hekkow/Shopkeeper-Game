@@ -5,7 +5,7 @@ enum State {
 	Shopping,
 	World
 }
-var state = State.World
+var state = State.Shopping
 func _ready():
 	SignalManager.connect("haggling_started", on_haggling_started)
 	SignalManager.connect("haggling_ended", on_haggling_ended)

@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bxpfadcpcmr65"]
+[gd_scene load_steps=4 format=3 uid="uid://bxpfadcpcmr65"]
 
-[ext_resource type="Script" path="res://addons/Editor/TextGenBubble.gd" id="1_eejcr"]
-[ext_resource type="Script" path="res://addons/Editor/SpeechText.gd" id="2_bpv0f"]
+[ext_resource type="Script" path="res://addons/Editor/TextGenBubble.gd" id="1_760cq"]
 
 [sub_resource type="Theme" id="Theme_288ty"]
 default_font_size = 0
@@ -10,12 +9,14 @@ default_font_size = 0
 resource_local_to_scene = true
 bg_color = Color(0.372549, 0.372549, 0.372549, 1)
 
-[node name="PanelContainer" type="PanelContainer"]
+[node name="PanelContainer" type="PanelContainer" node_paths=PackedStringArray("speaker_edit", "text_edit")]
 offset_right = 278.0
 offset_bottom = 145.0
 theme = SubResource("Theme_288ty")
 theme_override_styles/panel = SubResource("StyleBoxFlat_onyq7")
-script = ExtResource("1_eejcr")
+script = ExtResource("1_760cq")
+speaker_edit = NodePath("MarginContainer/VBoxContainer/LineEdit")
+text_edit = NodePath("MarginContainer/VBoxContainer/TextEdit")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -31,6 +32,7 @@ layout_mode = 2
 layout_mode = 2
 placeholder_text = "Speaker"
 alignment = 1
+select_all_on_focus = true
 
 [node name="TextEdit" type="TextEdit" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 34.31)
@@ -38,4 +40,3 @@ layout_mode = 2
 placeholder_text = "Text"
 wrap_mode = 1
 scroll_fit_content_height = true
-script = ExtResource("2_bpv0f")

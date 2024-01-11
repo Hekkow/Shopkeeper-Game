@@ -2,7 +2,10 @@ extends Node
 
 class_name Queue
 
-var items = []
+var items
+
+func _init():
+	items = []
 
 func add(item):
 	items.append(item)

@@ -10,7 +10,8 @@ var customers = []
 var store_open = false
 var tilemap: TileMap
 var astar
-var table_queue: Queue
+var table
+
 
 func _ready() -> void:
 	Data.store = self
@@ -21,6 +22,7 @@ func _ready() -> void:
 	SignalManager.connect("price_set", spawn_item)	
 	SignalManager.connect("customer_left", on_customer_left)
 	SignalManager.connect("store_closing", on_store_closing)
+	
 	SignalManager.emit_signal("store_initialized")
 
 func on_store_opened() -> void:

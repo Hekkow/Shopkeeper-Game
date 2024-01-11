@@ -7,6 +7,9 @@ signal dragging_started
 signal dragging_ended
 signal text_changed
 
+@export var speaker_edit: LineEdit
+@export var text_edit: TextEdit
+
 var mouse_clicked = true
 
 
@@ -15,8 +18,8 @@ var mouse_held_start = -1
 var dragging = false
 
 func _ready():
-	get_node("MarginContainer/VBoxContainer/LineEdit").text_submitted.connect(on_text_changed)
-	get_node("MarginContainer/VBoxContainer/TextEdit").text_changed.connect(on_text_changed)
+	speaker_edit.text_submitted.connect(on_text_changed)
+	text_edit.text_changed.connect(on_text_changed)
 
 func on_text_changed(_text=null):
 	emit_signal("text_changed")

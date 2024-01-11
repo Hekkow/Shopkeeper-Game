@@ -2,7 +2,7 @@
 extends EditorPlugin
 
 
-const MainPanel = preload("res://addons/Editor/main_panel.tscn")
+const MainPanel = preload("res://addons/Editor/TextGenPanel.tscn")
 
 var main_panel_instance
 
