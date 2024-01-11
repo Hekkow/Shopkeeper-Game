@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://byj6odsj5vpwc"]
 
-[ext_resource type="Script" path="res://Scripts/Minigames/Haggling.cs" id="1_0fx1c"]
+[ext_resource type="Script" path="res://Scripts/Minigames/Haggling.gd" id="1_0fx1c"]
 [ext_resource type="PackedScene" uid="uid://c2plix35wdxpy" path="res://Scenes/Minigames/HagglingPointer.tscn" id="2_c0e1p"]
 
 [node name="Haggling" type="Control"]

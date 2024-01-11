@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhgln76n5cu3b"]
+[gd_scene load_steps=6 format=3 uid="uid://dhgln76n5cu3b"]
 
 [ext_resource type="TileSet" uid="uid://dutprqv5eo1mk" path="res://Resources/Tilesets/Shop.tres" id="1_qvtcx"]
-[ext_resource type="Script" path="res://Scripts/Objects/TilemapGen.cs" id="3_dgwpx"]
+[ext_resource type="Script" path="res://Scripts/Objects/TileMap.gd" id="3_dgwpx"]
 [ext_resource type="PackedScene" uid="uid://d3uc0hrbgvxce" path="res://Scenes/Objects/Player.tscn" id="4_3lq27"]
 [ext_resource type="PackedScene" uid="uid://qx2dsgaptaoh" path="res://Scenes/Objects/Character.tscn" id="5_6g6a3"]
+[ext_resource type="Resource" uid="uid://d4kxlu5krfx43" path="res://Resources/Characters/Black.tres" id="6_r6qji"]
 
 [node name="Node2D" type="Node2D"]
 y_sort_enabled = true
@@ -37,3 +38,4 @@ position = Vector2(484, 497)
 [node name="Area2D" parent="." instance=ExtResource("5_6g6a3")]
 modulate = Color(0, 0, 0, 1)
 position = Vector2(606, 346)
+customer = ExtResource("6_r6qji")

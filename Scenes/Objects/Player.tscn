@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://d3uc0hrbgvxce"]
 
 [ext_resource type="SpriteFrames" uid="uid://ctdahutu28b2e" path="res://Resources/Animations/CharacterAnimation.tres" id="1_01f3s"]
-[ext_resource type="Script" path="res://Scripts/Objects/Player/Player.cs" id="1_2ir4q"]
-[ext_resource type="Script" path="res://Scripts/Objects/Player/PlayerDetectionArea.cs" id="3_m7jyx"]
+[ext_resource type="Script" path="res://Scripts/Objects/Player/Player.gd" id="1_6kjnc"]
+[ext_resource type="Script" path="res://Scripts/Objects/Player/PlayerDetectionArea.gd" id="3_m7jyx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pta4d"]
 size = Vector2(16, 4)
@@ -12,7 +12,7 @@ radius = 86.1452
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 texture_filter = 1
-script = ExtResource("1_2ir4q")
+script = ExtResource("1_6kjnc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("1_01f3s")
