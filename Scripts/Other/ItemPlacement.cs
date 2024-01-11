@@ -79,7 +79,7 @@ public partial class ItemPlacement : Node2D
 		}
 		if (displayCase != previousCase)
 		{
-			if (previousCase != null) SetCaseAlternative(previousCase);
+			if (previousCase is not null) SetCaseAlternative(previousCase);
 			SetCaseAlternative(displayCase, 4);
 			previousCase = displayCase;
 		}

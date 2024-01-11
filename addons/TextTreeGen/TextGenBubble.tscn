@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bxpfadcpcmr65"]
 
-[ext_resource type="Script" path="res://addons/Editor/TextGenBubble.gd" id="1_eejcr"]
+[ext_resource type="Script" path="res://addons/TextTreeGen/TextGenBubble.cs" id="1_760cq"]
 
 [sub_resource type="Theme" id="Theme_288ty"]
 default_font_size = 0
@@ -14,7 +14,7 @@ offset_right = 278.0
 offset_bottom = 145.0
 theme = SubResource("Theme_288ty")
 theme_override_styles/panel = SubResource("StyleBoxFlat_onyq7")
-script = ExtResource("1_eejcr")
+script = ExtResource("1_760cq")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2

@@ -24,7 +24,7 @@ public partial class PlayerDetectionArea : Area2D
 		int index = areas.IndexOf(area);
 		if (index == -1) return;
 		Panel buttonPrompt = (Panel)area.GetNodeOrNull("ButtonPrompt");
-		if (buttonPrompt != null) buttonPrompt.QueueFree();
+		if (buttonPrompt is not null) buttonPrompt.QueueFree();
 		areas.RemoveAt(index);
 	}
     public override void _Input(InputEvent e)

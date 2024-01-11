@@ -1,13 +1,13 @@
 Black: tgesg
   sergseg: gsegseg
-    egsg: seg
-      segseg: segse
-        gsegs: seg
-          segseg: segse
-        gseg: sdg
-          segseg: segse
+	egsg: seg
+	  segseg: segse
+		gsegs: seg
+		  segseg: segse
+		gseg: sdg
+		  segseg: segse
   gsegseh: ghsegseg
-    gseg: dsgseg
-      segseg: segse
-        segsdg: gsegseg
-          segseg: segse
+	gseg: dsgseg
+	  segseg: segse
+		segsdg: gsegseg
+		  segseg: segse

@@ -28,14 +28,14 @@ public partial class Tree : Node
 	}
 	public Tree Root(Tree tree=null)
 	{
-		if (tree == null) tree = this;
-		if (tree.parent == null) return tree;
+		if (tree is null) tree = this;
+		if (tree.parent is null) return tree;
 		return Root(tree.parent);
 	}
     public override string ToString()
     {
 		string str = "";
-		if (parent != null) str += "\n";
+		if (parent is not null) str += "\n";
 		for (int i = 0; i < level; i++) str += " ";
 		str += data.ToString();
 		for (int i = 0; i < branches.Count; i++) str += branches[i].ToString();

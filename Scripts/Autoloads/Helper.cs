@@ -15,7 +15,7 @@ public partial class Helper : Node {
 	public Array GetFileNames(string path) {
 		DirAccess dir = DirAccess.Open(path);
 		var paths = new Array();
-		if (dir != null) {
+		if (dir is not null) {
 			dir.ListDirBegin();
 			string fileName = dir.GetNext();
 			while (fileName != "") {
@@ -72,7 +72,7 @@ public partial class Helper : Node {
 		return instantiatedClass;
     }
 	public override void _EnterTree(){
-		if(_instance != null) QueueFree();
+		if(_instance is not null) QueueFree();
 		_instance = this;
 	}
 }

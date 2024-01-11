@@ -9,7 +9,7 @@ public partial class Recipe : Resource {
 	double maxDiff = 0.2;
 	public override bool Equals(object obj)
     {
-		if (obj == null) return false;
+		if (obj is null) return false;
 		if (obj is Recipe) {
 			Recipe castObj = (Recipe)obj;
 			return castObj.name == name;

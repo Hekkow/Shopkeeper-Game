@@ -1,0 +1,1 @@
+[{"Name":"0","PositionX":393,"PositionY":81.5,"Speaker":"LineEdit:<LineEdit#1971826266345>","Text":"TextEdit:<TextEdit#1971859820781>"},{"Name":"1","PositionX":496,"PositionY":245.5,"Speaker":"LineEdit:<LineEdit#1975802466746>","Text":"TextEdit:<TextEdit#1975836021180>"}]
