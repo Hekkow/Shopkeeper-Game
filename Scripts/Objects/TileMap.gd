@@ -5,7 +5,7 @@ var path
 const ground_layer = 0
 const display_case_layer = 1
 const solid_layers = [1, 2, 3]
-const show_cell_numbers = false
+@export var show_cell_numbers = true
 # const heuristic = AStarGrid2D.HEURISTIC_EUCLIDEAN
 # const heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
 # const heuristic = AStarGrid2D.HEURISTIC_OCTILE

@@ -1,6 +1,6 @@
 extends Control
 
-const speed = 3
+const speed = 10
 const score_multiplier_hit = 1.3
 const score_multiplier_missed = 1.2
 
@@ -101,5 +101,6 @@ func _process(_delta):
 	if pointer.position.x >= size.x:
 		pointer_direction *= -1
 	if pointer.position.x <= 0:
+		get_tree().call_group("customers", "haggling_resume")
 		SignalManager.emit_signal("haggling_ended", customer, score_multiplier)
 		queue_free()

@@ -9,7 +9,7 @@ func _ready():
 
 	
 func on_area_entered(body):
-	if body.customer:
+	if body.has_method("interact"):
 		var button_prompt = load("res://Scenes/UI/ButtonPrompt.tscn").instantiate()
 		button_prompt.name = "ButtonPrompt"
 		body.add_child(button_prompt)
@@ -27,4 +27,5 @@ func _input(event): #- currently just checks if the first one has it, change to 
 	if event.is_action_pressed("interact"):
 		if bodies[0].has_method("interact"):
 			bodies[0].interact()
-			bodies[0].get_node("ButtonPrompt").queue_free()
+			if bodies[0].get_node_or_null("ButtonPrompt"):
+				bodies[0].get_node("ButtonPrompt").queue_free()

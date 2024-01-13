@@ -11,6 +11,7 @@ var store_open = false
 var tilemap: TileMap
 var astar
 var table
+@export var number_customers: int
 
 
 func _ready() -> void:
@@ -22,7 +23,6 @@ func _ready() -> void:
 	SignalManager.connect("price_set", spawn_item)	
 	SignalManager.connect("customer_left", on_customer_left)
 	SignalManager.connect("store_closing", on_store_closing)
-	
 	SignalManager.emit_signal("store_initialized")
 
 func on_store_opened() -> void:
@@ -30,7 +30,7 @@ func on_store_opened() -> void:
 	if len(Items.store) == 0:
 		SignalManager.emit_signal("store_closed")
 		return
-	spawn_customers(1)
+	spawn_customers(number_customers)
 
 func spawn_item(_item: Item) -> void:
 	var item = item_scene.instantiate()
@@ -61,8 +61,8 @@ func spawn_customers(_number_customers: int) -> void:
 func choose_customers(_number_customers) -> Array:
 	# return [Helper.get_character("Green"), Helper.get_character("Blue"), Helper.get_character("Orange"), Helper.get_character("Salmon"), Helper.get_character("Red")]
 	# return Helper.random_sample(Characters.list, _number_customers)
-	return Characters.list
-	# return [Characters.list[0]]
+	# return Characters.list
+	return Characters.list.slice(0, _number_customers)
 
 func on_customer_left(_customer):
 	for i in len(customers):
