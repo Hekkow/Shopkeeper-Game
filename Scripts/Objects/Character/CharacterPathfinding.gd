@@ -11,7 +11,6 @@ var astar
 var exit = Vector2(11, 10)
 @export var path: Array
 
-
 var min_distance := 3
 var speed := 3
 
@@ -23,11 +22,10 @@ func haggling_resume():
 
 func _ready():
 	if GameState.state == GameState.State.Shopping:
-		parent.position = tilemap.map_to_local(exit) - collision_shape.global_transform.origin
 		store = Data.store
 		tilemap = Data.store.tilemap
 		astar = Data.store.astar
-
+		parent.position = tilemap.map_to_local(exit) - collision_shape.global_transform.origin
 
 func go_to(state, item=null):
 	if state == parent.State.LOOKING:
@@ -39,7 +37,10 @@ func go_to(state, item=null):
 
 
 func set_destination_path(destination: Vector2):
-	path = get_shortest_path(tilemap.local_to_map(collision_shape.global_transform.origin), destination)
+	if path && collision_shape.global_transform.origin.distance_to(tilemap.map_to_local(path[0])) > min_distance:
+		path = get_shortest_path(path[0], destination)
+	else:
+		path = get_shortest_path(tilemap.local_to_map(collision_shape.global_transform.origin), destination)
 	set_physics_process(true)
 
 func get_shortest_path(_start: Vector2, destination: Vector2) -> Array:
