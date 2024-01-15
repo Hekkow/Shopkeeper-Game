@@ -1,9 +1,9 @@
 extends Node2D
 
 @onready var collision_shape = get_node("../Area2D/CollisionShape2D")
-@onready var store = Data.store
-@onready var tilemap = Data.store.tilemap
-@onready var astar = Data.store.astar
+var store
+var tilemap
+var astar
 @onready var parent = get_parent()
 @export var paused := false
 @export var haggling_paused := false
@@ -22,7 +22,12 @@ func haggling_resume():
 	haggling_paused = false
 
 func _ready():
-	parent.position = tilemap.map_to_local(exit) - collision_shape.global_transform.origin
+	if GameState.state == GameState.State.Shopping:
+		parent.position = tilemap.map_to_local(exit) - collision_shape.global_transform.origin
+		store = Data.store
+		tilemap = Data.store.tilemap
+		astar = Data.store.astar
+
 
 func go_to(state, item=null):
 	if state == parent.State.LOOKING:

@@ -11,7 +11,7 @@ var interested_item_node: Node
 var priority_queue := []
 @onready var store = Data.store
 @onready var animated_sprite = $AnimatedSprite2D
-
+var interactable = true
 
 
 enum State { LOOKING, LINE, BUYING, LEAVING }
@@ -32,6 +32,9 @@ func _ready():
 		visit_random_item()
 	elif GameState.state == GameState.State.World:
 		pass
+
+func interact():
+	print(str(self) + " interacted")
 
 func get_priority_queue():
 	priority_queue = Items.store
@@ -59,7 +62,8 @@ func destination_reached():
 	elif state == State.LINE:
 		pathfinding.look_direction(store.tilemap.map_to_local(Data.store.table.face_direction))
 		SignalManager.emit_signal("customer_reached_queue", self)
-		print(str(self) + " reached queue")
+		if store.table.queue.place_in_line(self) == 0:
+			SignalManager.emit_signal("customer_reached_table", self)
 	elif state == State.LEAVING:
 		SignalManager.emit_signal("customer_left", self)
 		queue_free()
@@ -99,13 +103,11 @@ func on_other_customer_interested(_customer: Character, item: Item):
 	visit_random_item()
 
 func on_customer_reached_queue(character: Character):
-	print(str(self) + " " + str(store.table.queue.place_in_line(character)) + " > " +  str(store.table.queue.place_in_line(self)))
 	if character == self:
 		return
 	if store.table.queue.place_in_line(self) != -1 && store.table.queue.place_in_line(character) > store.table.queue.place_in_line(self):
 		return
 	if state == State.LINE:
-		print(str(self) + " HERE")
 		go_to(State.LINE)
 
 func on_customer_leaving_line(character: Character):
@@ -140,6 +142,8 @@ func walk_animation(direction):
 		Helper.Direction.RIGHT:
 			animated_sprite.play("side")
 			animated_sprite.flip_h = false
+
+
 
 func _to_string() -> String:
 	return customer.character_name

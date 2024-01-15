@@ -29,6 +29,7 @@ layer_4/name = "Decor"
 layer_4/y_sort_enabled = true
 layer_4/tile_data = PackedInt32Array(131084, 2, 1)
 script = ExtResource("3_dgwpx")
+show_cell_numbers = false
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("4_3lq27")]
 y_sort_enabled = true
@@ -36,4 +37,16 @@ position = Vector2(484, 497)
 
 [node name="Area2D" parent="." instance=ExtResource("5_6g6a3")]
 modulate = Color(0, 0, 0, 1)
-position = Vector2(606, 346)
+position = Vector2(742, 321)
+
+[node name="Character" parent="." instance=ExtResource("5_6g6a3")]
+position = Vector2(307, 474)
+
+[node name="Character2" parent="." instance=ExtResource("5_6g6a3")]
+position = Vector2(380, 425)
+
+[node name="Character3" parent="." instance=ExtResource("5_6g6a3")]
+position = Vector2(605, 435)
+
+[node name="Character4" parent="." instance=ExtResource("5_6g6a3")]
+position = Vector2(683, 354)

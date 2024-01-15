@@ -41,6 +41,7 @@ signal player_money_updated(money)
 signal store_closing
 signal store_closed
 signal customer_reached_queue(customer)
+signal customer_reached_table(customer)
 signal customer_leaving_line(customer)
 
 signal astar_ready(astar_grid, tilemap)
