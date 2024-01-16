@@ -49,6 +49,11 @@ func remove(arr: Array, item: Object) -> void:
 		if item.equals(arr[i]):
 			arr.remove_at(i)
 
+func empty_and_delete(arr: Array) -> void:
+	for i in range(arr.size() - 1, -1, -1):
+		arr[i].queue_free()
+		arr.remove_at(i)
+
 func cardinal_direction(direction: Vector2): #- in reverse because 0, 0 is top left corner
 	if direction == Vector2.ZERO:
 		return Direction.NONE

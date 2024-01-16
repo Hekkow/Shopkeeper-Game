@@ -4,6 +4,8 @@ var bodies = []
 
 var interact_with
 
+@onready var parent = get_parent()
+
 func _ready():
 	area_entered.connect(on_area_entered)
 	area_exited.connect(on_area_exited)
@@ -32,7 +34,7 @@ func _process(_delta):
 		return
 	var closest_interactable = bodies[0]
 	for body in bodies:
-		if body.position.distance_to(position) < closest_interactable.position.distance_to(position) && body.interactable:
+		if body.position.distance_to(parent.position) < closest_interactable.position.distance_to(parent.position) && body.interactable:
 			closest_interactable = body
 	if !closest_interactable.interactable:
 		if interact_with:

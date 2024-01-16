@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhgln76n5cu3b"]
+[gd_scene load_steps=7 format=3 uid="uid://dhgln76n5cu3b"]
 
 [ext_resource type="TileSet" uid="uid://dutprqv5eo1mk" path="res://Resources/Tilesets/Shop.tres" id="1_qvtcx"]
 [ext_resource type="Script" path="res://Scripts/Objects/TileMap.gd" id="3_dgwpx"]
 [ext_resource type="PackedScene" uid="uid://d3uc0hrbgvxce" path="res://Scenes/Objects/Player.tscn" id="4_3lq27"]
+[ext_resource type="Resource" uid="uid://d4kxlu5krfx43" path="res://Resources/Characters/Black.tres" id="5_3nlhv"]
 [ext_resource type="PackedScene" uid="uid://qx2dsgaptaoh" path="res://Scenes/Objects/Character.tscn" id="5_6g6a3"]
+[ext_resource type="Resource" uid="uid://dhue3axsfk8h4" path="res://Resources/Characters/Red.tres" id="5_30sd3"]
 
 [node name="Node2D" type="Node2D"]
 y_sort_enabled = true
@@ -37,16 +39,10 @@ position = Vector2(484, 497)
 
 [node name="Area2D" parent="." instance=ExtResource("5_6g6a3")]
 modulate = Color(0, 0, 0, 1)
-position = Vector2(742, 321)
-
-[node name="Character" parent="." instance=ExtResource("5_6g6a3")]
-position = Vector2(307, 474)
-
-[node name="Character2" parent="." instance=ExtResource("5_6g6a3")]
-position = Vector2(380, 425)
+position = Vector2(731, 468)
+customer = ExtResource("5_3nlhv")
 
 [node name="Character3" parent="." instance=ExtResource("5_6g6a3")]
-position = Vector2(605, 435)
-
-[node name="Character4" parent="." instance=ExtResource("5_6g6a3")]
-position = Vector2(683, 354)
+modulate = Color(1, 0.101961, 0.188235, 1)
+position = Vector2(561, 425)
+customer = ExtResource("5_30sd3")

@@ -1,0 +1,5 @@
+Black: tesgis
+  Player: choice1
+    Red: reply
+  Player: choice2
+    Red: reply

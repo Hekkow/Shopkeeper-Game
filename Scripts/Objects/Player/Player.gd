@@ -5,6 +5,9 @@ const speed = 300.0
 var dir: Vector2
 @onready var animated_sprite = $AnimatedSprite2D
 
+func _ready():
+	Characters.player = self
+
 func _physics_process(_delta):
 	velocity = dir * speed
 	match Helper.cardinal_direction(dir):

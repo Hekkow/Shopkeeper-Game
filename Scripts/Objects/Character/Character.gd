@@ -22,6 +22,7 @@ func _init(_customer: CharacterStats = null):
 	customer = _customer
 
 func _ready():
+	Characters.active.append(self)
 	add_to_group("customers")
 	if GameState.state == GameState.State.Shopping:
 		get_priority_queue()
@@ -34,6 +35,9 @@ func _ready():
 		pass
 
 func interact():
+	var conversation = load("res://Scenes/UI/TextBubbles/Conversation.tscn").instantiate()
+	conversation.init(position + Vector2(0, -80), "Black-convo")
+	get_parent().add_child(conversation)
 	print(str(self) + " interacted")
 
 func get_priority_queue():
@@ -65,6 +69,7 @@ func destination_reached():
 		if store.table.queue.place_in_line(self) == 0:
 			SignalManager.emit_signal("customer_reached_table", self)
 	elif state == State.LEAVING:
+		remove_from_group("customers")
 		SignalManager.emit_signal("customer_left", self)
 		queue_free()
 

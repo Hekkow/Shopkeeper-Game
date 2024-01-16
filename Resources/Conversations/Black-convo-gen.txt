@@ -1,0 +1,1 @@
+[{"name":"0","positionx":477,"positiony":23.5,"speaker":"Black","text":"tesgis"},{"name":"1","positionx":228,"positiony":268.5,"speaker":"Player","text":"choice1"},{"name":"2","positionx":715,"positiony":266.5,"speaker":"Player","text":"choice2"},{"name":"3","positionx":469,"positiony":496.5,"speaker":"Red","text":"reply"}]

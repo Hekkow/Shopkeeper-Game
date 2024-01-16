@@ -5,36 +5,39 @@ var text_bubble_script = load("res://Scripts/Objects/Conversation/TextBubble.gd"
 var text_tree: TextTreee
 var container_seperation = 5
 var pos
-@onready var container = $CenterContainer/HBoxContainer
-
+@onready var previous_container = $CenterContainer/HBoxContainer
+var previous_bubbles = []
 
 func _ready():
 	SignalManager.connect("text_pressed", on_text_pressed)
 	SignalManager.connect("conversation_done", on_conversation_done)
-	# initialize_text_tree("test")
-
-func initialize_position(_pos):
-	pos = _pos
-
-func initialize_text_tree(file_name):
-	container = $CenterContainer/HBoxContainer
-	text_tree = load_file(file_name)
 	create_text_bubbles([text_tree])
+
+func init(_pos, file_name):
+	pos = _pos
+	text_tree = load_file(file_name)
 	
 func create_text_bubbles(arr):
+	var character
+	if arr[0].speaker == "Player":
+		character = Characters.player
+	else:
+		character = Characters.get_active_character(arr[0].speaker)
 	for i in len(arr):
 		var text_bubble = text_bubble_scene.instantiate()
 		text_bubble.set_script(text_bubble_script)
 		text_bubble.set_variables(arr[i])
-		container.add_child(text_bubble)
-	position = pos
-
+		character.add_child(text_bubble)
+		text_bubble.position = Vector2(180*len(previous_bubbles), 0)
+		previous_bubbles.append(text_bubble)
+		
 
 func on_text_pressed(_text_tree):
-	Helper.remove_children(container)
+	Helper.empty_and_delete(previous_bubbles)
 	create_text_bubbles(_text_tree.branches)
 
 func on_conversation_done(_text_tree):
+	Helper.empty_and_delete(previous_bubbles)
 	queue_free()
 
 func load_file(file_name):
