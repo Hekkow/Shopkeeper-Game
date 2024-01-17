@@ -36,7 +36,7 @@ func _ready():
 
 func interact():
 	var conversation = load("res://Scenes/UI/TextBubbles/Conversation.tscn").instantiate()
-	conversation.init(position + Vector2(0, -80), "Black-convo")
+	conversation.init("Black-convo")
 	get_parent().add_child(conversation)
 	print(str(self) + " interacted")
 

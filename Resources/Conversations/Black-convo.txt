@@ -1,5 +1,15 @@
 Black: tesgis
   Player: choice1
-    Red: reply
+    Player: test1
+    Player: test2
   Player: choice2
-    Red: reply
+    Player: test5
+    Player: test4
+    Player: test3
+    Player: test2
+  Player: choice3
+    Player: test1
+    Player: test2
+    Player: test3
+    Player: test4
+    Player: test5

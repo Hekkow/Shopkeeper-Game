@@ -38,11 +38,11 @@ y_sort_enabled = true
 position = Vector2(484, 497)
 
 [node name="Area2D" parent="." instance=ExtResource("5_6g6a3")]
-modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
 position = Vector2(731, 468)
 customer = ExtResource("5_3nlhv")
 
 [node name="Character3" parent="." instance=ExtResource("5_6g6a3")]
-modulate = Color(1, 0.101961, 0.188235, 1)
+self_modulate = Color(1, 0.101961, 0.188235, 1)
 position = Vector2(561, 425)
 customer = ExtResource("5_30sd3")

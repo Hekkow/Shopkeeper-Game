@@ -1,8 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://dq7a2vlacy77i"]
+[gd_scene load_steps=3 format=3 uid="uid://dq7a2vlacy77i"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Conversation/TextBubble.gd" id="1_agt5i"]
+[ext_resource type="Texture2D" uid="uid://fp4m0t2qnqr7" path="res://Resources/Sprites/TextBubble.png" id="1_hlu1s"]
 
-[node name="Button" type="Button"]
-offset_right = 275.0
-offset_bottom = 93.0
+[node name="TextureButton" type="TextureButton"]
+z_index = 100
+texture_filter = 1
+offset_right = 135.0
+offset_bottom = 100.0
+texture_normal = ExtResource("1_hlu1s")
+stretch_mode = 4
 script = ExtResource("1_agt5i")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+horizontal_alignment = 1
+vertical_alignment = 1

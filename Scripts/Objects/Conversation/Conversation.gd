@@ -3,18 +3,28 @@ extends Control
 var text_bubble_scene = load("res://Scenes/UI/TextBubbles/TextBubble.tscn")
 var text_bubble_script = load("res://Scripts/Objects/Conversation/TextBubble.gd")
 var text_tree: TextTreee
-var container_seperation = 5
-var pos
-@onready var previous_container = $CenterContainer/HBoxContainer
 var previous_bubbles = []
+var height = -135
+var width = 135.0
+var seperation = 20.0
+var extra_height_3 = -30.0
+var extra_height_5 = -50.0
+var minus_height = 10
+var placements = [
+	[],
+	[Vector2(-width/2, height)],
+	[Vector2(-width-seperation/2, height), Vector2(seperation/2, height)],
+	[Vector2(-width/2-seperation/2-width, height), Vector2(-width/2, height+extra_height_3), Vector2(seperation/2+width/2, height)],
+	[Vector2(-width*2, height), Vector2(-width-seperation/4, height+extra_height_3), Vector2(seperation/4, height+extra_height_3), Vector2(width, height)],
+	[Vector2(-width/2-width*2, height+minus_height), Vector2(-width/2-seperation/2-width, height+extra_height_3), Vector2(-width/2, height+extra_height_5), Vector2(seperation/2+width/2, height+extra_height_3), Vector2(width+width/2, height+minus_height)]
+]
 
 func _ready():
 	SignalManager.connect("text_pressed", on_text_pressed)
 	SignalManager.connect("conversation_done", on_conversation_done)
 	create_text_bubbles([text_tree])
 
-func init(_pos, file_name):
-	pos = _pos
+func init(file_name):
 	text_tree = load_file(file_name)
 	
 func create_text_bubbles(arr):
@@ -28,7 +38,8 @@ func create_text_bubbles(arr):
 		text_bubble.set_script(text_bubble_script)
 		text_bubble.set_variables(arr[i])
 		character.add_child(text_bubble)
-		text_bubble.position = Vector2(180*len(previous_bubbles), 0)
+		text_bubble.position = placements[len(arr)][i]
+		print(text_bubble.position)
 		previous_bubbles.append(text_bubble)
 		
 

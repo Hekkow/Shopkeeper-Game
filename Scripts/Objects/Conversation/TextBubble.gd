@@ -1,9 +1,10 @@
-extends Button
+extends TextureButton
 
 var text_tree
+@onready var label = $Label
 
 func _ready():
-	text = text_tree.speaker + ": " + text_tree.data
+	label.text = text_tree.speaker + ": " + text_tree.data
 
 func _pressed():
 	if len(text_tree.branches) == 0:
