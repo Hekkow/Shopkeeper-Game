@@ -26,3 +26,9 @@ func place_in_line(item):
 
 func in_line(item):
 	return items.has(item)
+
+func _to_string():
+	var string = ""
+	for i in items:
+		string += str(i) + "\n"
+	return string

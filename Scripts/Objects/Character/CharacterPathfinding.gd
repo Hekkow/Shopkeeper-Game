@@ -1,24 +1,20 @@
 extends Node2D
 
+class_name CharacterPathfinding
+
 @onready var collision_shape = get_node("../Area2D/CollisionShape2D")
 var store
 var tilemap
 var astar
 @onready var parent = get_parent()
+@onready var shopping = get_node("../Shopping")
 @export var paused := false
-@export var haggling_paused := false
 @export var debug_draw = true
 var exit = Vector2(11, 10)
 @export var path: Array
 
 var min_distance := 3
 var speed := 3
-
-func haggling_pause():
-	haggling_paused = true
-
-func haggling_resume():
-	haggling_paused = false
 
 func _ready():
 	if GameState.state == GameState.State.Shopping:
@@ -28,12 +24,14 @@ func _ready():
 		parent.position = tilemap.map_to_local(exit) - collision_shape.global_transform.origin
 
 func go_to(state, item=null):
-	if state == parent.State.LOOKING:
-		set_destination_path(store.get_corresponding_case(item))
-	elif state == parent.State.LINE:
-		set_destination_path(store.table.get_place(parent))
-	elif state == parent.State.LEAVING:
-		set_destination_path(exit)
+	if GameState.state == GameState.State.Shopping:
+		if state == shopping.State.LOOKING:
+			set_destination_path(store.get_corresponding_case(item))
+		elif state == shopping.State.LINE:
+			print(parent)
+			set_destination_path(store.table.get_place(parent))
+		elif state == shopping.State.LEAVING:
+			set_destination_path(exit)
 
 
 func set_destination_path(destination: Vector2):
@@ -57,7 +55,7 @@ func get_shortest_path(_start: Vector2, destination: Vector2) -> Array:
 	return shortest_path
 
 func _physics_process(_delta):
-	if paused || haggling_paused || len(path) == 0:
+	if paused || len(path) == 0:
 		return
 	if debug_draw:
 		queue_redraw()

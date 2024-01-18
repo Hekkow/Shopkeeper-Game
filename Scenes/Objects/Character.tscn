@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://qx2dsgaptaoh"]
+[gd_scene load_steps=6 format=3 uid="uid://qx2dsgaptaoh"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Character/Character.gd" id="1_67gyt"]
 [ext_resource type="SpriteFrames" uid="uid://ctdahutu28b2e" path="res://Resources/Animations/CharacterAnimation.tres" id="2_ylj1s"]
 [ext_resource type="Script" path="res://Scripts/Objects/Character/CharacterPathfinding.gd" id="3_50gqo"]
+[ext_resource type="Script" path="res://Scripts/Objects/Character/CharacterShopping.gd" id="4_y3qcf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bx2q8"]
 size = Vector2(16, 4)
@@ -24,3 +25,7 @@ animation = &"up"
 
 [node name="Pathfinding" type="Node2D" parent="."]
 script = ExtResource("3_50gqo")
+
+[node name="Shopping" type="Node2D" parent="."]
+script = ExtResource("4_y3qcf")
+state = null

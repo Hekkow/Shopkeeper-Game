@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b1s4y8yaer3fq"]
 
 [node name="Panel" type="Panel"]
+z_index = 20
 offset_right = 40.0
 offset_bottom = 40.0
 

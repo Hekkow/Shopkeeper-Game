@@ -17,7 +17,8 @@ func on_customer_reached_table(_customer):
 	interactable = true
 
 func on_customer_reached_queue(character):
-	queue.add(character)
+	if !queue.in_line(character):
+		queue.add(character)
 
 func interact():
 	queue.get_first().haggle()

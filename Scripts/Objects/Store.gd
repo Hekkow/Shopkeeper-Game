@@ -6,7 +6,7 @@ var item_scene: Resource
 var character_scene: Resource
 var item_class: Resource
 var display_cases: Dictionary
-var customers = []
+var customers: Array = []
 var store_open = false
 var tilemap: TileMap
 var astar
@@ -47,8 +47,6 @@ func spawn_customers(_number_customers: int) -> void:
 	for customer in _customers:
 		if !store_open:
 			return
-		if GameState.state == GameState.State.Haggling:
-			await SignalManager.haggling_done
 		var character = character_scene.instantiate()
 		character.name = customer.character_name
 		character.get_node("AnimatedSprite2D").modulate = customer.color
