@@ -10,27 +10,26 @@ var astar
 @onready var shopping = get_node("../Shopping")
 @export var paused := false
 @export var debug_draw = true
-var exit = Vector2(11, 10)
 @export var path: Array
 
 var min_distance := 3
 var speed := 3
 
 func _ready():
-	if GameState.state == GameState.State.Shopping:
+	if GameState.state == GameState.State.Store:
 		store = Data.store
 		tilemap = Data.store.tilemap
 		astar = Data.store.astar
-		parent.position = tilemap.map_to_local(exit) - collision_shape.global_transform.origin
+		parent.position = tilemap.map_to_local(Data.store.exit) - collision_shape.global_transform.origin
 
 func go_to(state, item=null):
-	if GameState.state == GameState.State.Shopping:
+	if GameState.state == GameState.State.Store:
 		if state == shopping.State.LOOKING:
 			set_destination_path(tilemap.local_to_map(store.get_corresponding_case(item).position))
 		elif state == shopping.State.LINE:
 			set_destination_path(store.table.get_place(parent))
 		elif state == shopping.State.LEAVING:
-			set_destination_path(exit)
+			set_destination_path(Data.store.exit)
 
 
 func set_destination_path(destination: Vector2):

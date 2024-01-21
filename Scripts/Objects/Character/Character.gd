@@ -14,7 +14,8 @@ func _init(_customer: CharacterStats = null):
 
 func _ready():
 	Characters.active.append(self)
-	if GameState.state == GameState.State.Shopping:
+	if GameState.state == GameState.State.Store:
+		interactable = false
 		shopping.start()
 	elif GameState.state == GameState.State.World:
 		pass
@@ -28,7 +29,7 @@ func interact():
 	get_parent().add_child(conversation)
 
 func destination_reached():
-	if GameState.state == GameState.State.Shopping:
+	if GameState.state == GameState.State.Store:
 		shopping.destination_reached()
 	stop_animation()
 
@@ -50,8 +51,6 @@ func walk_animation(direction):
 
 func _exit_tree():
 	Characters.remove(self)
-	if GameState.state == GameState.State.Shopping:
-		Helper.remove(store.customers, self)
 
 func _to_string() -> String:
 	return customer.character_name

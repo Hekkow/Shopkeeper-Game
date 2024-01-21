@@ -27,6 +27,7 @@ Items="*res://Scripts/Autoloads/Items.gd"
 Recipes="*res://Scripts/Autoloads/Recipes.gd"
 PlayerStats="*res://Scripts/Other/PlayerStats.gd"
 GameState="*res://Scripts/Autoloads/GameState.gd"
+SceneManager="*res://Scripts/Autoloads/SceneManager.gd"
 
 [debug]
 

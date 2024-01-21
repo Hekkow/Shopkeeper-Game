@@ -7,7 +7,7 @@
 [ext_resource type="Resource" uid="uid://d4kxlu5krfx43" path="res://Resources/Characters/Black.tres" id="5_3nlhv"]
 [ext_resource type="PackedScene" uid="uid://qx2dsgaptaoh" path="res://Scenes/Objects/Character.tscn" id="5_6g6a3"]
 [ext_resource type="Resource" uid="uid://dhue3axsfk8h4" path="res://Resources/Characters/Red.tres" id="5_30sd3"]
-[ext_resource type="PackedScene" uid="uid://orlm77lay1xx" path="res://door.tscn" id="7_dbgvj"]
+[ext_resource type="PackedScene" uid="uid://orlm77lay1xx" path="res://Scenes/Objects/Door.tscn" id="7_dbgvj"]
 
 [node name="Node2D" type="Node2D"]
 y_sort_enabled = true

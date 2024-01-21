@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dpk50psqcbbme"]
 
-[ext_resource type="Script" path="res://ExitTrigger.gd" id="1_oulsx"]
+[ext_resource type="Script" path="res://Scripts/Objects/ExitTrigger.gd" id="1_oulsx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7x5y5"]
 size = Vector2(64, 64)

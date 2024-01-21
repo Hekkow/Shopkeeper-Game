@@ -6,11 +6,11 @@ var face_direction = Vector2i(11, 2)
 var interactable = false
 
 func _ready():
-	SignalManager.connect("store_initialized", on_store_initialized)
+	SignalManager.connect("level_ready", on_level_ready)
 	SignalManager.connect("customer_reached_queue", on_customer_reached_queue)
 	SignalManager.connect("customer_reached_table", on_customer_reached_table)
 
-func on_store_initialized():
+func on_level_ready(_level):
 	Data.store.table = self
 
 func on_customer_reached_table(_customer):

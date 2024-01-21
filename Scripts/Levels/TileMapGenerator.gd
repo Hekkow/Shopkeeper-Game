@@ -11,7 +11,7 @@ const heuristic = AStarGrid2D.HEURISTIC_CHEBYSHEV
 const diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
 
 func _ready():
-	SignalManager.connect("store_initialized", on_store_initialized)
+	SignalManager.connect("level_ready", on_level_ready)
 	astar = AStarGrid2D.new()
 	astar.region = get_used_rect()
 	astar.cell_size = tile_set.tile_size
@@ -32,6 +32,6 @@ func _ready():
 		for cell in get_used_cells(i):
 			astar.set_point_solid(cell)
 
-func on_store_initialized():
-	Data.store.astar = astar
-	Data.store.tilemap = self
+func on_level_ready(level):
+	level.astar = astar
+	level.tilemap = self

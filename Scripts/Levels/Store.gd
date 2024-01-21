@@ -1,4 +1,4 @@
-extends Node2D
+extends Level
 
 class_name Store
 
@@ -8,13 +8,14 @@ var item_class: Resource
 var display_cases := []
 var customers: Array = []
 var store_open = false
-var tilemap: TileMap
-var astar
+
 var table
+
 @export var number_customers: int
 
 
 func _ready() -> void:
+	exit = Vector2(11, 10)
 	Data.store = self
 	item_scene = load("res://Scenes/Objects/Item.tscn")
 	character_scene = load("res://Scenes/Objects/Character.tscn")
@@ -23,7 +24,7 @@ func _ready() -> void:
 	SignalManager.connect("price_set", spawn_item)	
 	SignalManager.connect("customer_left", on_customer_left)
 	SignalManager.connect("store_closing", on_store_closing)
-	SignalManager.emit_signal("store_initialized")
+	level_ready()
 
 func on_store_opened() -> void:
 	store_open = true

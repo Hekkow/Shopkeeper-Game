@@ -8,6 +8,14 @@ var dir: Vector2
 
 func _ready():
 	Characters.player = self
+	SignalManager.connect("level_ready", on_level_ready)
+
+func on_level_ready(level):
+	# var _from = SceneManager.previous_scene
+	# var to = SceneManager.current_scene
+	# if to == "Store":
+	# 	print("HERE")
+	position = level.tilemap.map_to_local(level.exit)
 
 func _physics_process(_delta):
 	velocity = dir * speed

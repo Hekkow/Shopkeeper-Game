@@ -11,9 +11,9 @@
 [ext_resource type="Script" path="res://Scripts/UI/RecipeToItemNextButton.gd" id="9_t63q2"]
 [ext_resource type="PackedScene" uid="uid://bhlw2f3i3nint" path="res://Scenes/Objects/StoreTable.tscn" id="12_2kvgy"]
 [ext_resource type="PackedScene" uid="uid://d3uc0hrbgvxce" path="res://Scenes/Objects/Player.tscn" id="13_iy0sp"]
-[ext_resource type="PackedScene" uid="uid://tjb1kyy6up57" path="res://DisplayCase.tscn" id="14_a2xee"]
+[ext_resource type="PackedScene" uid="uid://tjb1kyy6up57" path="res://Scenes/Objects/DisplayCase.tscn" id="14_a2xee"]
 [ext_resource type="Script" path="res://Scripts/Levels/TileMapGenerator.gd" id="14_utr67"]
-[ext_resource type="PackedScene" uid="uid://dpk50psqcbbme" path="res://ExitTrigger.tscn" id="15_3u6a2"]
+[ext_resource type="PackedScene" uid="uid://dpk50psqcbbme" path="res://Scenes/Objects/ExitTrigger.tscn" id="15_3u6a2"]
 [ext_resource type="Script" path="res://Scripts/Other/ItemPlacement.gd" id="15_rmyvw"]
 
 [node name="Store" type="Node2D"]
@@ -97,7 +97,7 @@ script = ExtResource("15_rmyvw")
 position = Vector2(742, 137)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("13_iy0sp")]
-position = Vector2(736, 90)
+position = Vector2(736, 659)
 
 [node name="Area2D" parent="." instance=ExtResource("14_a2xee")]
 position = Vector2(416, 474)
@@ -124,5 +124,5 @@ position = Vector2(544, 474)
 position = Vector2(608, 474)
 
 [node name="Area2D5" parent="." instance=ExtResource("15_3u6a2")]
-position = Vector2(736, 730)
+position = Vector2(736, 753)
 exit_to = "World"
