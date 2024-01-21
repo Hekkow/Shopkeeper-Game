@@ -26,7 +26,6 @@ func on_area_exited(body):
 			bodies.remove_at(index_parent)
 
 func _process(_delta):
-	# print(bodies)
 	if len(bodies) == 0:
 		if interact_with:
 			interact_with.get_node("ButtonPrompt").queue_free()

@@ -28,4 +28,3 @@ script = ExtResource("3_50gqo")
 
 [node name="Shopping" type="Node2D" parent="."]
 script = ExtResource("4_y3qcf")
-state = null

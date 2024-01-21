@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+class_name Player
 
 const speed = 300.0
 var dir: Vector2

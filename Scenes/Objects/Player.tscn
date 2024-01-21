@@ -19,7 +19,7 @@ sprite_frames = ExtResource("1_01f3s")
 animation = &"up"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 40)
+position = Vector2(0, 41)
 shape = SubResource("RectangleShape2D_pta4d")
 
 [node name="Area2D" type="Area2D" parent="."]

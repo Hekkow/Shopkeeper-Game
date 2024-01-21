@@ -33,13 +33,14 @@ func create_text_bubbles(arr):
 		character = Characters.player
 	else:
 		character = Characters.get_active_character(arr[0].speaker)
+	if character == null:
+		return
 	for i in len(arr):
 		var text_bubble = text_bubble_scene.instantiate()
 		text_bubble.set_script(text_bubble_script)
 		text_bubble.set_variables(arr[i])
 		character.add_child(text_bubble)
 		text_bubble.position = placements[len(arr)][i]
-		print(text_bubble.position)
 		previous_bubbles.append(text_bubble)
 		
 

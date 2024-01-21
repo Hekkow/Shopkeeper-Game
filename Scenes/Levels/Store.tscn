@@ -1,6 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://cn5b5ichbe4w0"]
+[gd_scene load_steps=16 format=3 uid="uid://cn5b5ichbe4w0"]
 
-[ext_resource type="Script" path="res://Scripts/Objects/Store.gd" id="1_clmvl"]
+[ext_resource type="Script" path="res://Scripts/Levels/Store.gd" id="1_clmvl"]
 [ext_resource type="Script" path="res://Scripts/UI/UI.gd" id="5_db2gu"]
 [ext_resource type="Script" path="res://Scripts/UI/MoneyLabel.gd" id="6_aithq"]
 [ext_resource type="Script" path="res://Scripts/UI/IngredientToRecipeMenuButton.gd" id="6_gskgb"]
@@ -11,7 +11,9 @@
 [ext_resource type="Script" path="res://Scripts/UI/RecipeToItemNextButton.gd" id="9_t63q2"]
 [ext_resource type="PackedScene" uid="uid://bhlw2f3i3nint" path="res://Scenes/Objects/StoreTable.tscn" id="12_2kvgy"]
 [ext_resource type="PackedScene" uid="uid://d3uc0hrbgvxce" path="res://Scenes/Objects/Player.tscn" id="13_iy0sp"]
-[ext_resource type="Script" path="res://Scripts/Objects/TileMap.gd" id="14_utr67"]
+[ext_resource type="PackedScene" uid="uid://tjb1kyy6up57" path="res://DisplayCase.tscn" id="14_a2xee"]
+[ext_resource type="Script" path="res://Scripts/Levels/TileMapGenerator.gd" id="14_utr67"]
+[ext_resource type="PackedScene" uid="uid://dpk50psqcbbme" path="res://ExitTrigger.tscn" id="15_3u6a2"]
 [ext_resource type="Script" path="res://Scripts/Other/ItemPlacement.gd" id="15_rmyvw"]
 
 [node name="Store" type="Node2D"]
@@ -76,19 +78,15 @@ tile_set = ExtResource("9_6grxw")
 format = 2
 layer_0/name = "Ground"
 layer_0/tile_data = PackedInt32Array(4, 131074, 3, 65540, 131074, 3, 131076, 131074, 3, 196612, 131074, 3, 262148, 131074, 3, 327684, 131074, 3, 393220, 131074, 3, 458756, 131074, 3, 524292, 131074, 3, 589828, 131074, 3, 5, 131074, 3, 65541, 131074, 3, 131077, 131074, 3, 196613, 131074, 3, 262149, 131074, 3, 327685, 131074, 3, 393221, 131074, 3, 458757, 131074, 3, 524293, 131074, 3, 589829, 131074, 3, 6, 131074, 3, 65542, 131074, 3, 131078, 131074, 3, 196614, 131074, 3, 262150, 131074, 3, 327686, 131074, 3, 393222, 131074, 3, 458758, 131074, 3, 524294, 131074, 3, 589830, 131074, 3, 7, 131074, 3, 65543, 131074, 3, 131079, 131074, 3, 196615, 131074, 3, 262151, 131074, 3, 327687, 131074, 3, 393223, 131074, 3, 458759, 131074, 3, 524295, 131074, 3, 589831, 131074, 3, 8, 131074, 3, 65544, 131074, 3, 131080, 131074, 3, 196616, 131074, 3, 262152, 131074, 3, 327688, 131074, 3, 393224, 131074, 3, 458760, 131074, 3, 524296, 131074, 3, 589832, 131074, 3, 9, 131074, 3, 65545, 131074, 3, 131081, 131074, 3, 196617, 131074, 3, 262153, 131074, 3, 327689, 131074, 3, 393225, 131074, 3, 458761, 131074, 3, 524297, 131074, 3, 589833, 131074, 3, 10, 131074, 3, 65546, 131074, 3, 131082, 131074, 3, 196618, 131074, 3, 262154, 131074, 3, 327690, 131074, 3, 393226, 131074, 3, 458762, 131074, 3, 524298, 131074, 3, 589834, 131074, 3, 11, 131074, 3, 65547, 131074, 3, 131083, 131074, 3, 196619, 131074, 3, 262155, 131074, 3, 327691, 131074, 3, 393227, 131074, 3, 458763, 131074, 3, 524299, 131074, 3, 589835, 131074, 3, 12, 131074, 3, 65548, 131074, 3, 131084, 131074, 3, 196620, 131074, 3, 262156, 131074, 3, 327692, 131074, 3, 393228, 131074, 3, 458764, 131074, 3, 589836, 131074, 3, 524300, 131074, 3, 655371, 131074, 3)
-layer_1/name = "DisplayCase"
+layer_1/name = "Table"
 layer_1/y_sort_enabled = true
-layer_1/navigation_enabled = false
-layer_1/tile_data = PackedInt32Array(393223, 131074, 0, 393225, 131074, 0, 393224, 131074, 0, 393222, 131074, 0, 262150, 131074, 0, 262151, 131074, 0, 262152, 131074, 0, 262153, 131074, 0)
-layer_2/name = "Table"
-layer_2/y_sort_enabled = true
-layer_2/tile_data = PackedInt32Array(131082, 65538, 0, 131083, 65538, 0, 131084, 65538, 0)
-layer_3/name = "Wall"
-layer_3/navigation_enabled = false
-layer_3/tile_data = PackedInt32Array(4, 65538, 3, 5, 65538, 3, 6, 65538, 3, 7, 65538, 3, 8, 65538, 3, 9, 65538, 3, 10, 65538, 3, 11, 65538, 3, 12, 65538, 3, 655364, 196610, 3, 655365, 196610, 3, 655366, 196610, 3, 655367, 196610, 3, 655368, 196610, 3, 655369, 196610, 3, 655370, 196610, 3, 655372, 196610, 3, 65539, 196610, 2, 131075, 196610, 2, 196611, 196610, 2, 262147, 196610, 2, 327683, 196610, 2, 393219, 196610, 2, 458755, 196610, 2, 524291, 196610, 2, 589827, 196610, 2, 65549, 262146, 2, 131085, 262146, 2, 196621, 262146, 2, 262157, 262146, 2, 327693, 262146, 2, 393229, 262146, 2, 458765, 262146, 2, 524301, 262146, 2, 589837, 262146, 2, 13, 262146, 2, 3, 196610, 2, -65532, 262146, 3, -65531, 262146, 3, -65530, 262146, 3, -65529, 262146, 3, -65528, 262146, 3, -65527, 262146, 3, -65526, 262146, 3, -65525, 262146, 3, -65524, 262146, 3)
-layer_4/name = "Decor"
-layer_4/y_sort_enabled = true
-layer_4/tile_data = PackedInt32Array(131084, 2, 1)
+layer_1/tile_data = PackedInt32Array(131082, 65538, 0, 131083, 65538, 0, 131084, 65538, 0)
+layer_2/name = "Wall"
+layer_2/navigation_enabled = false
+layer_2/tile_data = PackedInt32Array(4, 65538, 3, 5, 65538, 3, 6, 65538, 3, 7, 65538, 3, 8, 65538, 3, 9, 65538, 3, 10, 65538, 3, 11, 65538, 3, 12, 65538, 3, 655364, 196610, 3, 655365, 196610, 3, 655366, 196610, 3, 655367, 196610, 3, 655368, 196610, 3, 655369, 196610, 3, 655370, 196610, 3, 655372, 196610, 3, 65539, 196610, 2, 131075, 196610, 2, 196611, 196610, 2, 262147, 196610, 2, 327683, 196610, 2, 393219, 196610, 2, 458755, 196610, 2, 524291, 196610, 2, 589827, 196610, 2, 65549, 262146, 2, 131085, 262146, 2, 196621, 262146, 2, 262157, 262146, 2, 327693, 262146, 2, 393229, 262146, 2, 458765, 262146, 2, 524301, 262146, 2, 589837, 262146, 2, 13, 262146, 2, 3, 196610, 2, -65532, 262146, 3, -65531, 262146, 3, -65530, 262146, 3, -65529, 262146, 3, -65528, 262146, 3, -65527, 262146, 3, -65526, 262146, 3, -65525, 262146, 3, -65524, 262146, 3)
+layer_3/name = "Decor"
+layer_3/y_sort_enabled = true
+layer_3/tile_data = PackedInt32Array(131084, 2, 1)
 script = ExtResource("14_utr67")
 show_cell_numbers = false
 
@@ -99,4 +97,32 @@ script = ExtResource("15_rmyvw")
 position = Vector2(742, 137)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("13_iy0sp")]
-position = Vector2(745, 103)
+position = Vector2(736, 90)
+
+[node name="Area2D" parent="." instance=ExtResource("14_a2xee")]
+position = Vector2(416, 474)
+
+[node name="Area2D2" parent="." instance=ExtResource("14_a2xee")]
+position = Vector2(544, 346)
+
+[node name="Area2D3" parent="." instance=ExtResource("14_a2xee")]
+position = Vector2(416, 346)
+
+[node name="Area2D4" parent="." instance=ExtResource("14_a2xee")]
+position = Vector2(608, 346)
+
+[node name="Node2D2" parent="." instance=ExtResource("14_a2xee")]
+position = Vector2(480, 346)
+
+[node name="Node2D3" parent="." instance=ExtResource("14_a2xee")]
+position = Vector2(480, 474)
+
+[node name="Node2D4" parent="." instance=ExtResource("14_a2xee")]
+position = Vector2(544, 474)
+
+[node name="Node2D5" parent="." instance=ExtResource("14_a2xee")]
+position = Vector2(608, 474)
+
+[node name="Area2D5" parent="." instance=ExtResource("15_3u6a2")]
+position = Vector2(736, 730)
+exit_to = "World"

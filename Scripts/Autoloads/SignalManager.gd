@@ -56,3 +56,5 @@ signal haggling_done
 signal text_pressed(text_tree)
 signal conversation_done(text_tree)
 
+
+signal scene_changed(to)

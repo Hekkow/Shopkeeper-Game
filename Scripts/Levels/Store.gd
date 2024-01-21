@@ -5,7 +5,7 @@ class_name Store
 var item_scene: Resource
 var character_scene: Resource
 var item_class: Resource
-var display_cases: Dictionary
+var display_cases := []
 var customers: Array = []
 var store_open = false
 var tilemap: TileMap
@@ -72,5 +72,5 @@ func on_customer_left(_customer):
 
 func get_corresponding_case(item: Item):
 	for i in display_cases:
-		if display_cases[i].item != null && display_cases[i].item.equals(item):
+		if i.item != null && i.item.equals(item):
 			return i

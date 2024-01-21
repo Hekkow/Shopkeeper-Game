@@ -1,19 +1,14 @@
 extends TileMap
 
+class_name TileMapGenerator
+
 var astar
 var path
 const ground_layer = 0
-const display_case_layer = 1
-const solid_layers = [1, 2, 3]
+const solid_layers = [1, 2]
 @export var show_cell_numbers = true
-# const heuristic = AStarGrid2D.HEURISTIC_EUCLIDEAN
-# const heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
-# const heuristic = AStarGrid2D.HEURISTIC_OCTILE
 const heuristic = AStarGrid2D.HEURISTIC_CHEBYSHEV
 const diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
-
-
-var display_cases = {}
 
 func _ready():
 	SignalManager.connect("store_initialized", on_store_initialized)
@@ -29,6 +24,7 @@ func _ready():
 			var label = Label.new()
 			label.text = str(cell)
 			label.z_index = 100
+			label.modulate = Color.RED
 			add_child(label)
 			label.position = map_to_local(cell) - label.size/2
 	
@@ -36,10 +32,6 @@ func _ready():
 		for cell in get_used_cells(i):
 			astar.set_point_solid(cell)
 
-	for cell in get_used_cells(display_case_layer):
-		display_cases[cell] = DisplayCase.new()
-		
 func on_store_initialized():
 	Data.store.astar = astar
 	Data.store.tilemap = self
-	Data.store.display_cases = display_cases

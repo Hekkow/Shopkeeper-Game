@@ -28,7 +28,7 @@ func find_closest_case(empty=false):
 	var closest_case
 	var mouse_pos = get_viewport().get_mouse_position()
 	for case in Data.store.display_cases:
-		if empty && Data.store.display_cases[case].item == null:
+		if empty && case.item == null:
 			continue
 		var d = distance(mouse_pos, case)
 		if d < smallest_distance:
@@ -45,20 +45,20 @@ func _process(_delta):
 		if case == null:
 			if previous_case == null:
 				return
-			set_case_alternative(previous_case)
+			set_case_alternative(previous_case, false)
 			previous_case = null
 			return
 		if case != previous_case:
 			if previous_case != null:
-				set_case_alternative(previous_case)
-			set_case_alternative(case, 4)
+				set_case_alternative(previous_case, false)
+			set_case_alternative(case, true)
 			previous_case = case
 
-func set_case_alternative(case, alternative=0):
-	var tilemap = Data.store.tilemap
-	var source_id = tilemap.get_cell_source_id(display_case_layer, case)
-	var atlas_coords = tilemap.get_cell_atlas_coords(display_case_layer, case)
-	tilemap.set_cell(display_case_layer, case, source_id, atlas_coords, alternative)
+func set_case_alternative(case, alternative):
+	if alternative:
+		case.get_node("Sprite2D").texture = load("res://Resources/Sprites/display_case_hover.png")
+	else:
+		case.get_node("Sprite2D").texture = load("res://Resources/Sprites/display_case.png")
 
 func _unhandled_input(event):
 	if event is InputEventMouseButton && event.pressed:
@@ -71,7 +71,7 @@ func _unhandled_input(event):
 			cancel_drag()
 
 func distance(mouse, case):
-	var pos = Data.store.tilemap.map_to_local(case) + closest_case_mouse_offset
+	var pos = case.position + closest_case_mouse_offset
 	return sqrt((mouse.x - pos.x)**2 + (mouse.y - pos.y)**2)
 
 func cancel_drag():
@@ -86,19 +86,19 @@ func item_clicked():
 		return
 	
 	if !dragging:
-		if Data.store.display_cases[case].item == null:
+		if case.item == null:
 			return
 		dragging = true
-		item = Data.store.display_cases[case].item
+		item = case.item
 		SignalManager.emit_signal("item_picked_up", case, item)
-		Data.store.display_cases[case] = null
+		case = null
 	else:
-		if Data.store.display_cases[case].item != null:
+		if case.item != null:
 			return
-		set_case_alternative(previous_case)
+		set_case_alternative(previous_case, false)
 		dragging = false
-		item.position = Data.store.tilemap.map_to_local(case) + item_offset
-		Data.store.display_cases[case].item = item
+		item.position = case.position + item_offset
+		case.item = item
 		SignalManager.emit_signal("item_placed", case, item)
 		item = null
 	

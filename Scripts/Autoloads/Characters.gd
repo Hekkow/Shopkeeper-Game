@@ -20,3 +20,5 @@ func get_active_character(character_name: String) -> Character:
 		if character_name == character.customer.character_name:
 			return character
 	return null
+func remove(character: Character):
+	Helper.remove(active, character)

@@ -26,9 +26,8 @@ func _ready():
 func go_to(state, item=null):
 	if GameState.state == GameState.State.Shopping:
 		if state == shopping.State.LOOKING:
-			set_destination_path(store.get_corresponding_case(item))
+			set_destination_path(tilemap.local_to_map(store.get_corresponding_case(item).position))
 		elif state == shopping.State.LINE:
-			print(parent)
 			set_destination_path(store.table.get_place(parent))
 		elif state == shopping.State.LEAVING:
 			set_destination_path(exit)

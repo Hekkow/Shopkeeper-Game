@@ -26,7 +26,6 @@ func interact():
 	var conversation = load("res://Scenes/UI/TextBubbles/Conversation.tscn").instantiate()
 	conversation.init("Black-convo")
 	get_parent().add_child(conversation)
-	print(str(self) + " interacted")
 
 func destination_reached():
 	if GameState.state == GameState.State.Shopping:
@@ -50,7 +49,9 @@ func walk_animation(direction):
 			animated_sprite.flip_h = false
 
 func _exit_tree():
-	Helper.remove(store.customers, self)
+	Characters.remove(self)
+	if GameState.state == GameState.State.Shopping:
+		Helper.remove(store.customers, self)
 
 func _to_string() -> String:
 	return customer.character_name
