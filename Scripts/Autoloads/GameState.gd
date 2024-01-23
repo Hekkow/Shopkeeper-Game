@@ -5,7 +5,7 @@ enum State {
 	World
 }
 
-@export var state = State.Store
+@export var state = State.World
 
 func _ready():
 	SignalManager.connect("scene_changed", on_scene_changed)

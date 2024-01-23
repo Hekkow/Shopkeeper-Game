@@ -15,7 +15,10 @@ func on_level_ready(level):
 	# var to = SceneManager.current_scene
 	# if to == "Store":
 	# 	print("HERE")
-	position = level.tilemap.map_to_local(level.exit)
+	if level.exit is Vector2:
+		position = level.exit
+	elif level.exit is Vector2i:
+		position = level.tilemap.map_to_local(level.exit)
 
 func _physics_process(_delta):
 	velocity = dir * speed

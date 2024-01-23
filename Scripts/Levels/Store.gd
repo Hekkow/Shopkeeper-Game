@@ -15,7 +15,7 @@ var table
 
 
 func _ready() -> void:
-	exit = Vector2(11, 10)
+	exit = Vector2i(11, 10)
 	Data.store = self
 	item_scene = load("res://Scenes/Objects/Item.tscn")
 	character_scene = load("res://Scenes/Objects/Character.tscn")

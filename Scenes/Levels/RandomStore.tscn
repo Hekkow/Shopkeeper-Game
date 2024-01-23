@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6vnhlppakidv"]
+
+[ext_resource type="TileSet" uid="uid://dutprqv5eo1mk" path="res://Resources/Tilesets/Shop.tres" id="1_njenh"]
+[ext_resource type="Script" path="res://Scripts/Levels/TileMapGenerator.gd" id="2_3rnsl"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TileMapGenerator" type="TileMap" parent="."]
+tile_set = ExtResource("1_njenh")
+format = 2
+layer_0/tile_data = PackedInt32Array(196613, 131074, 3, 196614, 131074, 3, 196615, 131074, 3, 196616, 131074, 3, 196617, 131074, 3, 196618, 131074, 3, 196619, 131074, 3, 262155, 131074, 3, 262156, 131074, 3, 262154, 131074, 3, 262153, 131074, 3, 262152, 131074, 3, 262151, 131074, 3, 262150, 131074, 3, 262149, 131074, 3, 327686, 131074, 3, 327687, 131074, 3, 327688, 131074, 3, 327689, 131074, 3, 327690, 131074, 3, 327691, 131074, 3, 327692, 131074, 3, 327685, 131074, 3, 393222, 131074, 3, 393223, 131074, 3, 393224, 131074, 3, 393225, 131074, 3, 393226, 131074, 3, 393227, 131074, 3, 458761, 131074, 3, 393221, 131074, 3, 196620, 131074, 3, 393228, 131074, 3)
+script = ExtResource("2_3rnsl")

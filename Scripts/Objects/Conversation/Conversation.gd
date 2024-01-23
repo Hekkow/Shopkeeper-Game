@@ -20,12 +20,20 @@ var placements = [
 ]
 
 func _ready():
-	SignalManager.connect("text_pressed", on_text_pressed)
-	SignalManager.connect("conversation_done", on_conversation_done)
-	create_text_bubbles([text_tree])
+	# SignalManager.connect("text_pressed", on_text_pressed)
+	# SignalManager.connect("conversation_done", on_conversation_done)
+	# create_text_bubbles([text_tree])
+	pass
 
 func init(file_name):
-	text_tree = load_file(file_name)
+	# Dialogic.Styles.lo
+	
+	# layout.register_character(load("res://character.dch"), Characters.get_active_character("Black"))
+	# text_tree = load_file(file_name)
+	var layout = Dialogic.start("timeline")
+	layout.register_character(load("res://character.dch"), Characters.get_active_character("Black"))
+	layout.register_character(load("res://player.dch"), Characters.player)
+	pass
 	
 func create_text_bubbles(arr):
 	var character

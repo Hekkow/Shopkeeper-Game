@@ -97,32 +97,32 @@ script = ExtResource("15_rmyvw")
 position = Vector2(742, 137)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("13_iy0sp")]
-position = Vector2(736, 659)
+position = Vector2(686, 476)
 
 [node name="Area2D" parent="." instance=ExtResource("14_a2xee")]
-position = Vector2(416, 474)
+position = Vector2(416, 512)
 
 [node name="Area2D2" parent="." instance=ExtResource("14_a2xee")]
-position = Vector2(544, 346)
+position = Vector2(544, 384)
 
 [node name="Area2D3" parent="." instance=ExtResource("14_a2xee")]
-position = Vector2(416, 346)
+position = Vector2(416, 384)
 
 [node name="Area2D4" parent="." instance=ExtResource("14_a2xee")]
-position = Vector2(608, 346)
+position = Vector2(608, 384)
 
 [node name="Node2D2" parent="." instance=ExtResource("14_a2xee")]
-position = Vector2(480, 346)
+position = Vector2(480, 384)
 
 [node name="Node2D3" parent="." instance=ExtResource("14_a2xee")]
-position = Vector2(480, 474)
+position = Vector2(480, 512)
 
 [node name="Node2D4" parent="." instance=ExtResource("14_a2xee")]
-position = Vector2(544, 474)
+position = Vector2(544, 512)
 
 [node name="Node2D5" parent="." instance=ExtResource("14_a2xee")]
-position = Vector2(608, 474)
+position = Vector2(608, 512)
 
 [node name="Area2D5" parent="." instance=ExtResource("15_3u6a2")]
-position = Vector2(736, 753)
+position = Vector2(736, 736)
 exit_to = "World"
