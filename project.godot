@@ -11,24 +11,24 @@ config_version=5
 [application]
 
 config/name="My Game"
-run/main_scene="res://Scenes/Levels/Store.tscn"
+run/main_scene="res://Levels/Store.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 run/max_fps=60
 config/icon="res://icon.svg"
 
 [autoload]
 
-SignalManager="*res://Scripts/Autoloads/SignalManager.gd"
-Helper="*res://Scripts/Autoloads/Helper.gd"
-Data="*res://Scripts/Autoloads/Data.gd"
-Characters="*res://Scripts/Autoloads/Characters.gd"
-Ingredients="*res://Scripts/Autoloads/Ingredients.gd"
-Items="*res://Scripts/Autoloads/Items.gd"
-Recipes="*res://Scripts/Autoloads/Recipes.gd"
-PlayerStats="*res://Scripts/Other/PlayerStats.gd"
-GameState="*res://Scripts/Autoloads/GameState.gd"
-SceneManager="*res://Scripts/Autoloads/SceneManager.gd"
+SignalManager="*res://Other/Managers/SignalManager.gd"
+Helper="*res://Other/Managers/Helper.gd"
+Data="*res://Other/Managers/Data.gd"
+Characters="*res://Objects/Character/Characters.gd"
+Ingredients="*res://Objects/Item/Ingredients.gd"
+Items="*res://Objects/Item/Items.gd"
+Recipes="*res://Objects/Item/Recipes.gd"
+PlayerStats="*res://Objects/Player/PlayerStats.gd"
+SceneManager="*res://Other/Managers/SceneManager.gd"
 Dialogic="*res://addons/dialogic/Other/DialogicGameHandler.gd"
+Paths="*res://Other/Managers/Paths.gd"
 
 [debug]
 
@@ -75,7 +75,7 @@ export/convert_text_resources_to_binary=false
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/Editor/plugin.cfg", "res://addons/dialogic/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
 
 [input]
 

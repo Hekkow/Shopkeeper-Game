@@ -1,25 +1,8 @@
-[gd_resource type="Resource" script_class="CharacterStats" load_steps=6 format=3 uid="uid://dhue3axsfk8h4"]
+[gd_resource type="Resource" script_class="CharacterStats" load_steps=2 format=3 uid="uid://cbrlb7gtmv85y"]
 
-[ext_resource type="Script" path="res://Scripts/Resources/CharacterStats.gd" id="1_lrp58"]
-[ext_resource type="Script" path="res://Scripts/Resources/Mood.gd" id="1_tt6sa"]
-[ext_resource type="Script" path="res://Scripts/Resources/Personality.gd" id="2_ptsno"]
-
-[sub_resource type="Resource" id="Resource_3wi8q"]
-script = ExtResource("1_tt6sa")
-mood = 1
-
-[sub_resource type="Resource" id="Resource_yav04"]
-script = ExtResource("2_ptsno")
-a = 1
-b = 2
-c = 3
+[ext_resource type="Script" path="res://Objects/Character/CharacterStats.gd" id="1_pycbl"]
 
 [resource]
-script = ExtResource("1_lrp58")
+script = ExtResource("1_pycbl")
 character_name = "Red"
-color = Color(0.780392, 0.0392157, 0.290196, 1)
-richness = 2
-friendship = 3
-personality = SubResource("Resource_yav04")
-mood = SubResource("Resource_3wi8q")
-affinity = Array[Resource("res://Scripts/Resources/Recipe.gd")]([])
+color = Color(0.976471, 0.227451, 0.203922, 1)

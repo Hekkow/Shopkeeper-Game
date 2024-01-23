@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://dpfhoely6srr5"]
+
+[ext_resource type="Script" path="res://Levels/Level.gd" id="1_ob0yc"]
+[ext_resource type="TileSet" uid="uid://dutprqv5eo1mk" path="res://Resources/Tilesets/Shop.tres" id="2_0qea3"]
+[ext_resource type="Script" path="res://Levels/TileMapGenerator.gd" id="3_in52m"]
+[ext_resource type="PackedScene" uid="uid://dpk50psqcbbme" path="res://Objects/Exit/ExitTrigger.tscn" id="4_c6ekk"]
+[ext_resource type="PackedScene" uid="uid://d3uc0hrbgvxce" path="res://Objects/Player/Player.tscn" id="5_k86i8"]
+
+[node name="NewRandom" type="Node2D"]
+script = ExtResource("1_ob0yc")
+
+[node name="TileMapGenerator" type="TileMap" parent="."]
+tile_set = ExtResource("2_0qea3")
+format = 2
+layer_0/tile_data = PackedInt32Array(262152, 131074, 3, 262151, 131074, 3, 262150, 131074, 3, 262149, 131074, 3, 196613, 131074, 3, 196612, 131074, 3, 196614, 131074, 3, 196615, 131074, 3, 196616, 131074, 3, 196617, 131074, 3, 196618, 131074, 3, 131082, 131074, 3, 131083, 131074, 3, 131084, 131074, 3, 196619, 131074, 3, 262153, 131074, 3, 327687, 131074, 3, 327686, 131074, 3, 393222, 131074, 3, 393223, 131074, 3, 393224, 131074, 3, 393225, 131074, 3, 393226, 131074, 3, 393227, 131074, 3, 393228, 131074, 3, 327689, 131074, 3, 327688, 131074, 3, 327685, 131074, 3, 196620, 131074, 3, 262155, 131074, 3, 262154, 131074, 3, 327690, 131074, 3, 327691, 131074, 3, 327692, 131074, 3, 327693, 131074, 3, 262157, 131074, 3, 262156, 131074, 3)
+script = ExtResource("3_in52m")
+
+[node name="ExitTrigger" parent="." instance=ExtResource("4_c6ekk")]
+position = Vector2(865, 416)
+to = "World"
+spawn_point = Vector2(-50, 0)
+
+[node name="Player" parent="." instance=ExtResource("5_k86i8")]
+position = Vector2(664, 316)
