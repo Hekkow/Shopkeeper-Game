@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://qx2dsgaptaoh"]
+[gd_scene load_steps=7 format=3 uid="uid://qx2dsgaptaoh"]
 
 [ext_resource type="Script" path="res://Objects/Character/Character.gd" id="1_67gyt"]
 [ext_resource type="SpriteFrames" uid="uid://ctdahutu28b2e" path="res://Resources/Animations/CharacterAnimation.tres" id="2_ylj1s"]
 [ext_resource type="Script" path="res://Objects/Character/CharacterPathfinding.gd" id="3_50gqo"]
+[ext_resource type="Script" path="res://Objects/Character/CharacterAnimation.gd" id="3_a7ns3"]
 [ext_resource type="Script" path="res://Objects/Character/CharacterShopping.gd" id="4_y3qcf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bx2q8"]
@@ -23,9 +24,13 @@ shape = SubResource("RectangleShape2D_bx2q8")
 position = Vector2(0, -42)
 sprite_frames = ExtResource("2_ylj1s")
 animation = &"up"
+script = ExtResource("3_a7ns3")
 
 [node name="Pathfinding" type="Node2D" parent="."]
 script = ExtResource("3_50gqo")
 
 [node name="Shopping" type="Node2D" parent="."]
 script = ExtResource("4_y3qcf")
+
+[node name="TextBubblePosition" type="Node2D" parent="."]
+position = Vector2(9, -63)

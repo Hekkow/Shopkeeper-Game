@@ -1,7 +1,7 @@
 {
 "@path": "res://addons/dialogic/Resources/character.gd",
 "@subpath": NodePath(""),
-"color": Color(0.501961, 0.0666667, 0.0666667, 1),
+"color": Color(0.141176, 0.545098, 0.941176, 1),
 "custom_info": {
 "sound_mood_default": "",
 "sound_moods": {},
@@ -9,7 +9,7 @@
 },
 "default_portrait": "",
 "description": "",
-"display_name": "player",
+"display_name": "Player",
 "mirror": false,
 "nicknames": [""],
 "offset": Vector2(0, 0),

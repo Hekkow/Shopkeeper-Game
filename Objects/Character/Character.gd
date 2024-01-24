@@ -6,7 +6,8 @@ class_name Character
 @onready var pathfinding = $Pathfinding
 @onready var shopping = $Shopping
 @onready var store = Data.store
-@onready var animated_sprite = $AnimatedSprite2D
+@onready var animation = $AnimatedSprite2D
+@onready var text_bubble_position = $TextBubblePosition
 var interactable = true
 
 func _init(_customer: CharacterStats = null):
@@ -22,31 +23,26 @@ func haggle():
 	shopping.haggle()
 
 func interact():
-	Conversation.new()
+	if Dialogic.current_timeline != null:
+		return
+	var layout = Dialogic.start(Paths.dialogic_timelines + "Test.dtl")
+	for character in Characters.active:
+		var path = Paths.dialogic_characters + character.customer.character_name + ".dch"
+		if !ResourceLoader.exists(path):
+			continue
+		layout.register_character(load(path), character.text_bubble_position)
+	layout.register_character(load(Paths.dialogic_characters + "Player.dch"), Characters.player.text_bubble_position)
+
+func _exit_tree():
+	Dialogic.end_timeline()
+	Characters.remove(self)
 
 func destination_reached():
 	if SceneManager.state == SceneManager.Scene.Store:
 		shopping.destination_reached()
-	stop_animation()
+	animation.stop_animation()
 
-func stop_animation():
-	animated_sprite.stop()
 
-func walk_animation(direction):
-	match direction:
-		Helper.Direction.UP:
-			animated_sprite.play("up")
-		Helper.Direction.DOWN:
-			animated_sprite.play("down")
-		Helper.Direction.LEFT:
-			animated_sprite.play("side")
-			animated_sprite.flip_h = true
-		Helper.Direction.RIGHT:
-			animated_sprite.play("side")
-			animated_sprite.flip_h = false
-
-func _exit_tree():
-	Characters.remove(self)
 
 func _to_string() -> String:
 	return customer.character_name

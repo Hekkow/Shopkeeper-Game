@@ -2,8 +2,6 @@ extends Node
 
 var list: Array
 var active = []
-var max_richness = 5
-var max_friendship = 5
 var player
 
 func _ready():

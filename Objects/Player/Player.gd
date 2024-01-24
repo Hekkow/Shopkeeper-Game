@@ -4,31 +4,19 @@ class_name Player
 
 const speed = 300.0
 var dir: Vector2
-@onready var animated_sprite = $AnimatedSprite2D
+@onready var animation = $AnimatedSprite2D
+@onready var text_bubble_position = $TextBubblePosition
 
 func _ready():
 	Characters.player = self
 	SignalManager.connect("level_ready", on_level_ready)
 
 func on_level_ready(level):
-	print("HERERERER")
 	position = level.get_entry_position()
 
 func _physics_process(_delta):
 	velocity = dir * speed
-	match Helper.cardinal_direction(dir):
-		Helper.Direction.UP:
-			animated_sprite.play("up")
-		Helper.Direction.DOWN:
-			animated_sprite.play("down")
-		Helper.Direction.LEFT:
-			animated_sprite.play("side")
-			animated_sprite.flip_h = true
-		Helper.Direction.RIGHT:
-			animated_sprite.play("side")
-			animated_sprite.flip_h = false
-		Helper.Direction.NONE:
-			animated_sprite.stop()
+	animation.walk_animation(dir)
 	move_and_slide()
 
 func _unhandled_input(_event):

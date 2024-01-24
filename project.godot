@@ -40,6 +40,7 @@ layout/styles={
 "Default": {},
 "Text Bubbles": {
 "export_overrides": {
+"behaviour_distance": "20.0",
 "text_max_width": "5000.0"
 },
 "layout": "res://addons/dialogic/Modules/DefaultLayouts/TextBubble/DialogicTextBubbleLayout.tscn"

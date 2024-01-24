@@ -7,6 +7,7 @@ var tilemap
 var astar
 @onready var parent = get_parent()
 @onready var shopping = get_node("../Shopping")
+@onready var animation = get_node("../AnimatedSprite2D")
 @export var paused := false
 @export var debug_draw = true
 @export var path: Array
@@ -81,7 +82,7 @@ func _draw():
 
 func look_direction(to):
 	var direction = to - parent.position
-	parent.walk_animation(Helper.cardinal_direction(direction))
+	animation.walk_animation(direction)
 	
 func pause(seconds: float) -> void:
 	paused = true
