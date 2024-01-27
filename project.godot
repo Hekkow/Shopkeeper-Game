@@ -29,6 +29,7 @@ PlayerStats="*res://Objects/Player/PlayerStats.gd"
 SceneManager="*res://Other/Managers/SceneManager.gd"
 Dialogic="*res://addons/dialogic/Other/DialogicGameHandler.gd"
 Paths="*res://Other/Managers/Paths.gd"
+Dialogue="*res://Other/Dialogue/Dialogue.gd"
 
 [debug]
 

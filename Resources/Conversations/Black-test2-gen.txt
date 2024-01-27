@@ -1,1 +1,0 @@
-[{"name":"5","positionx":367,"positiony":68.5,"speaker":"Black","text":"dfgdfg"},{"name":"6","positionx":107,"positiony":279.5,"speaker":"sdfg","text":"dfhdfh"},{"name":"7","positionx":594,"positiony":347.5,"speaker":"dhdhg","text":"dhtdhfth"}]

@@ -15,26 +15,28 @@ func _init(_customer: CharacterStats = null):
 
 func _ready():
 	Characters.active.append(self)
+	update_interactable()
+	SignalManager.connect("conversation_started", on_conversation_started)
 	if SceneManager.state == SceneManager.Scene.Store:
 		interactable = false
 		shopping.start()
+
+func on_conversation_started(conversation):
+	if conversation.character != customer.character_name:
+		return
+	update_interactable()
+	
+
+func update_interactable():
+	interactable = Dialogue.available(self)
 
 func haggle():
 	shopping.haggle()
 
 func interact():
-	if Dialogic.current_timeline != null:
-		return
-	var layout = Dialogic.start(Paths.dialogic_timelines + "Test.dtl")
-	for character in Characters.active:
-		var path = Paths.dialogic_characters + character.customer.character_name + ".dch"
-		if !ResourceLoader.exists(path):
-			continue
-		layout.register_character(load(path), character.text_bubble_position)
-	layout.register_character(load(Paths.dialogic_characters + "Player.dch"), Characters.player.text_bubble_position)
+	Dialogue.start(self)
 
 func _exit_tree():
-	Dialogic.end_timeline()
 	Characters.remove(self)
 
 func destination_reached():
