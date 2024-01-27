@@ -65,7 +65,9 @@ save/autosave_delay=60.0
 save/encryption_on_exports_only=true
 text/autopauses={}
 glossary/default_case_sensitive=true
-variables={}
+variables={
+"Seen": "[]"
+}
 
 [display]
 
