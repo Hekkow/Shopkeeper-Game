@@ -1,5 +1,4 @@
-extends AnimatedSprite2D
-
+extends AnimatedSprite2D	
 
 func walk_animation(dir):
 	match Helper.cardinal_direction(dir):

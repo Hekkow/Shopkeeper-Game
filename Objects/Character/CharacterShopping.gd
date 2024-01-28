@@ -21,7 +21,6 @@ func get_priority_queue():
 	priority_queue = Items.store
 
 func get_next_priority() -> Item:
-	# return priority_queue[Data.rng.randi_range(0, len(priority_queue) - 1)]
 	return priority_queue[0]
 
 func visit_random_item():
@@ -30,7 +29,7 @@ func visit_random_item():
 		return
 	interested_item_node = get_next_priority()
 	interested_item = interested_item_node.dupe() #- new item without the node
-	go_to(State.LOOKING, interested_item)
+	go_to(State.LOOKING, interested_item_node)
 
 func interested(_item: Item) -> bool:
 	return Data.rng.randf() <= 1

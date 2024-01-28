@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cn3yblpjy2qrs"]
+[gd_scene load_steps=11 format=3 uid="uid://cn3yblpjy2qrs"]
 
 [ext_resource type="Script" path="res://UI/RecipeCreation/RecipeCreationMenu.gd" id="1_ny18j"]
 [ext_resource type="Script" path="res://UI/RecipeCreation/RatioBars.gd" id="2_2r0st"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://UI/RecipeCreation/Pot/Pot.gd" id="5_eaqsj"]
 [ext_resource type="Script" path="res://UI/RecipeCreation/IngredientToRecipeMenu.gd" id="6_jj80t"]
 [ext_resource type="Script" path="res://UI/RecipeCreation/Pot/PotDoneButton.gd" id="7_bf0bv"]
+[ext_resource type="PackedScene" uid="uid://bfrhn3efu1evu" path="res://BaseGridMenu.tscn" id="8_egbm5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xf3m3"]
 bg_color = Color(0.435294, 0.615686, 0.819608, 1)
@@ -72,29 +73,6 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("5_eaqsj")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_right = 436.0
-grow_vertical = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_top = 40
-theme_override_constants/margin_bottom = 40
-
-[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 6
-theme_override_constants/h_separation = 25
-theme_override_constants/v_separation = 25
-columns = 2
-script = ExtResource("6_jj80t")
-
 [node name="Button" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 1
@@ -107,3 +85,13 @@ offset_bottom = 56.0
 grow_horizontal = 0
 text = "Done"
 script = ExtResource("7_bf0bv")
+
+[node name="GridMenu" parent="." instance=ExtResource("8_egbm5")]
+layout_mode = 1
+anchors_preset = 9
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 0.0
+offset_right = 373.0
+grow_horizontal = 1
+script = ExtResource("6_jj80t")

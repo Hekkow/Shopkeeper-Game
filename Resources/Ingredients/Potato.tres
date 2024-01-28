@@ -13,3 +13,4 @@ c = 0
 script = ExtResource("1_3lyv8")
 ingredient_name = "Potato"
 element = SubResource("Resource_t4p43")
+price = 4

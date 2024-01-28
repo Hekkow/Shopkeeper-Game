@@ -31,6 +31,7 @@ Dialogic="*res://addons/dialogic/Other/DialogicGameHandler.gd"
 Paths="*res://Other/Managers/Paths.gd"
 Dialogue="*res://Other/Dialogue/Dialogue.gd"
 TimeManager="*res://Other/Managers/TimeManager.gd"
+Stores="*res://Other/Managers/Stores.gd"
 
 [debug]
 

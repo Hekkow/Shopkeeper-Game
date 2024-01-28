@@ -31,6 +31,7 @@ func _process(_delta):
 			interact_with.get_node("ButtonPrompt").queue_free()
 			interact_with = null
 		return
+
 	var closest_interactable = bodies[0]
 	for body in bodies:
 		if body.position.distance_to(parent.position) < closest_interactable.position.distance_to(parent.position) && body.interactable:
@@ -39,8 +40,7 @@ func _process(_delta):
 		if interact_with:
 			interact_with.get_node("ButtonPrompt").queue_free()
 			interact_with = null
-		return
-	if closest_interactable != interact_with:
+	elif closest_interactable != interact_with:
 		if interact_with != null:
 			interact_with.get_node("ButtonPrompt").queue_free()
 		var button_prompt = Paths.button_prompt.instantiate()

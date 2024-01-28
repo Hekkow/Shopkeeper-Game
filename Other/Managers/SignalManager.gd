@@ -60,3 +60,5 @@ signal level_ready(level)
 signal time_changed(time, day)
 
 signal conversation_started(conversation)
+signal ingredient_store_interacted
+signal shop_button_pressed(thing)

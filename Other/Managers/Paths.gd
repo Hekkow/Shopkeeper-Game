@@ -5,7 +5,6 @@ extends Node
 var character = load("res://Objects/Character/Character.tscn")
 
 var item = load("res://Objects/Item/Item.tscn")
-var item_class = load("res://Objects/Item/Item.gd")
 
 
 
@@ -30,3 +29,5 @@ var hud = "res://HUD/HUD.tscn"
 
 var dialogic_characters = "res://Resources/DialogicCharacters/"
 var dialogic_timelines = "res://Resources/Timelines/"
+
+var ingredient_shop_menu = load("res://IngredientShopMenu.tscn")

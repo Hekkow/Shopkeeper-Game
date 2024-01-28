@@ -8,7 +8,9 @@ var ground_layer = 0
 var solid_layers = []
 var exits = []
 
-#- need to set name of root node, add triggers with to variable set, add player, add tilemapgenerator
+#- add door to level
+#- add level to scenemanager
+#- SUPER IMPORTANT: SET ROOT NODE NAME TO SAME AS LEVEL NAME
 
 func _ready():
 	SceneManager.scene = self

@@ -11,6 +11,13 @@ func _ready():
 	SignalManager.connect("ingredient_added_to_pot", on_ingredient_added)
 	SignalManager.connect("ingredients_reset", on_ingredients_reset)
 	SignalManager.connect("recipe_made", on_recipe_made)
+	SignalManager.connect("shop_button_pressed", on_shop_button_pressed)
+
+func on_shop_button_pressed(ingredient):
+	if not ingredient is Ingredient:
+		return
+	inventory.add(ingredient)
+
 
 func on_ingredient_added(slot: InventorySlot):
 	pot.add(slot.object)
@@ -23,6 +30,11 @@ func on_ingredients_reset() -> void:
 		var ingredient_slot = pot.inv[i]
 		inventory.add(ingredient_slot.object, ingredient_slot.amount)
 		pot.remove(ingredient_slot.object)
+
+func add(ingredient, amount):
+	for i in list:
+		if ingredient == i.ingredient_name:
+			inventory.add(i, amount)
 
 func on_recipe_made(_recipe) -> void:
 	pot.inv = []

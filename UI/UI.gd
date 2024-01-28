@@ -11,6 +11,9 @@ func _ready() -> void:
 	SignalManager.connect("ingredient_to_recipe_menu_opened", on_ingredient_to_recipe_menu_opened)
 	SignalManager.connect("recipe_to_item_menu_opened", open_recipe_to_item_menu)
 	SignalManager.connect("pot_done", open_recipe_to_item_menu)
+	SignalManager.connect("ingredient_store_interacted", on_ingredient_store_interacted)
+func on_ingredient_store_interacted():
+	add_child(Paths.ingredient_shop_menu.instantiate())
 
 func on_recipe_pressed(recipe: Recipe) -> void:
 	instantiate_scene(Paths.price_modal)

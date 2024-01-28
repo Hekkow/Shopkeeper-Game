@@ -10,13 +10,16 @@ class_name RecipeButton
 
 var slot: InventorySlot
 
-func _ready() -> void:
-	text = str(slot)
+func _ready():
 	SignalManager.connect("recipe_removed_from_inventory", on_recipe_removed_from_inventory)
 	
 
-func _pressed() -> void:
+func _pressed():
 	SignalManager.emit_signal("recipe_pressed", slot.object)
+	text = str(slot)
+
+func set_variables(_slot):
+	slot = _slot
 	text = str(slot)
 
 func on_recipe_removed_from_inventory(recipe_slot: InventorySlot):

@@ -1,0 +1,26 @@
+[gd_scene load_steps=7 format=3 uid="uid://ctyxwcu1cwbis"]
+
+[ext_resource type="Script" path="res://Levels/Level.gd" id="1_4cwx5"]
+[ext_resource type="TileSet" uid="uid://dutprqv5eo1mk" path="res://Resources/Tilesets/Shop.tres" id="2_5x4k2"]
+[ext_resource type="Script" path="res://Levels/TileMapGenerator.gd" id="3_2xjwx"]
+[ext_resource type="PackedScene" uid="uid://dpk50psqcbbme" path="res://Objects/Exit/ExitTrigger.tscn" id="4_mb4nw"]
+[ext_resource type="PackedScene" uid="uid://bc16pr58pxk1w" path="res://HUD/HUD.tscn" id="5_hf5dn"]
+[ext_resource type="PackedScene" uid="uid://d3uc0hrbgvxce" path="res://Objects/Player/Player.tscn" id="6_hik3e"]
+
+[node name="BaseLevel" type="Node2D"]
+script = ExtResource("1_4cwx5")
+
+[node name="TileMapGenerator" type="TileMap" parent="."]
+tile_set = ExtResource("2_5x4k2")
+format = 2
+script = ExtResource("3_2xjwx")
+
+[node name="ExitTrigger" parent="." instance=ExtResource("4_mb4nw")]
+position = Vector2(114, 104)
+to = "World"
+spawn_point = Vector2(50, 0)
+
+[node name="HUD" parent="." instance=ExtResource("5_hf5dn")]
+
+[node name="Player" parent="." instance=ExtResource("6_hik3e")]
+position = Vector2(217, 202)

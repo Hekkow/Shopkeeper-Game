@@ -1,10 +1,3 @@
-"""
-
-Recipe to item menu
-This script just sets the visibility of the menu depending on the stage of the game
-
-"""
-
 extends Control
 
 func _ready() -> void:

@@ -13,3 +13,4 @@ c = 10
 script = ExtResource("1_3puve")
 ingredient_name = "Milk"
 element = SubResource("Resource_ratst")
+price = 2

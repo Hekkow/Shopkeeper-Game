@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cii2we4mcaev0"]
+[gd_scene load_steps=3 format=3 uid="uid://cii2we4mcaev0"]
 
 [ext_resource type="Texture2D" uid="uid://dmb4bqdvvh057" path="res://Resources/Sprites/item.png" id="1_lsbea"]
+[ext_resource type="Script" path="res://Objects/Item/Item.gd" id="2_qjewv"]
 
 [node name="Item" type="Sprite2D"]
 modulate = Color(0.890196, 0.109804, 0.45098, 1)
@@ -8,6 +9,7 @@ z_index = 5
 y_sort_enabled = true
 texture_filter = 1
 texture = ExtResource("1_lsbea")
+script = ExtResource("2_qjewv")
 
 [node name="Label" type="Label" parent="."]
 offset_left = 7.0

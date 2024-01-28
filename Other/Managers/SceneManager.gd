@@ -7,7 +7,8 @@ enum Scene {
 	Store,
 	World,
 	RandomStore,
-	NewRandom
+	NewRandom,
+	BaseLevel
 }
 
 func _ready():
@@ -23,6 +24,9 @@ func _ready():
 			previous_scene = "World"
 		"NewRandom":
 			state = Scene.NewRandom
+			previous_scene = "World"
+		"BaseLevel":
+			state = Scene.BaseLevel
 			previous_scene = "World"
 	SignalManager.connect("change_scene", change_scene)
 

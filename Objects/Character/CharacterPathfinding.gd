@@ -25,7 +25,7 @@ func _ready():
 func go_to(state, item=null):
 	if SceneManager.state == SceneManager.Scene.Store:
 		if state == shopping.State.LOOKING:
-			set_destination_path(tilemap.local_to_map(store.get_corresponding_case(item).position))
+			set_destination_path(tilemap.local_to_map(item.position) + Vector2i(0, 1))
 		elif state == shopping.State.LINE:
 			set_destination_path(store.table.get_place(parent))
 		elif state == shopping.State.LEAVING:

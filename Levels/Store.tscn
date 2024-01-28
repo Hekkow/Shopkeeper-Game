@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cn5b5ichbe4w0"]
+[gd_scene load_steps=16 format=3 uid="uid://cn5b5ichbe4w0"]
 
 [ext_resource type="Script" path="res://Levels/Store.gd" id="1_shx0t"]
 [ext_resource type="Script" path="res://UI/UI.gd" id="2_ceb2c"]
@@ -10,7 +10,8 @@
 [ext_resource type="TileSet" uid="uid://dutprqv5eo1mk" path="res://Resources/Tilesets/Shop.tres" id="9_waq06"]
 [ext_resource type="Script" path="res://Levels/TileMapGenerator.gd" id="10_ayrnm"]
 [ext_resource type="Script" path="res://Objects/Item/ItemPlacement.gd" id="11_a3sso"]
-[ext_resource type="PackedScene" uid="uid://bhlw2f3i3nint" path="res://Objects/StoreTable.tscn" id="12_l05c0"]
+[ext_resource type="Script" path="res://Objects/Table/StoreTable.gd" id="12_h3wjp"]
+[ext_resource type="PackedScene" uid="uid://bhlw2f3i3nint" path="res://Objects/Table/TableInteract.tscn" id="12_l05c0"]
 [ext_resource type="PackedScene" uid="uid://d3uc0hrbgvxce" path="res://Objects/Player/Player.tscn" id="13_erfdr"]
 [ext_resource type="PackedScene" uid="uid://tjb1kyy6up57" path="res://Objects/Item/DisplayCase.tscn" id="14_hwtho"]
 [ext_resource type="PackedScene" uid="uid://dpk50psqcbbme" path="res://Objects/Exit/ExitTrigger.tscn" id="15_4dnct"]
@@ -80,6 +81,7 @@ script = ExtResource("11_a3sso")
 
 [node name="StoreTable" parent="." instance=ExtResource("12_l05c0")]
 position = Vector2(742, 137)
+script = ExtResource("12_h3wjp")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("13_erfdr")]
 position = Vector2(686, 476)

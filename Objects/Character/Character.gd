@@ -10,10 +10,12 @@ class_name Character
 @onready var text_bubble_position = $TextBubblePosition
 var interactable = true
 
-func _init(_customer: CharacterStats = null):
+func set_variables(_customer: CharacterStats = null):
 	customer = _customer
 
 func _ready():
+	name = customer.character_name
+	modulate = customer.color
 	Characters.active.append(self)
 	update_interactable()
 	SignalManager.connect("conversation_started", on_conversation_started)
