@@ -26,5 +26,7 @@ var button_prompt = load("res://UI/ButtonPrompt.tscn")
 var levels = "res://Levels/"
 var resources = "res://Resources/"
 
+var hud = "res://HUD/HUD.tscn"
+
 var dialogic_characters = "res://Resources/DialogicCharacters/"
 var dialogic_timelines = "res://Resources/Timelines/"

@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://bc16pr58pxk1w"]
+
+[ext_resource type="Script" path="res://HUD/DayLabel.gd" id="1_rdxdp"]
+[ext_resource type="Script" path="res://HUD/TimeLabel.gd" id="2_jehq2"]
+[ext_resource type="Script" path="res://HUD/MoneyLabel.gd" id="3_8xstg"]
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -95.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="Day" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+script = ExtResource("1_rdxdp")
+
+[node name="Time" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+script = ExtResource("2_jehq2")
+
+[node name="Money" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+script = ExtResource("3_8xstg")

@@ -26,7 +26,6 @@ func on_conversation_started(conversation):
 		return
 	update_interactable()
 	
-
 func update_interactable():
 	interactable = Dialogue.available(self)
 
@@ -43,8 +42,6 @@ func destination_reached():
 	if SceneManager.state == SceneManager.Scene.Store:
 		shopping.destination_reached()
 	animation.stop_animation()
-
-
 
 func _to_string() -> String:
 	return customer.character_name

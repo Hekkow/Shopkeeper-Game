@@ -13,6 +13,9 @@ var exits = []
 func _ready():
 	SceneManager.scene = self
 	level_ready()
+	var hud = load(Paths.hud).instantiate()
+	add_child(hud)
+	move_child(hud, 0)
 
 func level_ready():
 	SignalManager.emit_signal("level_ready", self)

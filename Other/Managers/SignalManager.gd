@@ -44,19 +44,19 @@ signal customer_reached_queue(customer)
 signal customer_reached_table(customer)
 signal customer_leaving_line(customer)
 
-signal astar_ready(astar_grid, tilemap)
-signal path_changed(path)
 
 signal recipes_ready
-
+#- haggling
 signal haggling_started(customer)
 signal haggling_ended(customer, score_multiplier)
 signal haggling_done
-
+#- scenes
 signal change_scene(to)
 signal scene_changing(to)
 signal scene_changed(to)
-signal state_switched(from, to)
 signal level_ready(level)
+
+#- time
+signal time_changed(time, day)
 
 signal conversation_started(conversation)

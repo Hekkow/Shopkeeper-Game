@@ -30,6 +30,7 @@ SceneManager="*res://Other/Managers/SceneManager.gd"
 Dialogic="*res://addons/dialogic/Other/DialogicGameHandler.gd"
 Paths="*res://Other/Managers/Paths.gd"
 Dialogue="*res://Other/Dialogue/Dialogue.gd"
+TimeManager="*res://Other/Managers/TimeManager.gd"
 
 [debug]
 

@@ -32,7 +32,7 @@ func start(character):
 	start_conversation(get_conversation(character))
 
 func get_conversation(character):
-	for timeline in get_all_timelines_with_character(character.customer.name):
+	for timeline in get_all_timelines_with_character(character.customer.character_name):
 		if !seen(timeline):
 			return timeline
 	return null

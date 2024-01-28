@@ -5,6 +5,7 @@ class_name Store
 var display_cases := []
 var customers: Array = []
 var store_open = false
+var store_closing = false
 
 var table
 
@@ -18,15 +19,21 @@ func _ready() -> void:
 	SignalManager.connect("price_set", spawn_item)	
 	SignalManager.connect("customer_left", on_customer_left)
 	SignalManager.connect("store_closing", on_store_closing)
+	SignalManager.connect("store_closed", on_store_closed)
 	super()
 
 func on_store_opened() -> void:
 	store_open = true
+	exits[0].enabled = false
+	print(exits)
 	if len(Items.store) == 0:
 		SignalManager.emit_signal("store_closed")
 		return
 	spawn_customers(number_customers)
 
+func on_store_closed():
+	exits[0].enabled = true
+	
 func spawn_item(_item: Item) -> void:
 	var item = Paths.item.instantiate()
 	item.set_script(Paths.item_class)
@@ -35,12 +42,12 @@ func spawn_item(_item: Item) -> void:
 	SignalManager.emit_signal("item_spawned", item)
 
 func on_store_closing():
-	store_open = false
+	store_closing = true
 
 func spawn_customers(_number_customers: int) -> void:
 	var _customers := choose_customers(_number_customers)
 	for customer in _customers:
-		if !store_open:
+		if store_closing:
 			return
 		var character = Paths.character.instantiate()
 		character.name = customer.character_name
@@ -69,3 +76,8 @@ func get_corresponding_case(item: Item):
 	for i in display_cases:
 		if i.item != null && i.item.equals(item):
 			return i
+func any_display_case_full() -> bool:
+	for case in display_cases:
+		if case.item != null:
+			return true
+	return false
