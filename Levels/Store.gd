@@ -16,7 +16,6 @@ func _ready() -> void:
 	solid_layers = [1, 2]
 	Data.store = self
 	SignalManager.connect("store_opened", on_store_opened)
-	SignalManager.connect("price_set", spawn_item)	
 	SignalManager.connect("customer_left", on_customer_left)
 	SignalManager.connect("store_closing", on_store_closing)
 	super()
@@ -26,19 +25,13 @@ func on_store_opened() -> void:
 	if len(Items.store) == 0:
 		SignalManager.emit_signal("store_closed")
 		return
-	spawn_customers(number_customers)
+	spawn_customers()
 	
-func spawn_item(_item: Item) -> void:
-	var item = Paths.item.instantiate()
-	item.set_variables(_item)
-	add_child(item)
-	SignalManager.emit_signal("item_spawned", item)
-
 func on_store_closing():
 	store_closing = true
 
-func spawn_customers(_number_customers: int) -> void:
-	var _customers := choose_customers(_number_customers)
+func spawn_customers() -> void:
+	var _customers := Characters.list.slice(0, number_customers)
 	for customer in _customers:
 		if store_closing:
 			return
@@ -46,11 +39,7 @@ func spawn_customers(_number_customers: int) -> void:
 		character.set_variables(customer)
 		customers.append(character)
 		add_child(character)
-		SignalManager.emit_signal("customer_spawned", character)
 		await get_tree().create_timer(1).timeout
-
-func choose_customers(_number_customers) -> Array:
-	return Characters.list.slice(0, _number_customers)
 
 func on_customer_left(_customer):
 	for i in len(customers):

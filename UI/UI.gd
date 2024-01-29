@@ -1,30 +1,19 @@
-"""
-
-Opens menus
-
-"""
-
 extends CanvasLayer
 
+var stack = []
+
 func _ready() -> void:
-	SignalManager.connect("recipe_pressed", on_recipe_pressed)
-	SignalManager.connect("ingredient_to_recipe_menu_opened", on_ingredient_to_recipe_menu_opened)
-	SignalManager.connect("recipe_to_item_menu_opened", open_recipe_to_item_menu)
-	SignalManager.connect("pot_done", open_recipe_to_item_menu)
-	SignalManager.connect("ingredient_store_interacted", on_ingredient_store_interacted)
-func on_ingredient_store_interacted():
-	add_child(Paths.ingredient_shop_menu.instantiate())
-
-func on_recipe_pressed(recipe: Recipe) -> void:
-	instantiate_scene(Paths.price_modal)
-	SignalManager.emit_signal("price_modal_spawned", recipe)
-
-func on_ingredient_to_recipe_menu_opened() -> void:
-	instantiate_scene(Paths.recipe_creation_menu)
-
-func open_recipe_to_item_menu() -> void:
-	instantiate_scene(Paths.item_creation_menu)	
-
+	pass
+	
 func instantiate_scene(scene):
 	var scene_instance = scene.instantiate()
 	add_child(scene_instance)
+	stack.append(scene_instance)
+
+func close():
+	stack.pop_back().queue_free()
+
+func _input(event):
+	if event.is_action_pressed("ui_cancel"):
+		if len(stack) > 0:
+			stack.pop_back().queue_free()

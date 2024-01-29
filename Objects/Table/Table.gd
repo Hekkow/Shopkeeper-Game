@@ -2,7 +2,9 @@ extends Node2D
 
 class_name Table
 
+@export var signal_name: String
+
 var interactable = true
 
 func interact():
-	pass
+	SignalManager.emit_signal(signal_name)

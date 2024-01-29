@@ -8,16 +8,13 @@ var ground_layer = 0
 var solid_layers = []
 var exits = []
 
-#- add door to level
+#- add door both inside and outside
 #- add level to scenemanager
 #- SUPER IMPORTANT: SET ROOT NODE NAME TO SAME AS LEVEL NAME
 
 func _ready():
 	SceneManager.scene = self
 	level_ready()
-	var hud = load(Paths.hud).instantiate()
-	add_child(hud)
-	move_child(hud, 0)
 
 func level_ready():
 	SignalManager.emit_signal("level_ready", self)

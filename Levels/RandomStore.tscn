@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b6vnhlppakidv"]
+[gd_scene load_steps=8 format=3 uid="uid://b6vnhlppakidv"]
 
 [ext_resource type="Script" path="res://Levels/Level.gd" id="1_owl68"]
 [ext_resource type="TileSet" uid="uid://dutprqv5eo1mk" path="res://Resources/Tilesets/Shop.tres" id="2_11aob"]
@@ -6,8 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d3uc0hrbgvxce" path="res://Objects/Player/Player.tscn" id="4_kspgu"]
 [ext_resource type="PackedScene" uid="uid://dpk50psqcbbme" path="res://Objects/Exit/ExitTrigger.tscn" id="5_hgfst"]
 [ext_resource type="PackedScene" uid="uid://bhlw2f3i3nint" path="res://Objects/Table/TableInteract.tscn" id="6_rxoyt"]
-[ext_resource type="Script" path="res://Objects/Table/IngredientStoreTable.gd" id="7_6u57b"]
-[ext_resource type="Script" path="res://UI/UI.gd" id="8_ol843"]
+[ext_resource type="Script" path="res://Objects/Table/Table.gd" id="7_a12pt"]
 
 [node name="RandomStore" type="Node2D"]
 script = ExtResource("1_owl68")
@@ -28,7 +27,5 @@ spawn_point = Vector2(0, -50)
 
 [node name="TableInteract" parent="." instance=ExtResource("6_rxoyt")]
 position = Vector2(602, 263)
-script = ExtResource("7_6u57b")
-
-[node name="UI" type="CanvasLayer" parent="."]
-script = ExtResource("8_ol843")
+script = ExtResource("7_a12pt")
+signal_name = "ingredient_store_interacted"

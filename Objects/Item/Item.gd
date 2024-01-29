@@ -21,13 +21,13 @@ func on_item_picked_up(_case, item):
 		return
 	label.text = ""
 
-func _init(_recipe: Recipe = null, _price: int = -1) -> void: #- init when creating object, not for script
+func _init(_recipe: Recipe = null, _price: int = -1): #- init when creating object, not for script
 	price = _price
 	recipe = _recipe
 	id = Items.id
 	Items.id += 1
 
-func set_variables(_item: Item) -> void: #- when attaching script it copies another object 
+func set_variables(_item: Item): #- when attaching script it copies another object 
 	price = _item.price
 	recipe = _item.recipe
 	id = _item.id

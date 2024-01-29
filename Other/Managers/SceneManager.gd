@@ -41,4 +41,3 @@ func change_scene(scene_name):
 			state = Scene.RandomStore
 	SignalManager.emit_signal("scene_changing", scene)
 	get_tree().call_deferred("change_scene_to_file", Paths.levels + scene_name + ".tscn")
-	SignalManager.emit_signal("scene_changed", scene)

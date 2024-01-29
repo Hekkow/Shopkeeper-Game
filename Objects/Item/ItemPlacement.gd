@@ -4,9 +4,7 @@ var dragging = false
 var max_case_distance = 70
 var item = null
 var item_offset = Vector2(0, -80)
-# var item_offset = Vector2(0, -47)
 var closest_case_mouse_offset = Vector2(0, -50)
-# var closest_case_mouse_offset = Vector2(0, -20)
 const display_case_layer = 1
 var previous_case = null
 signal on_mouse_event
@@ -78,7 +76,6 @@ func distance(mouse, case):
 
 func cancel_drag():
 	dragging = false
-	SignalManager.emit_signal("item_placement_cancelled", item)
 	Helper.remove(Items.store, item)
 	item.queue_free()
 

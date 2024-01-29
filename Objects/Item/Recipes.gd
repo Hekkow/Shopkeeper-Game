@@ -6,7 +6,6 @@ var maximum = 10000
 
 func _ready():
 	list = Helper.get_resources("Recipes")
-	SignalManager.connect("recipe_made", on_recipe_made)
 	SignalManager.connect("item_placed", on_item_placed)
 	SignalManager.connect("item_picked_up", on_item_picked_up)
 	inventory.add(find_recipe("Diddlin"), 6)
@@ -31,9 +30,6 @@ func find_recipe(recipe_name) -> Recipe:
 		if recipe.recipe_name == recipe_name:
 			return recipe
 	return null
-
-func on_recipe_made(recipe) -> void:
-	inventory.add(recipe)
 
 func on_item_placed(_case, item):
 	var slot = inventory.find(item.recipe)
