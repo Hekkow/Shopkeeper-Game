@@ -1,14 +1,10 @@
-"""
-
-Shows player's money
-
-"""
-
 extends Label
 
-func _ready() -> void:
-	SignalManager.connect("player_money_updated", on_player_money_updated)
-	text = "$" + str(PlayerStats.money)
+func _ready():
+	update_money()
+	SignalManager.connect("bought_item", update_money)
+	SignalManager.connect("item_sold", update_money)
+	
 
-func on_player_money_updated(money: int) -> void:
-	text = "$" + str(money)
+func update_money(_thing=null):
+	text = "$" + str(PlayerStats.money)

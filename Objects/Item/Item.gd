@@ -21,8 +21,12 @@ func on_item_picked_up(_case, item):
 		return
 	label.text = ""
 
-func _init(_recipe: Recipe = null, _price: int = -1): #- init when creating object, not for script
+func _init(_recipe: Recipe = null, _price: int = -1):
+	if _recipe == null:
+		return
 	price = _price
+	if _price == -1:
+		price = _recipe.base_price
 	recipe = _recipe
 	id = Items.id
 	Items.id += 1

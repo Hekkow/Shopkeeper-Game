@@ -18,3 +18,6 @@ func _to_string() -> String:
 
 func to_str() -> String:
 	return "%s\n(%s)" % [object.to_str(), amount]
+
+func button_str() -> String:
+	return "%s\n(%s)" % [object.button_str(), amount]

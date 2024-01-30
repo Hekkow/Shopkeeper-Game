@@ -9,7 +9,7 @@ func _ready() -> void:
 func on_customer_interested(_customer, item):
     remove_from_store(item)
     if len(store) == 0:
-        SignalManager.emit_signal("store_closing")
+        SignalManager.emit_signal("store_items_depleted")
 
 func remove_from_store(item):
     for i in len(store):

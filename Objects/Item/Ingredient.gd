@@ -17,5 +17,8 @@ func _to_string() -> String:
 func to_str() -> String: 
 	return "%s\nA: %s\nB: %s\nC: %s" % [ingredient_name, element.a, element.b, element.c]
 
+func button_str() -> String:
+	return "%s\nA: %s\nB: %s\nC: %s" % [ingredient_name, element.a, element.b, element.c]
+
 func to_name() -> String:
 	return ingredient_name

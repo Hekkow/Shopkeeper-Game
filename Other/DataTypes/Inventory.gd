@@ -17,10 +17,17 @@ func add(item: Object, amount: int = 1) -> void:
 	else:
 		inv.append(InventorySlot.new(item, amount))
 
-func remove(item: Object) -> void:
+func add_inventory(inventory: Inventory):
+	for slot in inventory.inv:
+		add(slot.object, slot.amount)
+
+func remove(item: Object, amount: int = -1) -> void:
 	var index := has(item)
 	if index != -1:
-		inv.remove_at(index)
+		if amount == -1:
+			inv.remove_at(index)
+		else:
+			inv[index].subtract()
 
 func find(item: Object) -> Object:
 	for i in inv:

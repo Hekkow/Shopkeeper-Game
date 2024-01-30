@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnnfk8mv3a05g"]
+
+[ext_resource type="Script" path="res://UI/StoreOpenMenus.gd" id="1_cr56j"]
+[ext_resource type="Theme" uid="uid://c0w16302wkxq7" path="res://Resources/Theme/base.tres" id="1_wpvl6"]
+
+[node name="StoreOpenMenus" type="VBoxContainer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 49.0
+offset_top = -96.0
+offset_right = 108.0
+offset_bottom = -30.0
+grow_vertical = 0
+script = ExtResource("1_cr56j")
+
+[node name="Craft" type="Button" parent="."]
+layout_mode = 2
+theme = ExtResource("1_wpvl6")
+text = "Craft"
+
+[node name="SetUp" type="Button" parent="."]
+layout_mode = 2
+text = "Set Up"

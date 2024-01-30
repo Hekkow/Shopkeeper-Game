@@ -90,7 +90,7 @@ func item_clicked():
 		dragging = true
 		item = case.item
 		SignalManager.emit_signal("item_picked_up", case, item)
-		case = null
+		case.item = null
 	else:
 		if case.item != null:
 			return

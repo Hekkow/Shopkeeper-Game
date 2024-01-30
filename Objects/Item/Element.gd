@@ -20,9 +20,9 @@ func arr() -> Array:
 func equals(element: Element) -> bool:
 	return a == element.a && b == element.b && c == element.c
 
-static func ingredients_to_element(inventory_slots: Array) -> Element:
+static func inventory_to_element(pot: Inventory) -> Element:
 	var element = Element.new()
-	for slot in inventory_slots:
+	for slot in pot.inv:
 		for i in numberElements:
 			element.add(i, slot.object.element.arr()[i] * slot.amount)
 	return element

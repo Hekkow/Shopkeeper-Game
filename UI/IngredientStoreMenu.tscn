@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://63sjb4td2qx3"]
+
+[ext_resource type="Script" path="res://UI/IngredientStoreMenu.gd" id="1_eaafx"]
+[ext_resource type="PackedScene" uid="uid://bfrhn3efu1evu" path="res://UI/BaseGridMenu.tscn" id="2_f0g8a"]
+[ext_resource type="Script" path="res://UI/BaseGridMenu.gd" id="3_qlrvv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7s3cb"]
+bg_color = Color(0.452767, 0.621876, 0.758722, 1)
+
+[node name="IngredientStoreMenu" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7s3cb")
+script = ExtResource("1_eaafx")
+
+[node name="GridMenu" parent="." instance=ExtResource("2_f0g8a")]
+layout_mode = 1
+offset_left = -360.0
+offset_bottom = 2.0
+script = ExtResource("3_qlrvv")

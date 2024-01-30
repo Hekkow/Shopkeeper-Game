@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dde0ltjanb25k"]
+
+[ext_resource type="Script" path="res://UI/SetUpMenu.gd" id="1_hir2i"]
+[ext_resource type="PackedScene" uid="uid://bfrhn3efu1evu" path="res://UI/BaseGridMenu.tscn" id="2_vl72s"]
+[ext_resource type="Script" path="res://UI/BaseGridMenu.gd" id="3_kpagi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7s3cb"]
+bg_color = Color(0.452767, 0.621876, 0.758722, 1)
+
+[node name="SetUpMenu" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7s3cb")
+script = ExtResource("1_hir2i")
+
+[node name="GridMenu" parent="." instance=ExtResource("2_vl72s")]
+layout_mode = 1
+offset_left = -360.0
+offset_bottom = 2.0
+script = ExtResource("3_kpagi")

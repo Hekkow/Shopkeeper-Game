@@ -15,20 +15,27 @@ var table
 func _ready() -> void:
 	solid_layers = [1, 2]
 	Data.store = self
-	SignalManager.connect("store_opened", on_store_opened)
+	SignalManager.connect("store_table_interacted", open_store)
 	SignalManager.connect("customer_left", on_customer_left)
-	SignalManager.connect("store_closing", on_store_closing)
+	SignalManager.connect("store_items_depleted", store_is_closing)
+	SignalManager.connect("item_created", spawn_item)
 	super()
 
-func on_store_opened() -> void:
-	store_open = true
+func open_store() -> void:
 	if len(Items.store) == 0:
-		SignalManager.emit_signal("store_closed")
 		return
+	SignalManager.emit_signal("store_opened")
+	store_open = true
 	spawn_customers()
 	
-func on_store_closing():
+func store_is_closing():
 	store_closing = true
+
+func spawn_item(_item: Item):
+	var item = Paths.item.instantiate()
+	item.set_variables(_item)
+	add_child(item)
+	SignalManager.emit_signal("item_spawned", item)
 
 func spawn_customers() -> void:
 	var _customers := Characters.list.slice(0, number_customers)

@@ -21,4 +21,4 @@ func unlock():
 func triggered():
 	if !enabled:
 		return
-	SignalManager.emit_signal("change_scene", to)
+	SignalManager.emit_signal("exit_triggered", to)

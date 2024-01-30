@@ -27,7 +27,7 @@ func interact():
 	if Data.store.store_open:
 		queue.get_first().haggle()
 	else:
-		SignalManager.emit_signal("store_opened")
+		SignalManager.emit_signal("store_table_interacted")
 	interactable = false
 
 func on_store_opened():

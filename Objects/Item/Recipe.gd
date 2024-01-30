@@ -16,4 +16,6 @@ func equals(recipe: Recipe) -> bool:
 
 func _to_string() -> String:
 	return recipe_name
+func button_str() -> String:
+	return recipe_name
 

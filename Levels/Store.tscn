@@ -54,6 +54,7 @@ to = "World"
 spawn_point = Vector2(0, -50)
 
 [node name="DisplayCases" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="Area2D" parent="DisplayCases" instance=ExtResource("14_hwtho")]
 position = Vector2(416, 512)
