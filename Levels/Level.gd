@@ -25,4 +25,4 @@ func get_entry_position(previous = null):
 			if exit.to == previous:
 				return exit.position + exit.spawn_point
 		elif exit.to == SceneManager.previous_scene:
-			return exit.position + exit.spawn_point
+			return exit.global_position + exit.spawn_point

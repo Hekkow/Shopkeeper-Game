@@ -19,6 +19,7 @@ var levels = "res://Levels/"
 var resources = "res://Resources/"
 var dialogic_characters = "res://Resources/DialogicCharacters/"
 var dialogic_timelines = "res://Resources/Timelines/"
+var ingredient_textures = "res://Resources/Sprites/"
 
 #- ui
 var ui = "res://UI/"

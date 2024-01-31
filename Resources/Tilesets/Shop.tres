@@ -1,7 +1,10 @@
-[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://dutprqv5eo1mk"]
+[gd_resource type="TileSet" load_steps=10 format=3 uid="uid://dutprqv5eo1mk"]
 
 [ext_resource type="Shader" path="res://Resources/Shaders/PaletteSwap.gdshader" id="1_sftei"]
 [ext_resource type="Texture2D" uid="uid://d05ebrsmmtspd" path="res://Resources/Sprites/tilesheet.png" id="2_qaeft"]
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_qr6k2"]
+tile_data = PackedInt32Array(0, 327682, 0, 65536, 327682, 1, 131072, 327682, 2, 1, 393218, 0, 65537, 393218, 1, 131073, 393218, 2, 2, 458754, 0, 65538, 458754, 1, 131074, 458754, 2)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dy7s4"]
 
@@ -86,10 +89,6 @@ texture_region_size = Vector2i(64, 64)
 0:1/0/y_sort_origin = -10
 0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:1/0/physics_layer_0/angular_velocity = 0.0
-5:0/size_in_atlas = Vector2i(3, 3)
-5:0/0 = 0
-5:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-5:0/0/physics_layer_0/angular_velocity = 0.0
 3:0/size_in_atlas = Vector2i(1, 2)
 3:0/0 = 0
 3:0/0/texture_origin = Vector2i(0, 32)
@@ -102,9 +101,15 @@ texture_region_size = Vector2i(64, 64)
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_0/angular_velocity = 0.0
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+5:0/size_in_atlas = Vector2i(3, 3)
+5:0/0 = 0
+5:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:0/0/physics_layer_0/angular_velocity = 0.0
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-94.7523, -32.5269, 96.1665, -32.5269, 94.7523, 94.7523, -94.7523, 93.3381)
 
 [resource]
 tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
 navigation_layer_0/layers = 3
 sources/2 = SubResource("TileSetAtlasSource_cvi5e")
+pattern_0 = SubResource("TileMapPattern_qr6k2")

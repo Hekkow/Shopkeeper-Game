@@ -7,7 +7,7 @@
 [ext_resource type="Resource" uid="uid://do88kcsjrtipg" path="res://Resources/Characters/Black.tres" id="5_3nlhv"]
 [ext_resource type="PackedScene" uid="uid://qx2dsgaptaoh" path="res://Objects/Character/Character.tscn" id="5_6g6a3"]
 [ext_resource type="Resource" uid="uid://cbrlb7gtmv85y" path="res://Resources/Characters/Red.tres" id="5_30sd3"]
-[ext_resource type="PackedScene" uid="uid://orlm77lay1xx" path="res://Objects/Exit/Door.tscn" id="7_dbgvj"]
+[ext_resource type="PackedScene" uid="uid://b0hd1xbrf8cuj" path="res://Objects/House.tscn" id="9_kan8w"]
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
@@ -21,21 +21,8 @@ tile_set = ExtResource("1_qvtcx")
 format = 2
 layer_0/name = "Ground"
 layer_0/tile_data = PackedInt32Array(4, 131074, 3, 65540, 131074, 3, 131076, 131074, 3, 196612, 131074, 3, 262148, 131074, 3, 327684, 131074, 3, 393220, 131074, 3, 458756, 131074, 3, 524292, 131074, 3, 589828, 131074, 3, 5, 131074, 3, 65541, 131074, 3, 131077, 131074, 3, 196613, 131074, 3, 262149, 131074, 3, 327685, 131074, 3, 393221, 131074, 3, 458757, 131074, 3, 524293, 131074, 3, 589829, 131074, 3, 6, 131074, 3, 65542, 131074, 3, 131078, 131074, 3, 196614, 131074, 3, 262150, 131074, 3, 327686, 131074, 3, 393222, 131074, 3, 458758, 131074, 3, 524294, 131074, 3, 589830, 131074, 3, 7, 131074, 3, 65543, 131074, 3, 131079, 131074, 3, 196615, 131074, 3, 262151, 131074, 3, 327687, 131074, 3, 393223, 131074, 3, 458759, 131074, 3, 524295, 131074, 3, 589831, 131074, 3, 8, 131074, 3, 65544, 131074, 3, 131080, 131074, 3, 196616, 131074, 3, 262152, 131074, 3, 327688, 131074, 3, 393224, 131074, 3, 458760, 131074, 3, 524296, 131074, 3, 589832, 131074, 3, 9, 131074, 3, 65545, 131074, 3, 131081, 131074, 3, 196617, 131074, 3, 262153, 131074, 3, 327689, 131074, 3, 393225, 131074, 3, 458761, 131074, 3, 524297, 131074, 3, 589833, 131074, 3, 10, 131074, 3, 65546, 131074, 3, 131082, 131074, 3, 196618, 131074, 3, 262154, 131074, 3, 327690, 131074, 3, 393226, 131074, 3, 458762, 131074, 3, 524298, 131074, 3, 589834, 131074, 3, 11, 131074, 3, 65547, 131074, 3, 131083, 131074, 3, 196619, 131074, 3, 262155, 131074, 3, 327691, 131074, 3, 393227, 131074, 3, 458763, 131074, 3, 524299, 131074, 3, 589835, 131074, 3, 12, 131074, 3, 65548, 131074, 3, 131084, 131074, 3, 196620, 131074, 3, 262156, 131074, 3, 327692, 131074, 3, 393228, 131074, 3, 458764, 131074, 3, 589836, 131074, 3, 524300, 131074, 3)
-layer_1/name = "DisplayCase"
-layer_1/y_sort_enabled = true
-layer_1/navigation_enabled = false
+layer_1/name = "Building"
 layer_1/tile_data = PackedInt32Array()
-layer_2/name = "Table"
-layer_2/y_sort_enabled = true
-layer_2/tile_data = PackedInt32Array()
-layer_3/name = "Wall"
-layer_3/navigation_enabled = false
-layer_3/tile_data = PackedInt32Array(262151, 327682, 0)
-layer_4/name = "Door"
-layer_4/tile_data = PackedInt32Array()
-layer_5/name = "Decor"
-layer_5/y_sort_enabled = true
-layer_5/tile_data = PackedInt32Array()
 script = ExtResource("3_dgwpx")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("4_3lq27")]
@@ -44,18 +31,16 @@ position = Vector2(484, 497)
 
 [node name="Area2D" parent="." instance=ExtResource("5_6g6a3")]
 self_modulate = Color(0, 0, 0, 1)
-position = Vector2(731, 468)
+position = Vector2(363, 220)
 customer = ExtResource("5_3nlhv")
 
 [node name="Character3" parent="." instance=ExtResource("5_6g6a3")]
 self_modulate = Color(1, 0.101961, 0.188235, 1)
-position = Vector2(689, 338)
+position = Vector2(443, 210)
 customer = ExtResource("5_30sd3")
 
-[node name="StoreDoor" parent="." instance=ExtResource("7_dbgvj")]
-position = Vector2(480, 335)
-to = "Store"
+[node name="Store" parent="." instance=ExtResource("9_kan8w")]
+position = Vector2(480, 383)
 
-[node name="IngredientShopDoor" parent="." instance=ExtResource("7_dbgvj")]
-position = Vector2(608, 431)
-to = "RandomStore"
+[node name="RandomStore" parent="." instance=ExtResource("9_kan8w")]
+position = Vector2(675, 513)
