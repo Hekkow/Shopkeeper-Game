@@ -5,6 +5,7 @@ extends Node
 var character = load("res://Objects/Character/Character.tscn")
 
 var item = load("res://Objects/Item/Item.tscn")
+var ingredient = load("res://Objects/Ingredient/IngredientObject.tscn")
 
 #- minigames
 var haggling = load("res://Minigames/Haggling/Haggling.tscn")

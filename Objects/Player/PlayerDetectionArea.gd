@@ -52,3 +52,4 @@ func _input(event):
 	if event.is_action_pressed("interact"):
 		if interact_with != null:
 			interact_with.interact()
+			interact_with = null

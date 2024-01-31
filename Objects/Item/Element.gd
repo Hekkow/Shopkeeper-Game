@@ -39,8 +39,11 @@ func add(index: int, value: int) -> void:
 func element_to_percentages() -> Array:
 	var percentages = []
 	var maximum = get_max()
+	if maximum == 0:
+		return [0, 0, 0]
 	var elements = arr()
 	for i in numberElements:
+		print(str(elements[i]) + "/" + str(maximum) + "*" + str(fillPercent))
 		percentages.append(float(elements[i])/maximum*fillPercent)
 	return percentages
 

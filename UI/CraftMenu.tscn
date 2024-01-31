@@ -21,3 +21,28 @@ layout_mode = 1
 offset_left = -360.0
 offset_bottom = 2.0
 script = ExtResource("2_hxbsb")
+
+[node name="RatioBars" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 512.0
+offset_right = 196.0
+offset_bottom = 622.0
+theme_override_constants/separation = 10
+
+[node name="ProgressBar" type="ProgressBar" parent="RatioBars"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="ProgressBar2" type="ProgressBar" parent="RatioBars"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="ProgressBar3" type="ProgressBar" parent="RatioBars"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="PotContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 792.0
+offset_bottom = 648.0

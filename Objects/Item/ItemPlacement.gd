@@ -78,6 +78,7 @@ func cancel_drag():
 	dragging = false
 	Helper.remove(Items.store, item)
 	item.queue_free()
+	SignalManager.emit_signal("item_placement_cancelled")
 
 func item_clicked():
 	var case = find_closest_case(!dragging)

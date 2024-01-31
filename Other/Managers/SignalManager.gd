@@ -4,6 +4,7 @@ extends Node
 signal item_spawned(item)
 signal item_placed(case, item)
 signal item_picked_up(case, item)
+signal item_placement_cancelled
 
 #- store opening
 signal store_opened
@@ -33,6 +34,7 @@ signal level_ready(level)
 
 #- time
 signal time_changed(time, day)
+signal next_day(day)
 
 #- conversations
 signal conversation_started(conversation)
@@ -46,6 +48,9 @@ signal craft_button_pressed
 signal set_up_button_pressed
 signal craft_menu_closed(pot)
 signal ingredient_store_interacted
+signal craft_menu_panel_pressed
+signal set_up_menu_panel_pressed
+signal ingredient_store_panel_pressed
 
 #- crafting
 signal ingredient_added_to_pot
@@ -53,3 +58,5 @@ signal pot_pressed(recipe)
 
 #- shop set up
 signal item_created(item)
+
+signal ingredient_picked_up

@@ -1,8 +1,7 @@
-extends Panel
-
-@onready var grid_menu = $GridMenu
+extends Menu
 
 func _ready():
+	click_signal = "ingredient_store_panel_pressed"
 	grid_menu.load_items(Stores.ingredients, buy_item, true)
 
 

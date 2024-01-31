@@ -9,7 +9,12 @@ func _ready() -> void:
 	SignalManager.connect("item_created", close)
 	SignalManager.connect("craft_button_pressed", open_craft_menu)
 	SignalManager.connect("set_up_button_pressed", open_set_up_menu)
+	SignalManager.connect("item_placed", open_set_up_menu)
+	SignalManager.connect("item_placement_cancelled", open_set_up_menu)
 	SignalManager.connect("ingredient_store_interacted", open_ingredient_store_menu)
+	SignalManager.connect("craft_menu_panel_pressed", close)
+	SignalManager.connect("set_up_menu_panel_pressed", close)
+	SignalManager.connect("ingredient_store_panel_pressed", close)
 	
 
 
@@ -21,7 +26,7 @@ func state_changed(_scene=null):
 func open_craft_menu():
 	instantiate_scene(Paths.craft_menu)
 
-func open_set_up_menu():
+func open_set_up_menu(_case=null, _item=null):
 	instantiate_scene(Paths.set_up_menu)
 	
 func open_ingredient_store_menu():

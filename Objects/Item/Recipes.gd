@@ -12,10 +12,10 @@ func _ready():
 	inventory.add(find_recipe("Diddlin"), 6)
 	inventory.add(find_recipe("Hurtin"), 6)
 
-func check_recipes(pot: Inventory) -> Recipe:
+func check_recipes(_element: Element) -> Recipe:
 	var minimum = maximum
 	var values = []
-	var element = Element.inventory_to_element(pot).arr()
+	var element = _element.arr()
 	for i in len(element):
 		var amount = element[i]
 		if amount < minimum and amount != 0:

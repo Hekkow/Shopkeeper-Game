@@ -22,7 +22,7 @@ SignalManager="*res://Other/Managers/SignalManager.gd"
 Helper="*res://Other/Managers/Helper.gd"
 Data="*res://Other/Managers/Data.gd"
 Characters="*res://Objects/Character/Characters.gd"
-Ingredients="*res://Objects/Item/Ingredients.gd"
+Ingredients="*res://Objects/Ingredient/Ingredients.gd"
 Items="*res://Objects/Item/Items.gd"
 Recipes="*res://Objects/Item/Recipes.gd"
 PlayerStats="*res://Objects/Player/PlayerStats.gd"
@@ -34,6 +34,7 @@ TimeManager="*res://Other/Managers/TimeManager.gd"
 Stores="*res://Other/Managers/Stores.gd"
 HUD="*res://HUD/HUD.tscn"
 UI="*res://UI/UI.gd"
+Scenes="*res://Levels/Scenes.gd"
 
 [debug]
 

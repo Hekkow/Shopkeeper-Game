@@ -3,7 +3,7 @@ extends Node
 var time = 0
 var day = 0
 var time_per_day = 10
-var seconds_per_time = 10
+var seconds_per_time = 1
 
 func _ready():
 	var timer = Timer.new()
@@ -28,3 +28,4 @@ func next_day():
 	time = 0
 	day += 1
 	SignalManager.emit_signal("time_changed", time, day)
+	SignalManager.emit_signal("next_day", day)

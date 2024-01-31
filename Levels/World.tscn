@@ -16,7 +16,7 @@ script = ExtResource("1_mfjm5")
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
 texture_filter = 1
-position = Vector2(0, -1)
+position = Vector2(3, -1)
 tile_set = ExtResource("1_qvtcx")
 format = 2
 layer_0/name = "Ground"
