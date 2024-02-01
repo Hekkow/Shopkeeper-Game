@@ -3,12 +3,13 @@ extends Node2D
 class_name Character
 
 @export var customer: CharacterStats
+@export var schedule: Schedule
 @onready var pathfinding = $Pathfinding
 @onready var shopping = $Shopping
 @onready var store = Data.store
 @onready var animation = $AnimatedSprite2D
 @onready var text_bubble_position = $TextBubblePosition
-@onready var schedule = $Schedule
+@onready 
 var interactable = true
 
 func set_variables(_customer: CharacterStats = null):
@@ -26,8 +27,8 @@ func _ready():
 	elif SceneManager.state == SceneManager.Scene.World:
 		schedule.schedule_time_reached.connect(schedule_pathfinding)
 
-func schedule_pathfinding(cell: Vector2i):
-	pathfinding.go_to_tile(cell)
+func schedule_pathfinding(schedule_slot: ScheduleSlot):
+	pathfinding.go_to_tile(schedule_slot.pos)
 
 func on_conversation_started(conversation):
 	if conversation.character != customer.character_name:

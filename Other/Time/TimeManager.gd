@@ -3,7 +3,7 @@ extends Node
 var time_per_day = 10
 var seconds_per_time = 1
 
-var time = TheTime.new(0, 0)
+var time = TheTime.new(0, 1)
 
 func _ready():
 	var timer = Timer.new()

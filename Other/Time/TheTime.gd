@@ -1,15 +1,15 @@
 class_name TheTime
-extends Node
+extends Resource
 
 @export var day: int
 @export var hour: int
 
-func _init(_hour: int, _day: int = -1):
+func _init(_hour: int = 0, _day: int = 0):
 	hour = _hour
 	day = _day
 
 func equals(time: TheTime):
-	if day == -1:
+	if day == 0:
 		return hour == time.hour
 	return day == time.day && hour == time.hour
 	

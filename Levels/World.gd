@@ -3,7 +3,6 @@ extends Level
 var placement_chance = 0.05 #- possibly switch to number based system instead later, where a random number of ingredients gets spawned every day
 
 func _ready():
-	solid_layers = [1]
 	super()
 	if !Scenes.seen_today.has(SceneManager.Scene.World):
 		set_ingredient_locations()

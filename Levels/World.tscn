@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dhgln76n5cu3b"]
+[gd_scene load_steps=13 format=3 uid="uid://dhgln76n5cu3b"]
 
 [ext_resource type="Script" path="res://Levels/World.gd" id="1_mfjm5"]
 [ext_resource type="TileSet" uid="uid://dutprqv5eo1mk" path="res://Resources/Tilesets/Shop.tres" id="1_qvtcx"]
@@ -7,7 +7,19 @@
 [ext_resource type="Resource" uid="uid://do88kcsjrtipg" path="res://Resources/Characters/Black.tres" id="5_3nlhv"]
 [ext_resource type="PackedScene" uid="uid://qx2dsgaptaoh" path="res://Objects/Character/Character.tscn" id="5_6g6a3"]
 [ext_resource type="Resource" uid="uid://cbrlb7gtmv85y" path="res://Resources/Characters/Red.tres" id="5_30sd3"]
+[ext_resource type="Script" path="res://Other/Time/ScheduleSlot.gd" id="7_3pxs1"]
+[ext_resource type="Script" path="res://Other/Time/Schedule.gd" id="7_o0xua"]
 [ext_resource type="PackedScene" uid="uid://b0hd1xbrf8cuj" path="res://Objects/House.tscn" id="9_kan8w"]
+
+[sub_resource type="Resource" id="Resource_3bsxd"]
+script = ExtResource("7_3pxs1")
+hour = 3
+day = 1
+pos = Vector2i(4, 0)
+
+[sub_resource type="Resource" id="Resource_n77pd"]
+script = ExtResource("7_o0xua")
+schedule = Array[ExtResource("7_3pxs1")]([SubResource("Resource_3bsxd")])
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
@@ -29,12 +41,13 @@ script = ExtResource("3_dgwpx")
 y_sort_enabled = true
 position = Vector2(484, 497)
 
-[node name="Area2D" parent="." instance=ExtResource("5_6g6a3")]
+[node name="Character" parent="." instance=ExtResource("5_6g6a3")]
 self_modulate = Color(0, 0, 0, 1)
 position = Vector2(363, 220)
 customer = ExtResource("5_3nlhv")
+schedule = SubResource("Resource_n77pd")
 
-[node name="Character3" parent="." instance=ExtResource("5_6g6a3")]
+[node name="Character2" parent="." instance=ExtResource("5_6g6a3")]
 self_modulate = Color(1, 0.101961, 0.188235, 1)
 position = Vector2(443, 210)
 customer = ExtResource("5_30sd3")
@@ -44,5 +57,3 @@ position = Vector2(480, 383)
 
 [node name="RandomStore" parent="." instance=ExtResource("9_kan8w")]
 position = Vector2(675, 513)
-
-[editable path="Character3"]
