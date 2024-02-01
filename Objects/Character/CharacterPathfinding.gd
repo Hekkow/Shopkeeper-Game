@@ -21,7 +21,12 @@ func _ready():
 		tilemap = Data.store.tilemap
 		astar = Data.store.astar
 		parent.position = Data.store.get_entry_position("World")
-
+	elif SceneManager.state == SceneManager.Scene.World:
+		SignalManager.connect("level_ready", on_level_ready)
+		
+func on_level_ready(level):
+	tilemap = level.tilemap
+	astar = level.astar
 func go_to(state, item=null):
 	if SceneManager.state == SceneManager.Scene.Store:
 		if state == shopping.State.LOOKING:
@@ -31,15 +36,17 @@ func go_to(state, item=null):
 		elif state == shopping.State.LEAVING:
 			set_destination_path(tilemap.local_to_map(Data.store.get_entry_position("World")))
 
+func go_to_tile(cell: Vector2i):
+	set_destination_path(cell)
 
-func set_destination_path(destination: Vector2):
+func set_destination_path(destination: Vector2i):
 	if path && parent.position.distance_to(tilemap.map_to_local(path[0])) > min_distance:
 		path = get_shortest_path(path[0], destination)
 	else:
 		path = get_shortest_path(tilemap.local_to_map(parent.position), destination)
 	set_physics_process(true)
 
-func get_shortest_path(_start: Vector2, destination: Vector2) -> Array:
+func get_shortest_path(_start: Vector2i, destination: Vector2i) -> Array:
 	if !astar.is_point_solid(destination):
 		return astar.get_id_path(_start, destination)
 	var shortest_path = astar.get_id_path(_start, tilemap.get_neighbor_cell(destination, 0))

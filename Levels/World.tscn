@@ -44,3 +44,5 @@ position = Vector2(480, 383)
 
 [node name="RandomStore" parent="." instance=ExtResource("9_kan8w")]
 position = Vector2(675, 513)
+
+[editable path="Character3"]

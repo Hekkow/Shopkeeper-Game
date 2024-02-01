@@ -29,3 +29,6 @@ var craft_menu = load(ui + "CraftMenu.tscn")
 var set_up_menu = load(ui + "SetUpMenu.tscn")
 var ingredient_store_menu = load(ui + "IngredientStoreMenu.tscn")
 var grid_button = load(ui + "GridButton.tscn")
+
+#- groups
+var solids = "Solids"

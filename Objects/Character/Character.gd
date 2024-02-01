@@ -8,6 +8,7 @@ class_name Character
 @onready var store = Data.store
 @onready var animation = $AnimatedSprite2D
 @onready var text_bubble_position = $TextBubblePosition
+@onready var schedule = $Schedule
 var interactable = true
 
 func set_variables(_customer: CharacterStats = null):
@@ -22,6 +23,11 @@ func _ready():
 	if SceneManager.state == SceneManager.Scene.Store:
 		interactable = false
 		shopping.start()
+	elif SceneManager.state == SceneManager.Scene.World:
+		schedule.schedule_time_reached.connect(schedule_pathfinding)
+
+func schedule_pathfinding(cell: Vector2i):
+	pathfinding.go_to_tile(cell)
 
 func on_conversation_started(conversation):
 	if conversation.character != customer.character_name:

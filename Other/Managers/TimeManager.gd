@@ -1,9 +1,9 @@
 extends Node
 
-var time = 0
-var day = 0
 var time_per_day = 10
 var seconds_per_time = 1
+
+var time = TheTime.new(0, 0)
 
 func _ready():
 	var timer = Timer.new()
@@ -14,18 +14,18 @@ func _ready():
 	SignalManager.connect("store_closed", on_store_closed)
 	
 func every_time_interval():
-	time += 1
-	if time == time_per_day:
-		time = 0
+	time.hour += 1
+	if time.hour == time_per_day:
+		time.hour = 0
 		next_day()
 	else:
-		SignalManager.emit_signal("time_changed", time, day)
+		SignalManager.emit_signal("time_changed", time)
 		
 func on_store_closed():
 	next_day()
 
 func next_day():
-	time = 0
-	day += 1
-	SignalManager.emit_signal("time_changed", time, day)
-	SignalManager.emit_signal("next_day", day)
+	time.hour = 0
+	time.day += 1
+	SignalManager.emit_signal("time_changed", time)
+	SignalManager.emit_signal("next_day", time)

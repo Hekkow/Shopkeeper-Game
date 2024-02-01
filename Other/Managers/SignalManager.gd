@@ -33,7 +33,7 @@ signal scene_changing(to)
 signal level_ready(level)
 
 #- time
-signal time_changed(time, day)
+signal time_changed(time)
 signal next_day(day)
 
 #- conversations
