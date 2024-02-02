@@ -27,6 +27,7 @@ func _ready():
 func on_level_ready(level):
 	tilemap = level.tilemap
 	astar = level.astar
+	
 func go_to(state, item=null):
 	if SceneManager.state == SceneManager.Scene.Store:
 		if state == shopping.State.LOOKING:

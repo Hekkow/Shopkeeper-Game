@@ -2,7 +2,7 @@ class_name ScheduleSlot
 extends Resource
 
 @export var hour: int = 0
-@export var day: int = 1
+@export var day: int = 0
 var time: TheTime
 @export var pos: Vector2i
 

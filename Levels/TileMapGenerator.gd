@@ -25,8 +25,13 @@ func on_level_ready(level):
 			add_child(label)
 			label.position = map_to_local(cell) - label.size/2
 	
+	for cell in Helper.get_all_tiles(self):
+		for solid in Scenes.solids:
+			if solid.has_point(map_to_local(cell)):
+				astar.set_point_solid(cell)
 	for i in level.solid_layers:
 		for cell in get_used_cells(i):
 			astar.set_point_solid(cell)
 	level.astar = astar
 	level.tilemap = self
+	

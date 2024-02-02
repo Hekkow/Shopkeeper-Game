@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dhgln76n5cu3b"]
+[gd_scene load_steps=15 format=3 uid="uid://dhgln76n5cu3b"]
 
 [ext_resource type="Script" path="res://Levels/World.gd" id="1_mfjm5"]
 [ext_resource type="TileSet" uid="uid://dutprqv5eo1mk" path="res://Resources/Tilesets/Shop.tres" id="1_qvtcx"]
@@ -14,12 +14,22 @@
 [sub_resource type="Resource" id="Resource_3bsxd"]
 script = ExtResource("7_3pxs1")
 hour = 3
-day = 1
+day = 0
 pos = Vector2i(4, 0)
 
 [sub_resource type="Resource" id="Resource_n77pd"]
 script = ExtResource("7_o0xua")
 schedule = Array[ExtResource("7_3pxs1")]([SubResource("Resource_3bsxd")])
+
+[sub_resource type="Resource" id="Resource_hc4go"]
+script = ExtResource("7_3pxs1")
+hour = 1
+day = 0
+pos = Vector2i(7, 6)
+
+[sub_resource type="Resource" id="Resource_v3a53"]
+script = ExtResource("7_o0xua")
+schedule = Array[ExtResource("7_3pxs1")]([SubResource("Resource_hc4go")])
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
@@ -49,8 +59,9 @@ schedule = SubResource("Resource_n77pd")
 
 [node name="Character2" parent="." instance=ExtResource("5_6g6a3")]
 self_modulate = Color(1, 0.101961, 0.188235, 1)
-position = Vector2(443, 210)
+position = Vector2(480, 188)
 customer = ExtResource("5_30sd3")
+schedule = SubResource("Resource_v3a53")
 
 [node name="Store" parent="." instance=ExtResource("9_kan8w")]
 position = Vector2(480, 383)

@@ -67,3 +67,11 @@ func cardinal_direction(direction: Vector2): #- in reverse because 0, 0 is top l
 			return Direction.UP
 		else:
 			return Direction.DOWN
+
+func get_all_tiles(tilemap: TileMap):
+	var tiles = []
+	var rect = tilemap.get_used_rect()
+	for x in range(rect.position.x, rect.position.x + rect.size.x):
+		for y in range(rect.position.y, rect.position.y + rect.size.y):
+			tiles.append(Vector2i(x, y))
+	return tiles
